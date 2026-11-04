@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Seek to Save Fiji</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap">
+<style>
+/* Layout: sticky top nav, one view at a time chosen by #hash; deep forest green hero bands, off-white reading pages, gold used only for rules, buttons and scripture. */
+:root{
+  --bg:#F7F4EC; --surface:#FFFFFF; --fg:#1D2A22; --muted:#56635A; --line:#DDD8C8;
+  --green:#1F3D2E; --green-2:#2C5740; --on-green:#F7F4EC; --gold:#B58A2A; --gold-soft:#E9DDB8; --on-gold:#1D1A0E;
+  --band:#EDE8D8; --warn-bg:#FBF1D4; --warn-fg:#5B4608;
+  --display:'Young Serif',Georgia,'Noto Sans Devanagari','Noto Sans SC','Times New Roman',serif; --body:'Figtree','Noto Sans Devanagari','Noto Sans SC',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#121A15; --surface:#1A261F; --fg:#ECE8DB; --muted:#A7B2A9; --line:#2D3C33;
+  --green:#0E1F16; --green-2:#1F3D2E; --on-green:#F1EDE0; --gold:#D4AB4A; --gold-soft:#4A3F1E; --on-gold:#1D1A0E;
+  --band:#18231C; --warn-bg:#3A3015; --warn-fg:#F0DDA0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121A15; --surface:#1A261F; --fg:#ECE8DB; --muted:#A7B2A9; --line:#2D3C33;
+  --green:#0E1F16; --green-2:#1F3D2E; --on-green:#F1EDE0; --gold:#D4AB4A; --gold-soft:#4A3F1E; --on-gold:#1D1A0E;
+  --band:#18231C; --warn-bg:#3A3015; --warn-fg:#F0DDA0; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.65 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--green)}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,6vw,3.6rem)} h2{font-size:clamp(1.6rem,4vw,2.3rem)} h3{font-size:1.25rem}
+p{margin:0 0 1em;max-width:65ch} a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto}
+.bleed{margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* draft notice */
+.draft{background:var(--warn-bg);color:var(--warn-fg);font-size:.85rem;padding-block:8px;text-align:center}
+.draft p{margin:0 auto;max-width:none}
+
+/* language */
+.draft .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between}
+.draft .wrap p{text-align:left}
+.langbtn{flex:none;background:transparent;color:inherit;border:1px solid currentColor;border-radius:4px;padding:5px 12px;font:600 .82rem var(--body);cursor:pointer}
+#langGate{position:fixed;inset:0;z-index:50;background:var(--green);color:var(--on-green);display:grid;place-items:center;overflow:auto;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+#langGate[hidden]{display:none}
+#langGate .inner{width:100%;max-width:640px}
+#langGate h1{font-size:clamp(1.8rem,5vw,2.6rem);margin:6px 0 10px}
+#langGate p{color:var(--on-green)}
+.langs{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));margin-top:28px}
+.langs button{text-align:left;background:transparent;color:var(--on-green);border:2px solid var(--gold);border-radius:6px;padding:18px 20px;cursor:pointer;font:600 1.4rem var(--body)}
+.langs button small{display:block;font:500 .8rem var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-soft);margin-top:4px}
+.langs button:hover,.langs button:focus-visible{background:var(--green-2)}
+/* header */
+header.top .wrap{max-width:1280px}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--green);color:var(--on-green);border-bottom:2px solid var(--gold)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.brand{font-family:var(--display);font-size:1.35rem;text-decoration:none;color:var(--on-green);white-space:nowrap}
+.brand small{display:block;font-family:var(--body);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-soft);margin-top:2px}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:2px;flex-wrap:wrap}
+nav a{display:block;padding:8px 8px;border-radius:4px;text-decoration:none;font-size:.9rem;font-weight:500;color:var(--on-green)}
+nav a:hover,nav a[aria-current="page"]{background:var(--green-2);color:var(--on-green)}
+nav a.give{background:var(--gold);color:var(--on-gold);font-weight:700}
+.menu-btn{display:none;background:none;border:1px solid var(--gold);color:var(--on-green);border-radius:4px;padding:8px 14px;font:600 .9rem var(--body)}
+@media (max-width:1320px){
+  .menu-btn{display:block}
+  nav{display:none;position:absolute;left:0;right:0;top:100%;background:var(--green);padding:8px max(16px,env(safe-area-inset-left,0px)) 16px;border-bottom:2px solid var(--gold)}
+  nav.open{display:block}
+  nav ul{flex-direction:column}
+}
+
+/* components */
+.btn{display:inline-block;padding:13px 24px;border-radius:4px;font:700 1rem var(--body);text-decoration:none;border:2px solid var(--gold);cursor:pointer}
+.btn.primary{background:var(--gold);color:var(--on-gold)} .btn.ghost{background:transparent;color:inherit}
+.btn:hover{filter:brightness(1.08)}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.hero{background:var(--green);color:var(--on-green);padding-block:clamp(48px,9vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px;align-items:center}
+.hero p{font-size:1.15rem;color:var(--on-green)}
+.hero p.eyebrow,.page-head p.eyebrow{font-size:.75rem;color:var(--gold);margin:0 0 14px}
+.eyebrow{font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--gold);margin:0 0 14px}
+.verse{border-left:3px solid var(--gold);padding:4px 0 4px 20px;font-family:var(--display);font-size:1.25rem;line-height:1.4}
+.verse cite{display:block;font:600 .8rem var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:10px;font-style:normal}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}}
+section.block{padding-block:clamp(40px,6vw,72px)}
+section.alt{background:var(--band)}
+.page-head{background:var(--green);color:var(--on-green);padding-block:clamp(36px,6vw,64px);border-bottom:4px solid var(--gold)}
+.page-head p{color:var(--on-green);font-size:1.1rem;margin:14px 0 0}
+.grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px;min-width:0}
+.card h3{margin-bottom:10px}
+.card p:last-child{margin-bottom:0}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;background:var(--surface)}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:.95rem}
+th{font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:var(--band)}
+.stages{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.stages li{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px}
+.stages .n{width:44px;height:44px;border-radius:50%;background:var(--green);color:var(--gold);display:grid;place-items:center;font:400 1.2rem var(--display)}
+.pill{font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:99px;background:var(--gold-soft);color:var(--fg);white-space:nowrap}
+.todo{background:var(--warn-bg);color:var(--warn-fg);border-radius:4px;padding:2px 8px;font-size:.88em}
+.note{border:1px dashed var(--gold);border-radius:6px;padding:18px 20px;background:var(--surface);color:var(--muted)}
+.note p{margin:0}
+.two{display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.two>*{min-width:0}
+ul.plain{padding-left:1.1em;margin:0 0 1em} ul.plain li{margin-bottom:.5em;max-width:65ch}
+
+/* testimonies */
+.profile{display:grid;gap:14px;align-content:start}
+.profile .top{display:flex;gap:14px;align-items:center}
+.avatar{flex:none;width:64px;height:64px;border-radius:50%;background:var(--green);color:var(--gold);display:grid;place-items:center;font:400 1.5rem var(--display);border:2px solid var(--gold)}
+.profile h3{margin:0}
+.profile .role{color:var(--muted);font-size:.9rem;margin:0}
+.profile blockquote{margin:0;padding-left:16px;border-left:3px solid var(--gold);font-family:var(--display);font-size:1.05rem;line-height:1.5}
+.badges{display:flex;gap:8px;flex-wrap:wrap}
+.profile.sample{border-style:dashed}
+.steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px;counter-increment:s}
+.steps li::before{content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--green);color:var(--gold);font:400 1.05rem var(--display);margin-bottom:10px}
+/* goals + givers */
+.goals{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))}
+.gh{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.gh h3{margin:0}
+.meter{height:16px;border-radius:99px;background:var(--line);overflow:hidden}
+.meter>i{display:block;height:100%;background:linear-gradient(90deg,var(--green-2),var(--gold));transition:width .6s ease}
+.stats{display:flex;gap:32px;flex-wrap:wrap;margin:14px 0 6px}
+.stats .lbl{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.stats .num{font:400 1.6rem var(--display)}
+.small{font-size:.88rem;color:var(--muted);margin:6px 0 0}
+.small.win{color:var(--fg);font-weight:700}
+.giver{display:grid;gap:8px}
+.gtop{display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.gtop .num{font:400 1.2rem var(--display)}
+.gmeta{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.giver blockquote{margin:0;padding-left:14px;border-left:3px solid var(--gold);color:var(--fg)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.filters button{padding:8px 16px;border:2px solid var(--line);border-radius:99px;background:var(--surface);color:var(--fg);font:600 .9rem var(--body);cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--gold);background:var(--gold-soft)}
+.gl{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));align-items:start}
+button.link{background:none;border:0;padding:0;color:var(--green-2);text-decoration:underline;font:inherit;cursor:pointer}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) button.link{color:var(--gold)}}
+:root[data-theme="dark"] button.link{color:var(--gold)}
+.admin{border:2px dashed var(--gold);border-radius:6px;padding:24px;background:var(--surface);display:grid;gap:20px}
+.admin ul{margin:0;padding-left:1.1em}
+/* forms */
+form{display:grid;gap:16px}
+label{display:grid;gap:6px;font-weight:600;font-size:.92rem}
+input,select,textarea{font:400 1rem var(--body);padding:12px;border:1px solid var(--line);border-radius:4px;background:var(--surface);color:var(--fg);width:100%}
+textarea{min-height:120px;resize:vertical}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+.check input{width:auto;margin-top:5px}
+.choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;border:0;padding:0;margin:0}
+.choice label{border:2px solid var(--line);border-radius:6px;padding:16px;background:var(--surface);cursor:pointer;font-weight:500;gap:4px;display:block}
+.choice label strong{display:block;font-family:var(--display);font-weight:400;font-size:1.1rem}
+.choice input{position:absolute;opacity:0;width:1px;height:1px}
+.choice label:has(input:checked){border-color:var(--gold);background:var(--gold-soft)}
+.choice label:has(input:focus-visible){outline:3px solid var(--gold)}
+.amounts{display:flex;gap:10px;flex-wrap:wrap}
+.amounts button{padding:10px 18px;border:2px solid var(--line);border-radius:4px;background:var(--surface);color:var(--fg);font:600 1rem var(--body);cursor:pointer}
+.amounts button[aria-pressed="true"]{border-color:var(--gold);background:var(--gold-soft)}
+.status{padding:14px 16px;border-radius:4px;background:var(--warn-bg);color:var(--warn-fg);font-size:.95rem}
+.hp{position:absolute;left:-9999px}
+
+/* footer */
+footer{background:var(--green);color:var(--on-green);padding-block:40px;font-size:.92rem;margin-top:0}
+footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
+.view[hidden]{display:none}
+@media (prefers-reduced-motion:no-preference){.view{animation:in .35s ease-out}@keyframes in{from{opacity:.4}to{opacity:1}}}
+</style></head><body>
+
+<div class="draft bleed"><div class="wrap"><p>Working draft for ministry review. Content and facts are awaiting confirmation by Pastor Elia before publication. Online giving is not yet open.</p><button class="langbtn" id="langBtn" type="button" aria-haspopup="dialog">Language: English</button></div></div>
+<div id="langGate" role="dialog" aria-modal="true" aria-labelledby="lgT" hidden><div class="inner"><p class="eyebrow">Seek to Save</p><h1 id="lgT" lang="en">Welcome. Choose your language.</h1><p lang="fj">Bula vinaka! Digitaka na vosa o via vakayagataka.</p><p lang="hi">स्वागत है। अपनी भाषा चुनें।</p><p lang="zh">欢迎。请选择您的语言。</p><div class="langs"><button type="button" data-lang="fj" lang="fj">Na vosa vaka-Viti<small>Fijian</small></button><button type="button" data-lang="en" lang="en">English<small>English</small></button><button type="button" data-lang="hi" lang="hi">हिन्दी<small>Hindi</small></button><button type="button" data-lang="zh" lang="zh">中文<small>Chinese</small></button></div></div></div>
+
+<header class="top bleed">
+  <div class="wrap bar">
+    <a class="brand" href="#home">Seek to Save<small>Outreach &amp; Restoration · Fiji</small></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#our-story">Our Story</a></li>
+        <li><a href="#our-mission">Our Mission</a></li>
+        <li><a href="#our-impact">Our Impact</a></li>
+        <li><a href="#testimonies">Testimonies</a></li>
+        <li><a href="#build-a-home">Build a Home</a></li>
+        <li><a href="#farming">Farming</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#partner">Partner</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a class="give" href="#donate">Donate</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- HOME -->
+<div class="view" id="v-home">
+  <section class="hero bleed"><div class="wrap">
+    <div>
+      <p class="eyebrow">Christian Outreach &amp; Restoration Ministry · Colo-i-Suva, Fiji</p>
+      <h1>From the Streets to a Place Called Home</h1>
+      <p style="margin-top:20px">Seek to Save shares the love and Gospel of Jesus Christ with people facing hardship in Fiji. Through outreach, practical care, shelter and discipleship, we seek to bring hope, dignity and opportunities for a new beginning.</p>
+      <div class="row" style="margin-top:28px"><a class="btn primary" href="#build-a-home">Help Build a Home</a><a class="btn ghost" href="#our-mission">Discover Our Mission</a></div>
+    </div>
+    <blockquote class="verse" style="margin:0">“For the Son of Man came to seek and to save the lost.”<cite>Luke 19:10</cite></blockquote>
+  </div></section>
+
+  <section class="block"><div class="wrap two">
+    <div>
+      <p class="eyebrow" style="color:var(--green-2)">The need</p>
+      <h2>A shared room, a floor to sleep on</h2>
+    </div>
+    <div>
+      <p>Today, people under Pastor Elia's care are accommodated in his home in Colo-i-Suva. With limited space and resources, residents currently sleep on the floor in one shared room.</p>
+      <p>Seek to Save hopes to create a dedicated facility with safe sleeping areas, sanitation, shared meals, pastoral care and space for learning and growth.</p>
+    </div>
+  </div></section>
+
+  <section class="block alt bleed"><div class="wrap">
+    <h2 style="margin-bottom:28px">Ways to help</h2>
+    <div class="grid">
+      <div class="card"><h3>Give Today</h3><p>Help with food, bedding, hygiene, utilities and everyday essentials.</p><a href="#donate"><strong>Daily Care Fund →</strong></a></div>
+      <div class="card"><h3>Build a Home</h3><p>Contribute to planning and developing a dedicated care facility.</p><a href="#build-a-home"><strong>See the plan →</strong></a></div>
+      <div class="card"><h3>Partner in Prayer</h3><p>Stand alongside the ministry in prayer and encouragement.</p><a href="#partner"><strong>Partner with us →</strong></a></div>
+    </div>
+  </div></section>
+
+  <section class="block"><div class="wrap">
+    <p class="eyebrow" style="color:var(--green-2)">Our commitments</p>
+    <h2 style="margin-bottom:20px">Open about money, careful with people</h2>
+    <div class="grid">
+      <div class="card"><h3>Two separate funds</h3><p>Daily care and the building project are kept apart, and each gift goes where you choose.</p></div>
+      <div class="card"><h3>Dignity first</h3><p>We do not publish identifying photographs or stories of vulnerable people without proper consent.</p></div>
+      <div class="card"><h3>Care without conditions</h3><p>Support and safety are never conditional on religious participation.</p></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- OUR STORY -->
+<div class="view" id="v-our-story" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Our Story</p><h1>Taking the Gospel beyond church walls</h1></div></div>
+  <section class="block"><div class="wrap two">
+    <div>
+      <p>Seek to Save began with a desire to take the Gospel beyond church walls and meet people where they are. Pastor Elia Betabi and those serving alongside him seek to support people facing difficult circumstances with practical compassion and Christian discipleship.</p>
+      <p>The ministry's work includes care in the home, community outreach and growing food crops.</p>
+      <p><span class="todo">To add after approval:</span> Pastor Elia's own testimony, dates, photographs and direct quotations.</p>
+      <a class="btn primary" href="#donate">Support the Mission</a>
+    </div>
+    <aside class="card"><h3>Pastor Elia Betabi</h3><p>Leads Seek to Save from Colo-i-Suva, Fiji.</p><p class="note">Portrait and biography to be supplied and approved by Pastor Elia.</p></aside>
+  </div></section>
+</div>
+
+<!-- OUR MISSION -->
+<div class="view" id="v-our-mission" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Our Mission</p><h1>Proclaim the Gospel. Show His love.</h1></div></div>
+  <section class="block"><div class="wrap">
+    <p style="font-size:1.15rem">Our mission is to proclaim the Gospel of Jesus Christ and demonstrate His love through compassionate outreach, shelter, nourishment, mentoring and opportunities for restoration.</p>
+    <p>Our faith is inspired by Luke 19:10, Matthew 28:19–20 and Matthew 25:35–40. Support and safety must never be conditional on religious participation.</p>
+    <div class="grid" style="margin-top:32px">
+      <div class="card"><h3>Gospel outreach</h3><p>Meeting people where they are, beyond church walls.</p></div>
+      <div class="card"><h3>Shelter</h3><p>Accommodation and care in Pastor Elia's home in Colo-i-Suva.</p></div>
+      <div class="card"><h3>Mentoring</h3><p>Pastoral care and discipleship alongside practical support.</p></div>
+      <div class="card"><h3>Food</h3><p>Shared meals, supported by crops the ministry grows.</p></div>
+      <div class="card"><h3>Agriculture</h3><p>Dalo and other crops, and practical learning. <a href="#farming">Read more</a></p></div>
+    </div>
+    <div class="row" style="margin-top:32px"><a class="btn primary" href="#partner" style="color:var(--on-gold)">Partner With Us</a></div>
+  </div></section>
+</div>
+
+<!-- OUR IMPACT -->
+<div class="view" id="v-our-impact" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Our Impact</p><h1>Verified outcomes, told with consent</h1></div></div>
+  <section class="block"><div class="wrap">
+    <p>We publish only what we can verify. Outcomes and stories appear here once they have been confirmed and, where people are featured, once lawful, informed and safeguarding-appropriate approval has been given. We do not make claims that every resident is addiction-free or that any outcome is guaranteed.</p>
+    <div class="note" style="margin:24px 0"><p><strong>Coming soon.</strong> Numbers supported, date ranges and approved stories will be added after the ministry confirms them. No names, faces or histories of vulnerable people will be shown by default.</p></div>
+    <a class="btn primary" href="#news">Read Updates</a>
+  </div></section>
+</div>
+
+<!-- BUILD A HOME -->
+<div class="view" id="v-build-a-home" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Campaign</p><h1>Help Us Build a Place Called Home</h1><p>A safe bed, a dignified place to live and room to grow should not be out of reach.</p></div></div>
+  <section class="block"><div class="wrap">
+    <p>Seek to Save is developing a vision for a dedicated care facility in Fiji. Your support can help turn that vision into a properly planned, responsibly operated home.</p>
+    <p>A final site, design, cost and construction schedule have not yet been confirmed. All project milestones and use of funds will be published as they are approved.</p>
+    <h2 style="margin:36px 0 18px">Proposed stages</h2>
+    <ol class="stages">
+      <li><span class="n">1</span><span>Immediate bedding and essential living improvements</span><span class="pill">Proposed</span></li>
+      <li><span class="n">2</span><span>Feasibility, land and design</span><span class="pill">Proposed</span></li>
+      <li><span class="n">3</span><span>Construction and services</span><span class="pill">Proposed</span></li>
+      <li><span class="n">4</span><span>Furnishing and operational readiness</span><span class="pill">Proposed</span></li>
+      <li><span class="n">5</span><span>Sustainable programmes</span><span class="pill">Proposed</span></li>
+    </ol>
+    <p style="margin-top:14px;color:var(--muted);font-size:.92rem">Only funded and approved milestones will be shown as confirmed.</p>
+    <div class="card" id="buildCard2" style="margin:24px 0;max-width:560px"></div>
+    <a class="btn primary" href="#donate">Give to Building Fund</a>
+  </div></section>
+</div>
+
+<!-- DONATE -->
+<div class="view" id="v-donate" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Donate</p><h1>Give to care today and a home for tomorrow</h1><p>Your generosity helps Seek to Save provide practical care today and plan for a more secure future.</p></div></div>
+  <section class="block alt bleed" style="padding-block:32px"><div class="wrap"><div class="card" id="buildCard" style="max-width:620px"></div></div></section>
+  <section class="block"><div class="wrap two">
+    <form id="donateForm" novalidate>
+      <fieldset class="choice" id="fundChoice"><legend style="font-weight:700;margin-bottom:10px">1. Choose the purpose of your gift</legend>
+        <label><input type="radio" name="fund" value="Daily Care Fund" checked><strong>Daily Care Fund</strong>Food, bedding, hygiene, utilities and everyday essentials.</label>
+        <label><input type="radio" name="fund" value="Build a Home Fund"><strong>Build a Home Fund</strong>Planning and developing a dedicated care facility.</label>
+      </fieldset>
+      <fieldset class="choice"><legend style="font-weight:700;margin-bottom:10px">2. How often</legend>
+        <label><input type="radio" name="freq" value="One-time" checked><strong>One-time</strong></label>
+        <label><input type="radio" name="freq" value="Monthly"><strong>Monthly</strong>Available once the payment provider supports it.</label>
+      </fieldset>
+      <div><div style="font-weight:700;margin-bottom:10px">3. Amount</div>
+        <div class="amounts" id="amounts"><button type="button" data-v="25" aria-pressed="false">25</button><button type="button" data-v="50" aria-pressed="true">50</button><button type="button" data-v="100" aria-pressed="false">100</button><button type="button" data-v="250" aria-pressed="false">250</button></div>
+      </div>
+      <div class="grid" style="gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr))">
+        <label for="amt">Amount<input id="amt" type="number" min="1" value="50" inputmode="decimal"></label>
+        <label for="cur">Currency<select id="cur"><option>FJD</option><option>AUD</option><option>NZD</option></select></label>
+      </div>
+      <label for="dname">Name<input id="dname" autocomplete="name"></label>
+      <label for="demail">Email<input id="demail" type="email" autocomplete="email"></label>
+      <label for="dmsg">Message (optional)<textarea id="dmsg"></textarea></label>
+      <label class="check" for="anon"><input id="anon" type="checkbox"> I would like public recognition, shown anonymously</label>
+      <label class="check" for="dconsent"><input id="dconsent" type="checkbox"> I agree to receive updates about the ministry</label>
+      <button class="btn primary" type="submit">Continue to secure payment</button>
+      <div class="status" id="dstatus" role="status" hidden></div>
+    </form>
+    <aside>
+      <div class="card"><h3>Before you give</h3>
+        <ul class="plain">
+          <li>Donate only through the ministry's approved payment provider or verified bank details.</li>
+          <li>You will receive confirmation of your contribution.</li>
+          <li>Card details are never collected on this website.</li>
+          <li>Fees and currency will be shown clearly at checkout.</li>
+        </ul>
+        <p class="note" style="margin-top:14px"><strong>Bank and payment details</strong> will be added once the ministry confirms its legal name, authority to accept donations and payment provider.</p>
+      </div>
+    </aside>
+  </div></section>
+    <section class="block"><div class="wrap">
+    <h2>Our givers</h2>
+    <p style="margin-top:12px">Thank you to everyone who has given. Gifts appear here after the ministry has confirmed them. Givers can choose to remain anonymous and leave a message.</p>
+    <div class="filters" id="giverFilter"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="daily" aria-pressed="false">Daily Care Fund</button><button type="button" data-f="building" aria-pressed="false">Build a Home Fund</button></div>
+    <div class="gl" id="giverList"></div>
+  </div></section>
+  <section class="block bleed" data-notr><div class="wrap">
+    <div class="admin" id="adminPanel" hidden data-notr>
+      <div><h3>Ministry tools</h3><p class="small">Only people who can edit this page see this. Record a gift only after the money has arrived and the giver has agreed to appear on the public list. Amounts are in FJD.</p></div>
+      <form id="aGoalForm"><strong>Building goal</strong>
+        <div class="grid" style="gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))">
+          <label for="aBuilding">Building goal (FJD)<input id="aBuilding" inputmode="decimal"></label>
+        </div>
+        <button class="btn primary" type="submit" style="justify-self:start">Apply goal</button>
+      </form>
+      <form id="aGiftForm"><strong>Record a gift</strong>
+        <div class="grid" style="gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))">
+          <label for="aDate">Date received<input id="aDate" type="date"></label>
+          <label for="aFund">Fund<select id="aFund"><option value="daily">Daily Care Fund</option><option value="building">Build a Home Fund</option></select></label>
+          <label for="aAmount">Amount (FJD)<input id="aAmount" inputmode="decimal"></label>
+          <label for="aName">Giver's name<input id="aName"></label>
+        </div>
+        <label for="aMessage">Message (optional)<textarea id="aMessage"></textarea></label>
+        <label class="check" for="aAnon"><input id="aAnon" type="checkbox"> Show as anonymous (the name is kept in the record only)</label>
+        <label class="check" for="aConsent"><input id="aConsent" type="checkbox"> The giver agreed to appear on the public list and to the message being shown</label>
+        <button class="btn primary" type="submit" style="justify-self:start">Add gift</button>
+      </form>
+      <div><strong>Recorded gifts</strong><ul id="aGifts"></ul></div>
+      <div class="row" style="align-items:center"><button class="btn primary" id="adminSave" type="button">Save changes</button><div class="status" id="adminStatus" role="status" hidden></div></div>
+    </div>
+  </div></section>
+</div>
+
+<!-- FARMING -->
+<div class="view" id="v-farming" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Farming &amp; Sustainability</p><h1>Growing food for daily needs</h1></div></div>
+  <section class="block"><div class="wrap two">
+    <div>
+      <p>Alongside outreach and care, the ministry grows dalo and other crops to help meet daily needs. With additional tools, seeds, water access and agricultural support, this work could contribute to food security and practical learning.</p>
+      <p><span class="todo">To confirm:</span> crop types, land rights, farming photographs and current yields.</p>
+      <a class="btn primary" href="#donate">Support Farming</a>
+    </div>
+    <div class="card"><h3>What would help</h3><ul class="plain"><li>Tools</li><li>Seeds</li><li>Water access</li><li>Agricultural support</li></ul></div>
+  </div></section>
+</div>
+
+<!-- NEWS -->
+<div class="view" id="v-news" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">News &amp; Updates</p><h1>Dated updates from the ministry</h1></div></div>
+  <section class="block"><div class="wrap">
+    <p>Ministry stories, construction updates and financial reports will be published here with dates.</p>
+    <div class="note"><p><strong>No updates yet.</strong> The first post will appear once Pastor Elia approves it.</p></div>
+  </div></section>
+</div>
+
+<!-- PARTNER -->
+<div class="view" id="v-partner" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Partner / Volunteer</p><h1>Stand with us</h1><p>Whether you represent a church, organisation, business or community group, we welcome enquiries about prayer, practical support and long-term partnership.</p></div></div>
+  <section class="block"><div class="wrap">
+    <div class="grid" style="margin-bottom:40px">
+      <div class="card"><h3>Churches &amp; mission partners</h3><p>Read our faith statement and work, review needs and governance, then enquire about partnership.</p></div>
+      <div class="card"><h3>Businesses &amp; major donors</h3><p>Review the facility plan, budgets, milestones and accountability, and request a proposal or meeting.</p></div>
+      <div class="card"><h3>Volunteers</h3><p>Learn about opportunities and our safeguarding requirements, then submit an enquiry.</p></div>
+    </div>
+    <div class="two"><div><h2>Send an enquiry</h2><p style="margin-top:12px">Tell us who you are and how you would like to help.</p></div>
+    <form class="enquiry" data-kind="partner" novalidate>
+      <label for="pname">Name<input id="pname" autocomplete="name"></label>
+      <label for="porg">Church or organisation (optional)<input id="porg"></label>
+      <label for="pemail">Email<input id="pemail" type="email" autocomplete="email"></label>
+      <label for="ptype">I am interested in<select id="ptype"><option>Church partnership</option><option>Business or corporate sponsorship</option><option>Volunteering</option><option>Prayer support</option></select></label>
+      <label for="pmsg">Message<textarea id="pmsg"></textarea></label>
+      <input class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn primary" type="submit">Send enquiry</button>
+      <div class="status" role="status" hidden></div>
+    </form></div>
+  </div></section>
+</div>
+
+<!-- CONTACT -->
+<div class="view" id="v-contact" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Contact</p><h1>Get in touch</h1></div></div>
+  <section class="block"><div class="wrap two">
+    <div>
+      <p>Seek to Save is based in Colo-i-Suva, Fiji. To protect residents, we do not publish a street address.</p>
+      <p><strong>Email:</strong> <span class="todo">ministry email to be confirmed</span></p>
+      <p><strong>Social links:</strong> <span class="todo">to be confirmed</span></p>
+      <p style="color:var(--muted);font-size:.92rem">Media and community enquiries will be answered with approved facts and shareable updates.</p>
+    </div>
+    <form class="enquiry" data-kind="contact" novalidate>
+      <label for="cname">Name<input id="cname" autocomplete="name"></label>
+      <label for="cemail">Email<input id="cemail" type="email" autocomplete="email"></label>
+      <label for="cmsg">Message<textarea id="cmsg"></textarea></label>
+      <label class="check" for="cconsent"><input id="cconsent" type="checkbox"> I agree to my details being used to reply, as described in the <a href="#policies">privacy policy</a></label>
+      <input class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn primary" type="submit">Send message</button>
+      <div class="status" role="status" hidden></div>
+    </form>
+  </div></section>
+</div>
+
+<!-- TESTIMONIES -->
+<div class="view" id="v-testimonies" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Testimonies</p><h1>Lives being restored, in their own words</h1><p>Each testimony is shared by the person themselves, or with their informed consent, and told with dignity.</p></div></div>
+  <section class="block"><div class="wrap">
+    <div class="note" style="margin-bottom:32px"><p><strong>How we protect people.</strong> Nothing is published until the person and the ministry have approved it in writing. Names may be shortened or changed, faces are not shown by default, and testimonies from children are not published.</p></div>
+    <div class="grid" id="testimonyGrid"></div>
+    <h2 style="margin:48px 0 18px">How a testimony is added</h2>
+    <ol class="steps">
+      <li><strong>Invitation</strong><br>The person is invited to share, and is free to say no.</li>
+      <li><strong>Written consent</strong><br>They agree in writing to the words, name and any photograph.</li>
+      <li><strong>Safety review</strong><br>The ministry checks that nothing could identify or endanger anyone.</li>
+      <li><strong>Publication</strong><br>The testimony is published with a date and can be withdrawn at any time.</li>
+    </ol>
+    <div class="row" style="margin-top:32px"><a class="btn primary" href="#contact">Share your testimony</a></div>
+  </div></section>
+</div>
+
+<!-- POLICIES -->
+<div class="view" id="v-policies" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Policies</p><h1>How we protect people and gifts</h1><p>Draft commitments for review. Final wording will follow local legal advice.</p></div></div>
+  <section class="block"><div class="wrap grid">
+    <div class="card"><h3>Privacy</h3><p>Donor and contact details are handled securely and used only for the purpose you give them. Consent is requested before updates are sent.</p></div>
+    <div class="card"><h3>Safeguarding</h3><p>We do not publish identifying information, locations, diagnoses or exploitation histories of vulnerable residents without lawful, informed approval. For children we apply especially protective standards and avoid identifiable stories by default.</p></div>
+    <div class="card"><h3>Donations &amp; refunds</h3><p>Daily Care and Build a Home gifts are recorded separately. Refund terms and the handling of restricted gifts, including what happens if the building project changes, will be stated here before giving opens. We do not describe gifts as tax-deductible unless independently confirmed.</p></div>
+    <div class="card"><h3>Financial accountability</h3><p>We will name who manages donations, publish financial updates and report on the use of funds as milestones are approved.</p></div>
+    <div class="card"><h3>Accessibility</h3><p>This site uses clear headings, readable contrast, keyboard navigation and descriptive image text.</p></div>
+  </div></section>
+</div>
+</main>
+
+<footer class="bleed"><div class="wrap grid">
+  <div><div style="font-family:var(--display);font-size:1.3rem">Seek to Save</div><p style="margin-top:8px">Reaching the Lost. Restoring Lives. Sharing Christ.</p></div>
+  <div><strong>Explore</strong><p style="margin-top:8px"><a href="#our-story">Our Story</a> · <a href="#our-mission">Our Mission</a> · <a href="#testimonies">Testimonies</a> · <a href="#build-a-home">Build a Home</a> · <a href="#news">News</a></p></div>
+  <div><strong>Trust</strong><p style="margin-top:8px"><a href="#policies">Policies</a> · <a href="#contact">Contact</a></p><p>Colo-i-Suva, Fiji</p></div>
+</div></footer>
+
+<script>
+/* Approved testimonies go here. Each: {initials,name,role,quote,date,consent:true}. Leave empty until consent is confirmed. */
+var TESTIMONIES=[];
+(function(){
+  var g=document.getElementById('testimonyGrid');
+  function card(t,sample){
+    var d=document.createElement('article');d.className='card profile'+(sample?' sample':'');
+    var top=document.createElement('div');top.className='top';
+    var a=document.createElement('div');a.className='avatar';a.textContent=t.initials;a.setAttribute('aria-hidden','true');
+    var w=document.createElement('div');var h=document.createElement('h3');h.textContent=t.name;var r=document.createElement('p');r.className='role';r.textContent=t.role;
+    w.appendChild(h);w.appendChild(r);top.appendChild(a);top.appendChild(w);d.appendChild(top);
+    var q=document.createElement('blockquote');q.textContent=t.quote;d.appendChild(q);
+    var b=document.createElement('div');b.className='badges';
+    t.badges.forEach(function(x){var s=document.createElement('span');s.className='pill';s.textContent=x;b.appendChild(s)});
+    d.appendChild(b);return d;
+  }
+  TESTIMONIES.forEach(function(t){g.appendChild(card({initials:t.initials,name:t.name,role:t.role,quote:t.quote,badges:['Consent given',t.date]}))});
+  g.appendChild(card({initials:'EB',name:'Pastor Elia Betabi',role:'Pastor, Seek to Save',quote:'Pastor Elia\u2019s testimony will be added here after he approves it.',badges:['Pending approval']}));
+  g.appendChild(card({initials:'?',name:'First name only',role:'Resident or supporter',quote:'Testimony text appears here once the person has given written consent.',badges:['Layout example','Not a real testimony']},true));
+})();
+</script>
+<script>
+/* Translations: [English, Fijian, Hindi, Chinese]. Matched against whole text nodes. Drafts for native-speaker review. */
+var D=[
+["Working draft for ministry review. Content and facts are awaiting confirmation by Pastor Elia before publication. Online giving is not yet open.",
+ "Se ivolavola ga me raica na ulumuri ni veiqaravi. Na ka e volai e kerea e dua na vakadeitaki mai vei Pastor Elia ni bera ni tabaki. Na solisoli ena internet e se bera ni tiko.",
+ "यह मंत्रालय की समीक्षा के लिए कार्य-मसौदा है। प्रकाशन से पहले सामग्री और तथ्यों की पुष्टि पास्टर एलिया द्वारा की जानी है। ऑनलाइन दान अभी शुरू नहीं हुआ है।",
+ "这是供事工团队审阅的工作草稿。内容和事实在发布前有待 Elia 牧师确认。网上捐款尚未开通。"],
+["Outreach & Restoration · Fiji","Veivuke kei na Vakalesuitaki · Viti","सेवा एवं पुनर्स्थापना · फ़िजी","外展与复兴 · 斐济"],
+["Menu","Lisi","मेनू","菜单"],
+["Home","Vale","होम","首页"],
+["Our Story","Na Neimami Itukutuku","हमारी कहानी","我们的故事"],
+["Our Mission","Na Neimami Inaki","हमारा मिशन","我们的使命"],
+["Our Impact","Na Yaga ni Neimami Cakacaka","हमारा प्रभाव","我们的影响"],
+["Build a Home","Tara e Dua na Vale","घर बनाएँ","建造家园"],
+["Farming","Teitei","खेती","农耕"],
+["News","Itukutuku","समाचार","新闻"],
+["Partner","Veitokoni","साझेदार","合作"],
+["Contact","Veitaratara","संपर्क","联系我们"],
+["Donate","Solisoli","दान करें","捐款"],
+["Christian Outreach & Restoration Ministry · Colo-i-Suva, Fiji","Na Veiqaravi ni Lotu Vakarisito ni Veivuke kei na Vakalesuitaki · Colo-i-Suva, Viti","ख्रीस्तीय सेवा एवं पुनर्स्थापना मंत्रालय · कोलो-इ-सुवा, फ़िजी","基督教外展与复兴事工 · 斐济科罗伊苏瓦"],
+["From the Streets to a Place Called Home","Mai na Gaunisala ki na Vale e Vakatokai ni Vale","सड़कों से एक ऐसी जगह तक जिसे घर कहते हैं","从街头走向一个叫作“家”的地方"],
+["Seek to Save shares the love and Gospel of Jesus Christ with people facing hardship in Fiji. Through outreach, practical care, shelter and discipleship, we seek to bring hope, dignity and opportunities for a new beginning.",
+ "E vakasamataka o Seek to Save me tukuna na loloma kei na Kosipeli i Jisu Karisito vei ira era sotava na ca ni bula e Viti. Ena neimami veivuke, veiqaravi, vale ni vakaseyaki kei na veivakavulici, keimami vakasaqara me kauta mai na vakanuinui, na vakarokoroko kei na gauna vou ni tekivu.",
+ "सीक टू सेव फ़िजी में कठिनाइयों का सामना कर रहे लोगों के साथ यीशु मसीह का प्रेम और सुसमाचार बाँटता है। सेवा, व्यावहारिक देखभाल, आश्रय और शिष्यत्व के द्वारा हम आशा, सम्मान और नई शुरुआत के अवसर देना चाहते हैं।",
+ "Seek to Save 向斐济面临困境的人们分享耶稣基督的爱与福音。通过外展服务、实际关怀、庇护和门徒培训,我们希望带来盼望、尊严和重新开始的机会。"],
+["Help Build a Home","Vukea na Tara ni Vale","घर बनाने में मदद करें","帮助建造家园"],
+["Discover Our Mission","Kila na Neimami Inaki","हमारे मिशन को जानें","了解我们的使命"],
+["“For the Son of Man came to seek and to save the lost.”","“Ni sa lako mai na Luve ni Tamata me vakasaqara ka vakabulai ira era sa yali.”","“क्योंकि मनुष्य का पुत्र खोए हुओं को ढूँढ़ने और उनका उद्धार करने आया है।”","“人子来,为要寻找、拯救失丧的人。”"],
+["Luke 19:10","Luke 19:10","लूका 19:10","路加福音 19:10"],
+["The need","Na ka e gadrevi","आवश्यकता","需要"],
+["A shared room, a floor to sleep on","Dua ga na rumu, dua na iloilo me moce","एक साझा कमरा, सोने के लिए फ़र्श","一间共用的房间,一块睡觉的地板"],
+["Today, people under Pastor Elia's care are accommodated in his home in Colo-i-Suva. With limited space and resources, residents currently sleep on the floor in one shared room.",
+ "Edaidai, era tiko e vale i Pastor Elia e Colo-i-Suva era vakarautaki ena nona qaravi. Ena lailai ni vanua kei na iyaya, era moce ena iloilo ena dua ga na rumu.",
+ "आज पास्टर एलिया की देखरेख में रहने वाले लोग कोलो-इ-सुवा में उनके घर में ठहरे हैं। सीमित जगह और संसाधनों के कारण वे फ़िलहाल एक ही साझा कमरे में फ़र्श पर सोते हैं।",
+ "目前,在 Elia 牧师照顾下的人们住在他位于科罗伊苏瓦的家中。由于空间和资源有限,住客现在睡在同一间共用房间的地板上。"],
+["Seek to Save hopes to create a dedicated facility with safe sleeping areas, sanitation, shared meals, pastoral care and space for learning and growth.",
+ "E inaki ni Seek to Save me tara e dua na vale vakatabakidua ena vanua e dua me moce ka yalayala, na vanua ni vakacegu, na kana vata, na qaravi vakaqase kei na vanua ni vuli kei na tubu.",
+ "सीक टू सेव एक समर्पित सुविधा बनाना चाहता है जिसमें सुरक्षित सोने की जगह, स्वच्छता, साथ मिलकर भोजन, पास्टरीय देखभाल तथा सीखने और बढ़ने के लिए स्थान हो।",
+ "Seek to Save 希望建立一处专门的设施,提供安全的睡眠区、卫生设施、共餐、牧养关怀,以及学习和成长的空间。"],
+["Ways to help","Sala me veivuke kina","मदद के तरीक़े","如何帮助"],
+["Give Today","Solia Nikua","आज दान करें","今天就奉献"],
+["Help with food, bedding, hygiene, utilities and everyday essentials.","Vukea na kakana, ilokoloko, vakacecegu, ivakarau ni vale kei na iyaya e gadrevi e veisiga.","भोजन, बिस्तर, स्वच्छता, बिजली-पानी और रोज़मर्रा की ज़रूरतों में मदद करें।","帮助解决食物、床上用品、卫生、水电以及日常必需品。"],
+["Daily Care Fund →","Lavo ni Qaravi ni Veisiga →","दैनिक देखभाल कोष →","日常关怀基金 →"],
+["Contribute to planning and developing a dedicated care facility.","Veivuke ena vakatakilakila kei na tara ni vale ni veiqaravi vakatabakidua.","एक समर्पित देखभाल सुविधा की योजना और निर्माण में योगदान दें।","为一处专门的关怀设施的规划和建设出一份力。"],
+["See the plan →","Raica na Yaya →","योजना देखें →","查看计划 →"],
+["Partner in Prayer","Veitokoni ena Masu","प्रार्थना में साझेदार","一起祷告"],
+["Stand alongside the ministry in prayer and encouragement.","Tiko vata ena veiqaravi ena masu kei na veivakacacabotaki.","प्रार्थना और प्रोत्साहन के द्वारा इस सेवा के साथ खड़े हों।","以祷告和鼓励与事工同行。"],
+["Partner with us →","Veitokoni kei keimami →","हमारे साथ साझेदारी करें →","与我们合作 →"],
+["Our commitments","Na neimami yalataka","हमारी प्रतिबद्धताएँ","我们的承诺"],
+["Open about money, careful with people","Vakadeitaki ena lavo, vakarokoroko ena tamata","धन के बारे में पारदर्शी, लोगों के प्रति सावधान","资金公开透明,对人谨慎关怀"],
+["Two separate funds","Rua na Lavo Duidui","दो अलग कोष","两个独立的基金"],
+["Daily care and the building project are kept apart, and each gift goes where you choose.","Na qaravi ni veisiga kei na tara ni vale e duidui, ka na solisoli yadua e lako ki na vanua o digitaka.","दैनिक देखभाल और भवन परियोजना अलग रखे जाते हैं, और हर दान वहीं जाता है जहाँ आप चुनते हैं।","日常关怀与建房项目分开管理,每一笔奉献都用于您选择的用途。"],
+["Dignity first","Vakarokoroko ena imatai","सम्मान पहले","尊严优先"],
+["We do not publish identifying photographs or stories of vulnerable people without proper consent.","Keimami sega ni tabaka na yaloyalo se itukutuku e kilai kina na tamata malumalumu ke sega na ivakadonuya e dodonu.","बिना उचित सहमति के हम कमज़ोर लोगों की पहचान कराने वाली तस्वीरें या कहानियाँ प्रकाशित नहीं करते।","未经适当同意,我们不会发布可识别弱势人群身份的照片或故事。"],
+["Care without conditions","Veiqaravi ka sega na ivakaro","बिना शर्त देखभाल","无条件的关怀"],
+["Support and safety are never conditional on religious participation.","Na veivuke kei na yalayala e sega ni vakadeitaki ena nodra dau lotu.","सहायता और सुरक्षा कभी भी धार्मिक भागीदारी पर निर्भर नहीं होती।","援助与安全绝不以参加宗教活动为条件。"],
+/* story */
+["Taking the Gospel beyond church walls","Kauta na Kosipeli ki tuba mai na ruve ni valenilotu","सुसमाचार को कलीसिया की दीवारों से बाहर ले जाना","把福音带到教会围墙之外"],
+["Seek to Save began with a desire to take the Gospel beyond church walls and meet people where they are. Pastor Elia Betabi and those serving alongside him seek to support people facing difficult circumstances with practical compassion and Christian discipleship.",
+ "E tekivu o Seek to Save ena inaki me kauta na Kosipeli ki tuba mai na ruve ni valenilotu ka sota kei ira na tamata ena vanua era tiko kina. O Pastor Elia Betabi kei ira era qaravi vata kei koya era vakasaqara me tokoni ira era sotava na bula dredre ena loloma yaga kei na veivakavulici ni Lotu Vakarisito.",
+ "सीक टू सेव की शुरुआत इस इच्छा से हुई कि सुसमाचार को कलीसिया की दीवारों से बाहर ले जाया जाए और लोगों से वहीं मिला जाए जहाँ वे हैं। पास्टर एलिया बेटाबी और उनके साथ सेवा करने वाले कठिन परिस्थितियों में लोगों की व्यावहारिक करुणा और मसीही शिष्यत्व के साथ सहायता करना चाहते हैं।",
+ "Seek to Save 起初源于一个心愿:把福音带到教会围墙之外,走到人们所在之处。Elia Betabi 牧师和与他同工的人,希望以实际的怜悯和基督徒的门徒训练,帮助身处艰难处境的人。"],
+["The ministry's work includes care in the home, community outreach and growing food crops.","Na cakacaka ni veiqaravi e vakau kina na qaravi ena vale, na veivuke ena veikoro kei na teitei kakana.","सेवा के कार्य में घर में देखभाल, समुदाय तक पहुँच और खाद्य फ़सलें उगाना शामिल है।","事工的工作包括家中的照顾、社区外展和种植粮食作物。"],
+["Support the Mission","Vukea na Neimami Inaki","मिशन का समर्थन करें","支持这项使命"],
+["Pastor Elia Betabi","Pastor Elia Betabi","पास्टर एलिया बेटाबी","Elia Betabi 牧师"],
+["Leads Seek to Save from Colo-i-Suva, Fiji.","Dau liutaka o Seek to Save mai Colo-i-Suva, Viti.","कोलो-इ-सुवा, फ़िजी से सीक टू सेव का नेतृत्व करते हैं।","在斐济科罗伊苏瓦带领 Seek to Save。"],
+["Portrait and biography to be supplied and approved by Pastor Elia.","Na yaloyalo kei na nona itukutuku ena solia ka vakadonuya o Pastor Elia.","चित्र और जीवन-परिचय पास्टर एलिया द्वारा दिया और स्वीकृत किया जाएगा।","照片和生平简介将由 Elia 牧师提供并审定。"],
+/* mission */
+["Proclaim the Gospel. Show His love.","Vunautaka na Kosipeli. Vakaraitaka na Nona loloma.","सुसमाचार सुनाएँ। उसका प्रेम दिखाएँ।","宣扬福音,彰显祂的爱。"],
+["Our mission is to proclaim the Gospel of Jesus Christ and demonstrate His love through compassionate outreach, shelter, nourishment, mentoring and opportunities for restoration.","Na neimami inaki me vunautaka na Kosipeli i Jisu Karisito ka vakaraitaka na Nona loloma ena veivuke ena loloma, vale ni vakaseyaki, kakana, veivakavulici kei na veivakalesuitaki.","हमारा मिशन यीशु मसीह के सुसमाचार की घोषणा करना और करुणामय सेवा, आश्रय, पोषण, मार्गदर्शन और पुनर्स्थापना के अवसरों द्वारा उसका प्रेम प्रकट करना है।","我们的使命是宣扬耶稣基督的福音,并通过怜悯的外展、庇护、供养、辅导和复兴的机会彰显祂的爱。"],
+["Gospel outreach","Veivuke ena Kosipeli","सुसमाचार प्रचार","福音外展"],
+["Meeting people where they are, beyond church walls.","Sota kei ira na tamata ena vanua era tiko kina, ki tuba mai na valenilotu.","लोगों से वहीं मिलना जहाँ वे हैं, कलीसिया की दीवारों से बाहर।","走到人们所在之处,走出教会围墙。"],
+["Shelter","Vale ni Vakaseyaki","आश्रय","庇护"],
+["Accommodation and care in Pastor Elia's home in Colo-i-Suva.","Na vanua e moce kina kei na qaravi ena vale i Pastor Elia e Colo-i-Suva.","कोलो-इ-सुवा में पास्टर एलिया के घर में आवास और देखभाल।","在科罗伊苏瓦 Elia 牧师家中提供住宿和照顾。"],
+["Mentoring","Veivakavulici","मार्गदर्शन","辅导"],
+["Pastoral care and discipleship alongside practical support.","Na qaravi vakaqase kei na veivakavulici vata kei na veivuke yaga.","व्यावहारिक सहायता के साथ पास्टरीय देखभाल और शिष्यत्व।","牧养关怀和门徒训练,配合实际的帮助。"],
+["Food","Kakana","भोजन","食物"],
+["Shared meals, supported by crops the ministry grows.","Kana vata, ka vukei ena kakana e teivaki ena veiqaravi.","साथ मिलकर भोजन, जो सेवा द्वारा उगाई गई फ़सलों से चलता है।","一起用餐,食物来自事工自己种植的作物。"],
+["Agriculture","Teitei","कृषि","农业"],
+["Dalo and other crops, and practical learning.","Dalo kei na so tale na kakana, kei na vuli yaga.","दालो (तारो) और अन्य फ़सलें, और व्यावहारिक सीख।","芋头(dalo)和其他作物,以及实用技能的学习。"],
+["Read more","Wilika vakalevu","और पढ़ें","了解更多"],
+["Partner With Us","Veitokoni kei Keimami","हमारे साथ साझेदारी करें","与我们合作"],
+/* impact */
+["Verified outcomes, told with consent","Na vuna e vakadeitaki, tukuni ena ivakadonuya","सत्यापित परिणाम, सहमति के साथ बताए गए","经过核实、征得同意后讲述的成果"],
+["We publish only what we can verify. Outcomes and stories appear here once they have been confirmed and, where people are featured, once lawful, informed and safeguarding-appropriate approval has been given. We do not make claims that every resident is addiction-free or that any outcome is guaranteed.","Keimami tabaka ga na ka keimami rawa ni vakadeitaka. Na vuna kei na itukutuku ena basika ena gauna e vakadeitaki kina, ka ke tabaki e dua na tamata, ena gauna e solia kina na ivakadonuya e dodonu ena lawa, kilai ka yalayala. Keimami sega ni tukuna ni ra sa bula mai na ka ca na tamata yadua se ni na yaco e dua na vuna.","हम केवल वही प्रकाशित करते हैं जिसे हम सत्यापित कर सकते हैं। परिणाम और कहानियाँ तभी यहाँ आती हैं जब वे पुष्ट हो जाएँ और, जहाँ लोगों का उल्लेख है, वहाँ वैध, सूचित और सुरक्षा के अनुरूप अनुमति मिल जाए। हम यह दावा नहीं करते कि हर निवासी नशे से मुक्त है या कोई परिणाम सुनिश्चित है।","我们只发布能够核实的内容。成果和故事须在确认之后才会出现在这里;涉及个人时,还须取得合法、知情并符合保护要求的同意。我们不声称每位住客都已戒除成瘾,也不保证任何结果。"],
+["Coming soon.","Ena yaco mai.","जल्द आ रहा है।","即将推出。"],
+["Numbers supported, date ranges and approved stories will be added after the ministry confirms them. No names, faces or histories of vulnerable people will be shown by default.","Na iwiliwili e vukei, na gauna kei na itukutuku e vakadonuyataki ena kuria ni oti na vakadeitaki ni veiqaravi. Na yaca, matamata se itukutuku ni bula ni tamata malumalumu ena sega ni vakaraitaki.","समर्थित लोगों की संख्या, अवधि और स्वीकृत कहानियाँ सेवा द्वारा पुष्टि के बाद जोड़ी जाएँगी। कमज़ोर लोगों के नाम, चेहरे या इतिहास डिफ़ॉल्ट रूप से नहीं दिखाए जाएँगे।","受助人数、时间范围和获批准的故事,将在事工确认后添加。默认不会显示弱势人群的姓名、面孔或经历。"],
+["Read Updates","Wilika na Itukutuku Vou","अपडेट पढ़ें","阅读最新动态"],
+/* build a home */
+["Campaign","Veivakauqeti","अभियान","筹款活动"],
+["Help Us Build a Place Called Home","Vukei Keimami me Tara e Dua na Vale e Vakatokai ni Vale","हमें ऐसी जगह बनाने में मदद करें जिसे घर कहते हैं","帮助我们建造一个叫作“家”的地方"],
+["A safe bed, a dignified place to live and room to grow should not be out of reach.","Na idavo yalayala, na vanua e vakarokoroko me bula kina kei na vanua me tubu kina e sega ni dodonu me vakadredretaki.","सुरक्षित बिस्तर, सम्मान से रहने की जगह और आगे बढ़ने का अवसर किसी की पहुँच से बाहर नहीं होना चाहिए।","一张安全的床、一个有尊严的居所和成长的空间,不应该遥不可及。"],
+["Seek to Save is developing a vision for a dedicated care facility in Fiji. Your support can help turn that vision into a properly planned, responsibly operated home.","E vakatakilakilataka o Seek to Save e dua na raitayaloyalo ni vale ni veiqaravi vakatabakidua e Viti. Na nomu veivuke e rawa ni vakalesuitaka na raitayaloyalo oya me vale e vakarautaki vinaka ka veiqaravi tiko vakadodonu.","सीक टू सेव फ़िजी में एक समर्पित देखभाल सुविधा की दृष्टि विकसित कर रहा है। आपका सहयोग उस दृष्टि को एक भली-भाँति नियोजित और ज़िम्मेदारी से चलने वाले घर में बदलने में मदद कर सकता है।","Seek to Save 正在构想在斐济建立一处专门的关怀设施。您的支持可以帮助把这个愿景变成一个规划周详、负责任地运作的家。"],
+["A final site, design, cost and construction schedule have not yet been confirmed. All project milestones and use of funds will be published as they are approved.","Na vanua, na ituvatuva, na isau kei na gauna ni tara e se sega ni vakadeitaki. Na veika kece ni cakacaka kei na vakayagataki ni lavo ena tabaki ni oti na vakadonuyataki.","अंतिम स्थान, डिज़ाइन, लागत और निर्माण समय-सारणी अभी तय नहीं हुए हैं। परियोजना के सभी पड़ाव और निधि का उपयोग स्वीकृत होते ही प्रकाशित किए जाएँगे।","最终的选址、设计、费用和施工时间表尚未确定。所有项目里程碑和资金用途将在获批后公布。"],
+["Proposed stages","Na veitarataravi e vakaturi","प्रस्तावित चरण","拟议阶段"],
+["Immediate bedding and essential living improvements","Na ilokoloko kei na veivakavinakataki e gadrevi vakatotolo","तत्काल बिस्तर और आवश्यक रहन-सहन में सुधार","立即改善床铺和基本生活条件"],
+["Feasibility, land and design","Na vakadidike, qele kei na ituvatuva","व्यवहार्यता, भूमि और डिज़ाइन","可行性研究、土地和设计"],
+["Construction and services","Na tara kei na veiqaravi","निर्माण और सेवाएँ","施工和配套服务"],
+["Furnishing and operational readiness","Na iyaya ni vale kei na vakarautaki ni cakacaka","साज-सज्जा और संचालन की तैयारी","配备家具及运营准备"],
+["Sustainable programmes","Na ituvatuva e tu ena gauna levu","टिकाऊ कार्यक्रम","可持续项目"],
+["Proposed","Vakaturi","प्रस्तावित","拟议"],
+["Only funded and approved milestones will be shown as confirmed.","Na veitarataravi e vakacavari ka vakadonuyataki ga ena vakaraitaki me vakadeitaki.","केवल वित्तपोषित और स्वीकृत पड़ाव ही पुष्ट के रूप में दिखाए जाएँगे।","只有已获资金并获批准的里程碑才会显示为已确认。"],
+["Fundraising progress","Na yaga ni sasaga ni lavo","निधि संग्रह की प्रगति","筹款进度"],
+["will appear here once a costed, itemised plan and goal are approved and building-fund donations are reconciled.","ena basika e muri ni vakadonuyataki na ituvatuva kei na inaki ka vakadonuya na lavo ni tara.","तब यहाँ दिखाई देगी जब लागत सहित विस्तृत योजना और लक्ष्य स्वीकृत हो जाएँ और भवन कोष के दान का मिलान हो जाए।","将在有明细的预算方案和目标获批、建房基金的捐款核对完毕后显示在这里。"],
+["Give to Building Fund","Solia na Lavo ni Tara","भवन कोष में दान दें","奉献建房基金"],
+/* donate */
+["Give to care today and a home for tomorrow","Solia me qaravi nikua ka me vale ena mataka","आज की देखभाल और कल के घर के लिए दान दें","为今天的关怀和明天的家奉献"],
+["Your generosity helps Seek to Save provide practical care today and plan for a more secure future.","Na nomu yalo veivuke e vukea o Seek to Save me qarava nikua ka vakatakilakilataka e dua na veisiga e yalayala vakalevu.","आपकी उदारता सीक टू सेव को आज व्यावहारिक देखभाल देने और अधिक सुरक्षित भविष्य की योजना बनाने में मदद करती है।","您的慷慨帮助 Seek to Save 今天提供实际的关怀,并为更有保障的未来做规划。"],
+["1. Choose the purpose of your gift","1. Digitaka na inaki ni nomu solisoli","1. अपने दान का उद्देश्य चुनें","1. 选择奉献的用途"],
+["Daily Care Fund","Lavo ni Qaravi ni Veisiga","दैनिक देखभाल कोष","日常关怀基金"],
+["Food, bedding, hygiene, utilities and everyday essentials.","Kakana, ilokoloko, vakacecegu, ivakarau ni vale kei na iyaya e gadrevi e veisiga.","भोजन, बिस्तर, स्वच्छता, बिजली-पानी और रोज़मर्रा की ज़रूरतें।","食物、床上用品、卫生、水电和日常必需品。"],
+["Build a Home Fund","Lavo ni Tara Vale","घर निर्माण कोष","建造家园基金"],
+["Planning and developing a dedicated care facility.","Na vakatakilakila kei na tara ni vale ni veiqaravi vakatabakidua.","एक समर्पित देखभाल सुविधा की योजना और निर्माण।","规划和建设一处专门的关怀设施。"],
+["2. How often","2. Vakavica","2. कितनी बार","2. 频率"],
+["One-time","Dua ga","एक बार","一次性"],
+["Monthly","Vakayabaki","मासिक","每月"],
+["Available once the payment provider supports it.","Ena rawa ke vakadonuya na kena ivakarau ni lavo.","भुगतान प्रदाता के समर्थन करते ही उपलब्ध होगा।","待支付服务商支持后开通。"],
+["3. Amount","3. Levu ni lavo","3. राशि","3. 金额"],
+["Amount","Levu ni lavo","राशि","金额"],
+["Currency","Ivakarau ni lavo","मुद्रा","货币"],
+["Name","Yaca","नाम","姓名"],
+["Email","Imeli","ईमेल","电子邮箱"],
+["Message (optional)","Ivakamacala (ke vinakata)","संदेश (वैकल्पिक)","留言(可选)"],
+["I would like public recognition, shown anonymously","Au vinakata me vakaraitaki vakailesilesi ga na noqu solisoli, ka sega ni tukuni na yaca","मैं सार्वजनिक रूप से मान्यता चाहता/चाहती हूँ, गुमनाम रूप में","我希望公开致谢,以匿名方式显示"],
+["I agree to receive updates about the ministry","Au vakadonuya me rawati na itukutuku ni veiqaravi","मैं सेवा के बारे में अपडेट प्राप्त करने के लिए सहमत हूँ","我同意接收有关事工的最新消息"],
+["Continue to secure payment","Toso ki na lavo e yalayala","सुरक्षित भुगतान पर जाएँ","继续安全付款"],
+["Before you give","Ni bera ni o solia","दान देने से पहले","奉献之前"],
+["Donate only through the ministry's approved payment provider or verified bank details.","Solia ga ena ivakarau ni lavo e vakadonuya na veiqaravi se na banki e vakadeitaki.","केवल सेवा के स्वीकृत भुगतान प्रदाता या सत्यापित बैंक विवरण के माध्यम से ही दान करें।","请仅通过事工认可的支付服务商或经核实的银行账户奉献。"],
+["You will receive confirmation of your contribution.","Ena kau vei iko e dua na vakadeitaki ni nomu solisoli.","आपको आपके योगदान की पुष्टि मिलेगी।","您将收到奉献确认。"],
+["Card details are never collected on this website.","Na ivakatakilakila ni kadi e sega ni taurii ena wepsaiti oqo.","इस वेबसाइट पर कार्ड का विवरण कभी एकत्र नहीं किया जाता।","本网站绝不收集银行卡信息。"],
+["Fees and currency will be shown clearly at checkout.","Na isau kei na ivakarau ni lavo ena vakaraitaki rawarawa ena gauna ni sauma.","शुल्क और मुद्रा भुगतान के समय स्पष्ट रूप से दिखाए जाएँगे।","费用和货币将在结账时清楚显示。"],
+["Bank and payment details","Na itukutuku ni banki kei na sauma","बैंक और भुगतान विवरण","银行和付款信息"],
+["will be added once the ministry confirms its legal name, authority to accept donations and payment provider.","ena vakacuruma ni oti na vakadeitaki ni veiqaravi na yaca vakalawa, na dodonu me taura na solisoli kei na ivakarau ni lavo.","तब जोड़े जाएँगे जब सेवा अपना कानूनी नाम, दान स्वीकार करने का अधिकार और भुगतान प्रदाता पक्का कर लेगी।","将在事工确认其法定名称、接受捐款的授权和支付服务商后添加。"],
+/* farming */
+["Farming & Sustainability","Teitei kei na Bula e Tu","खेती और स्थिरता","农耕与可持续发展"],
+["Growing food for daily needs","Teivaka na kakana me baleta na gadrevi ni veisiga","दैनिक ज़रूरतों के लिए भोजन उगाना","为日常所需种植粮食"],
+["Alongside outreach and care, the ministry grows dalo and other crops to help meet daily needs. With additional tools, seeds, water access and agricultural support, this work could contribute to food security and practical learning.","Vata kei na veivuke kei na qaravi, e teivaka na dalo kei na so tale na kakana na veiqaravi me vukei kina na gadrevi ni veisiga. Ke ra tokoni na iyaya, na kena, na wai kei na veivuke ni teitei, ena rawa ni vukea na kakana e yalayala kei na vuli yaga.","सेवा और देखभाल के साथ-साथ सेवा दालो (तारो) और अन्य फ़सलें उगाती है ताकि दैनिक ज़रूरतें पूरी हो सकें। अतिरिक्त औज़ारों, बीजों, पानी की उपलब्धता और कृषि सहायता से यह कार्य खाद्य सुरक्षा और व्यावहारिक सीख में योगदान दे सकता है।","除了外展和照顾,事工还种植芋头(dalo)等作物,以满足日常所需。如果有更多工具、种子、水源和农业支持,这项工作可以为粮食安全和实用技能学习作出贡献。"],
+["Support Farming","Vukea na Teitei","खेती का समर्थन करें","支持农耕"],
+["What would help","Na ka e rawa ni vukea","क्या मदद करेगा","哪些帮助有用"],
+["Tools","Iyaya","औज़ार","工具"],
+["Seeds","Kena","बीज","种子"],
+["Water access","Rawa ni wai","पानी की उपलब्धता","水源"],
+["Agricultural support","Veivuke ni teitei","कृषि सहायता","农业支持"],
+/* news */
+["News & Updates","Itukutuku kei na Veivakavoui","समाचार और अपडेट","新闻与动态"],
+["Dated updates from the ministry","Itukutuku vakagauna mai na veiqaravi","सेवा से दिनांकित अपडेट","事工的带日期动态"],
+["Ministry stories, construction updates and financial reports will be published here with dates.","Na itukutuku ni veiqaravi, na tara kei na ripote ni lavo ena tabaki eke ena nodra siga.","सेवा की कहानियाँ, निर्माण की जानकारी और वित्तीय रिपोर्टें तारीख़ों के साथ यहाँ प्रकाशित होंगी।","事工故事、施工进展和财务报告将连同日期一起发布在这里。"],
+["No updates yet.","Se sega e dua na itukutuku vou.","अभी कोई अपडेट नहीं।","暂无动态。"],
+["The first post will appear once Pastor Elia approves it.","Na imatai ni itukutuku ena basika ni oti na vakadonuya o Pastor Elia.","पास्टर एलिया की स्वीकृति मिलते ही पहली पोस्ट यहाँ दिखेगी।","Elia 牧师批准后,第一篇动态将出现在这里。"],
+/* partner */
+["Partner / Volunteer","Veitokoni / Dauveiqaravi","साझेदार / स्वयंसेवक","合作 / 志愿者"],
+["Stand with us","Tu vata kei keimami","हमारे साथ खड़े हों","与我们同行"],
+["Whether you represent a church, organisation, business or community group, we welcome enquiries about prayer, practical support and long-term partnership.","Ke o dau vakatokai ni valenilotu, vuvale ni cakacaka, bisinisi se ivavakoso ni koro, keimami taleitaka na nomu taro me baleta na masu, na veivuke yaga kei na veitokoni ena gauna balavu.","चाहे आप किसी कलीसिया, संगठन, व्यवसाय या सामुदायिक समूह का प्रतिनिधित्व करते हों, प्रार्थना, व्यावहारिक सहायता और दीर्घकालिक साझेदारी के बारे में आपकी पूछताछ का स्वागत है।","无论您代表教会、机构、企业还是社区团体,我们都欢迎您就祷告、实际支持和长期合作提出咨询。"],
+["Churches & mission partners","Valenilotu kei na veitokoni ni veivakacabori","कलीसियाएँ और मिशन साझेदार","教会与宣教伙伴"],
+["Read our faith statement and work, review needs and governance, then enquire about partnership.","Wilika na neimami vakabauta kei na cakacaka, raica na gadrevi kei na veiliutaki, ka taroga me baleta na veitokoni.","हमारा विश्वास-कथन और कार्य पढ़ें, आवश्यकताओं और शासन-प्रणाली की समीक्षा करें, फिर साझेदारी के बारे में पूछें।","阅读我们的信仰声明和工作,了解需要和管治,然后咨询合作事宜。"],
+["Businesses & major donors","Bisinisi kei na dau solisoli levu","व्यवसाय और प्रमुख दानदाता","企业与大额捐赠者"],
+["Review the facility plan, budgets, milestones and accountability, and request a proposal or meeting.","Raica na ituvatuva ni vale, na bajeti, na veitarataravi kei na veivakadeitaki, ka kerea e dua na ivakaraitaki se soqo.","सुविधा की योजना, बजट, पड़ाव और जवाबदेही देखें, और प्रस्ताव या बैठक का अनुरोध करें।","查看设施计划、预算、里程碑和问责安排,并申请方案或会面。"],
+["Volunteers","Dauveiqaravi","स्वयंसेवक","志愿者"],
+["Learn about opportunities and our safeguarding requirements, then submit an enquiry.","Kila na gauna e rawa kina kei na neimami ivakarau ni yalayala, ka vakau mai e dua na taro.","अवसरों और हमारी सुरक्षा संबंधी आवश्यकताओं के बारे में जानें, फिर पूछताछ भेजें।","了解志愿机会和我们的保护要求,然后提交咨询。"],
+["Send an enquiry","Vakau mai e dua na taro","पूछताछ भेजें","发送咨询"],
+["Tell us who you are and how you would like to help.","Tukuna mai o cei ka vakacava o vinakata me veivuke kina.","बताइए कि आप कौन हैं और कैसे मदद करना चाहते हैं।","请告诉我们您是谁,以及您希望如何帮助。"],
+["Church or organisation (optional)","Valenilotu se vuvale ni cakacaka (ke vinakata)","कलीसिया या संगठन (वैकल्पिक)","教会或机构(可选)"],
+["I am interested in","Au taleitaka","मेरी रुचि है","我感兴趣的是"],
+["Church partnership","Veitokoni ni valenilotu","कलीसिया साझेदारी","教会合作"],
+["Business or corporate sponsorship","Veivuke ni bisinisi","व्यवसाय या कॉर्पोरेट प्रायोजन","企业赞助"],
+["Volunteering","Dauveiqaravi","स्वयंसेवा","志愿服务"],
+["Prayer support","Veivuke ena masu","प्रार्थना सहयोग","祷告支持"],
+["Message","Ivakamacala","संदेश","留言"],
+["Send enquiry","Vakau na taro","पूछताछ भेजें","发送咨询"],
+/* contact */
+["Get in touch","Veitaratara kei keimami","संपर्क करें","联系我们"],
+["Seek to Save is based in Colo-i-Suva, Fiji. To protect residents, we do not publish a street address.","E tiko o Seek to Save e Colo-i-Suva, Viti. Me taqomaki kina na tamata e tiko kina, keimami sega ni tabaka na adresi ni gaunisala.","सीक टू सेव कोलो-इ-सुवा, फ़िजी में स्थित है। निवासियों की सुरक्षा के लिए हम सड़क का पता प्रकाशित नहीं करते।","Seek to Save 位于斐济科罗伊苏瓦。为保护住客,我们不公布街道地址。"],
+["Media and community enquiries will be answered with approved facts and shareable updates.","Na taro ni ulutaga kei na veikoro ena sauma ena ka e vakadonuyataki kei na itukutuku e rawa ni tukuni.","मीडिया और समुदाय की पूछताछ का उत्तर स्वीकृत तथ्यों और साझा करने योग्य अपडेट के साथ दिया जाएगा।","媒体和社区的咨询将以经批准的事实和可分享的动态回复。"],
+["Send message","Vakau na ivakamacala","संदेश भेजें","发送留言"],
+["Email:","Imeli:","ईमेल:","电子邮箱:"],
+["Social links:","Wekada ni veitaratara:","सोशल लिंक:","社交媒体链接:"],
+["privacy policy","ivakaro ni vuni","गोपनीयता नीति","隐私政策"],
+["I agree to my details being used to reply, as described in the","Au vakadonuya me vakayagataki na noqu itukutuku me saumi kina, me vaka e tukuni ena","मैं सहमत हूँ कि मेरा विवरण उत्तर देने के लिए उपयोग किया जाए, जैसा कि इसमें बताया गया है:","我同意按照以下说明使用我的资料进行回复:"],
+/* policies */
+["Policies","Ivakaro","नीतियाँ","政策"],
+["How we protect people and gifts","Na neimami taqomaka na tamata kei na solisoli","हम लोगों और दान की सुरक्षा कैसे करते हैं","我们如何保护人和奉献"],
+["Draft commitments for review. Final wording will follow local legal advice.","Na yalayala vakaivolavola me raici. Na vosa e muri ena muri ni ivakasala vakalawa e Viti.","समीक्षा के लिए मसौदा प्रतिबद्धताएँ। अंतिम शब्दावली स्थानीय कानूनी सलाह के अनुसार होगी।","供审阅的承诺草案。最终措辞将依据当地法律意见确定。"],
+["Privacy","Ivakaro ni Vuni","गोपनीयता","隐私"],
+["Donor and contact details are handled securely and used only for the purpose you give them. Consent is requested before updates are sent.","Na itukutuku ni dau solisoli kei na veitaratara e maroroi vakayalayala ka vakayagataki ga ena inaki o solia kina. Na ivakadonuya e kerei ni bera ni vakau na itukutuku.","दानदाताओं और संपर्क का विवरण सुरक्षित रखा जाता है और केवल उसी उद्देश्य के लिए उपयोग होता है जिसके लिए आप देते हैं। अपडेट भेजने से पहले सहमति माँगी जाती है।","捐赠者和联系人资料会被安全保管,仅用于您提供时说明的目的。发送动态之前会先征求同意。"],
+["Safeguarding","Taqomaki","सुरक्षा-संरक्षण","保护措施"],
+["We do not publish identifying information, locations, diagnoses or exploitation histories of vulnerable residents without lawful, informed approval. For children we apply especially protective standards and avoid identifiable stories by default.","Keimami sega ni tabaka na itukutuku e kilai kina, na vanua, na tukutuku ni tauvimate se ni veivakacacani ni tamata malumalumu ke sega na ivakadonuya e dodonu ena lawa. Vei ira na gone, keimami vakayagataka na ivakarau e taqomaki vakabibi ka tarova na itukutuku e kilai kina.","हम बिना वैध और सूचित अनुमति के कमज़ोर निवासियों की पहचान, स्थान, निदान या शोषण के इतिहास प्रकाशित नहीं करते। बच्चों के लिए हम विशेष सुरक्षात्मक मानक अपनाते हैं और पहचान योग्य कहानियों से बचते हैं।","未经合法、知情的同意,我们不会发布弱势住客的身份信息、所在地、诊断或受剥削经历。对于儿童,我们采用特别保护的标准,默认不发布可识别身份的故事。"],
+["Donations & refunds","Solisoli kei na lesu ni lavo","दान और धन-वापसी","捐款与退款"],
+["Daily Care and Build a Home gifts are recorded separately. Refund terms and the handling of restricted gifts, including what happens if the building project changes, will be stated here before giving opens. We do not describe gifts as tax-deductible unless independently confirmed.","Na solisoli ni Qaravi ni Veisiga kei na Tara Vale e volai duidui. Na ivakarau ni lesu ni lavo kei na kena qaravi na solisoli e vakayacori vakatabakidua, vakau kina na ka ke veisau na tara ni vale, ena tukuni eke ni bera ni tiko na solisoli. Keimami sega ni tukuna ni solisoli e kau yani ena lavo ni takisi ke sega na vakadeitaki.","दैनिक देखभाल और घर निर्माण के दान अलग दर्ज किए जाते हैं। धन-वापसी की शर्तें और निर्धारित उद्देश्य वाले दान का प्रबंधन, जिसमें भवन परियोजना बदलने की स्थिति भी शामिल है, दान शुरू होने से पहले यहाँ बताया जाएगा। जब तक स्वतंत्र रूप से पुष्टि न हो, हम दान को कर-कटौती योग्य नहीं बताते।","日常关怀和建造家园的奉献分开记录。退款条款和指定用途奉献的处理方式(包括建房项目变更时如何处理)将在开放奉献前在此说明。除非经独立确认,我们不会称奉献可以抵税。"],
+["Financial accountability","Na veivakadeitaki ni lavo","वित्तीय जवाबदेही","财务问责"],
+["We will name who manages donations, publish financial updates and report on the use of funds as milestones are approved.","Keimami na tukuna o cei e qarava na solisoli, tabaka na itukutuku ni lavo ka vakaraitaka na vakayagataki ni lavo ni vakadonuyataki na veitarataravi.","हम बताएँगे कि दान का प्रबंधन कौन करता है, वित्तीय अपडेट प्रकाशित करेंगे और पड़ाव स्वीकृत होने पर निधि के उपयोग की रिपोर्ट देंगे।","我们会公布由谁管理捐款,发布财务动态,并在里程碑获批后报告资金的使用情况。"],
+["Accessibility","Rawa ni Vakayagataki","सुगम्यता","无障碍"],
+["This site uses clear headings, readable contrast, keyboard navigation and descriptive image text.","E vakayagataka na wepsaiti oqo na ulutaga rairai, na vuku ni kala e rawa ni wilika, na vakayagataki ni keyboard kei na vosa ni yaloyalo.","यह साइट स्पष्ट शीर्षक, पठनीय कंट्रास्ट, कीबोर्ड नेविगेशन और चित्रों के वर्णन का उपयोग करती है।","本网站使用清晰的标题、易读的对比度、键盘导航和图片说明文字。"],
+["Testimonies", "Veivakadinadinataki", "गवाहियाँ", "见证"],
+["Lives being restored, in their own words", "Bula e vakalesui tiko, ena nodra vosa ga", "पुनर्स्थापित होते जीवन, उन्हीं के शब्दों में", "重建的生命,用他们自己的话讲述"],
+["Each testimony is shared by the person themselves, or with their informed consent, and told with dignity.", "Na veivakadinadinataki yadua e tukuni ga ena tamata ni sega e vakadonuya, ka tukuni ena vakarokoroko.", "हर गवाही स्वयं व्यक्ति द्वारा, या उनकी सूचित सहमति से साझा की जाती है, और सम्मान के साथ बताई जाती है।", "每一份见证都由本人分享,或经本人知情同意,并以尊严的方式讲述。"],
+["How we protect people.", "Na neimami taqomaka na tamata.", "हम लोगों की सुरक्षा कैसे करते हैं।", "我们如何保护人。"],
+["Nothing is published until the person and the ministry have approved it in writing. Names may be shortened or changed, faces are not shown by default, and testimonies from children are not published.", "Sega e tabaki ni bera ni vakadonuya vakaivola na tamata kei na veiqaravi. Na yaca e rawa ni vakalailaitaki se veisautaki, na matamata e sega ni vakaraitaki, ka na sega ni tabaki na veivakadinadinataki ni gone.", "जब तक व्यक्ति और सेवा दोनों लिखित स्वीकृति न दें, कुछ भी प्रकाशित नहीं होता। नाम छोटे या बदले जा सकते हैं, चेहरे डिफ़ॉल्ट रूप से नहीं दिखाए जाते, और बच्चों की गवाहियाँ प्रकाशित नहीं की जातीं।", "在本人和事工书面批准之前,不会发布任何内容。姓名可能缩写或更改,默认不显示面孔,也不发布儿童的见证。"],
+["How a testimony is added", "Na kena vakacuruma e dua na veivakadinadinataki", "गवाही कैसे जोड़ी जाती है", "见证如何添加"],
+["Invitation", "Veikidavaki", "निमंत्रण", "邀请"],
+["The person is invited to share, and is free to say no.", "E kidavaki na tamata me tukuna, ka rawa ni sega.", "व्यक्ति को साझा करने के लिए आमंत्रित किया जाता है, और वे मना करने के लिए स्वतंत्र हैं।", "邀请当事人分享,他们可以自由拒绝。"],
+["Written consent", "Ivakadonuya vakaivola", "लिखित सहमति", "书面同意"],
+["They agree in writing to the words, name and any photograph.", "E vakadonuya vakaivola na vosa, yaca kei na yaloyalo.", "वे शब्दों, नाम और किसी भी तस्वीर के लिए लिखित रूप में सहमति देते हैं।", "他们以书面形式同意所用文字、姓名和任何照片。"],
+["Safety review", "Vakadidike ni yalayala", "सुरक्षा समीक्षा", "安全审核"],
+["The ministry checks that nothing could identify or endanger anyone.", "Na veiqaravi e vakadidike me sega e dua na ka e rawa ni vakilai se vakararawataki kina e dua.", "सेवा जाँचती है कि कुछ भी किसी की पहचान उजागर न करे या उन्हें ख़तरे में न डाले।", "事工会检查,确保内容不会暴露任何人的身份或使任何人陷入危险。"],
+["Publication", "Tabaki", "प्रकाशन", "发布"],
+["The testimony is published with a date and can be withdrawn at any time.", "Na veivakadinadinataki e tabaki ena dua na siga ka rawa ni kau tani ena gauna kece.", "गवाही तारीख़ के साथ प्रकाशित होती है और किसी भी समय वापस ली जा सकती है।", "见证连同日期一并发布,并可随时撤回。"],
+["Share your testimony", "Tukuna na nomu veivakadinadinataki", "अपनी गवाही साझा करें", "分享您的见证"],
+["Pastor, Seek to Save", "Pastor, Seek to Save", "पास्टर, सीक टू सेव", "Seek to Save 牧师"],
+["Pending approval", "Sa wawa na vakadonuya", "स्वीकृति लंबित", "待批准"],
+["Layout example", "Ivakaraitaki ni ituvatuva", "लेआउट का उदाहरण", "版式示例"],
+["Not a real testimony", "Sega ni veivakadinadinataki dina", "यह असली गवाही नहीं है", "并非真实见证"],
+["First name only", "Yaca ni qase ga", "केवल पहला नाम", "仅名字"],
+["Resident or supporter", "Dau vakaseyaki se dau veivuke", "निवासी या समर्थक", "住客或支持者"],
+["Testimony text appears here once the person has given written consent.", "Na vosa ni veivakadinadinataki ena basika eke ni oti na vakadonuya vakaivola na tamata.", "व्यक्ति की लिखित सहमति मिलने पर गवाही का पाठ यहाँ दिखेगा।", "待当事人书面同意后,见证内容将显示在这里。"],
+["Pastor Elia’s testimony will be added here after he approves it.", "Na veivakadinadinataki i Pastor Elia ena vakacuruma eke ni oti na nona vakadonuya.", "पास्टर एलिया की गवाही उनकी स्वीकृति के बाद यहाँ जोड़ी जाएगी।", "Elia 牧师的见证将在他批准后添加到这里。"],
+["Monthly goal", "Na inaki ni vula", "मासिक लक्ष्य", "每月目标"],
+["Build a Home Goal", "Na Inaki ni Tara Vale", "भवन निर्माण लक्ष्य", "建房目标"],
+["Raised", "Sa volai", "जुटाई गई राशि", "已筹集"],
+["Goal", "Inaki", "लक्ष्य", "目标"],
+["The goal will be announced once the ministry sets it.", "Na inaki ena kacivi ni oti na tuvanaki ena veiqaravi.", "मंत्रालय द्वारा तय किए जाने पर लक्ष्य घोषित किया जाएगा।", "事工设定后将公布目标。"],
+["Goal reached", "Sa rawati na inaki", "लक्ष्य पूरा हुआ", "已达成目标"],
+["Carried over from last month", "Kau mai na vula sa oti", "पिछले महीने से आगे लाया गया", "上月结转"],
+["Resets at the start of each month. Anything over the goal carries into the next month.", "E tekivu tale ena tekivu ni vula yadua. Na ka e uasivi ena inaki ena kau ki na vula e tarava.", "हर महीने की शुरुआत में शून्य से शुरू होता है। लक्ष्य से जो भी अधिक होता है वह अगले महीने में चला जाता है।", "每月初重新开始计算。超出目标的部分结转到下个月。"],
+["Previous months", "Na vula sa oti", "पिछले महीने", "往月记录"],
+["Previous months will appear here once a month has ended.", "Na vula sa oti ena basika eke ni oti e dua na vula.", "एक महीना समाप्त होने के बाद पिछले महीने यहाँ दिखेंगे।", "一个月结束后,往月记录会显示在这里。"],
+["Month", "Vula", "महीना", "月份"],
+["Result", "Iyalayala", "परिणाम", "结果"],
+["Goal met", "Sa rawati", "लक्ष्य पूरा", "已达成"],
+["Goal not reached", "Sega ni rawati", "लक्ष्य पूरा नहीं हुआ", "未达成"],
+["No goal set", "Sega ni tuvanaki e dua na inaki", "कोई लक्ष्य तय नहीं", "未设定目标"],
+["Our givers", "Ratou na dau solisoli", "हमारे दानदाता", "我们的奉献者"],
+["Thank you to everyone who has given. Gifts appear here after the ministry has confirmed them. Givers can choose to remain anonymous and leave a message.", "Vinaka vakalevu vei ira kece era sa solia. Na solisoli ena basika eke ni oti na vakadeitaki ena veiqaravi. Era rawa ni digitaka me ra sega ni vakatakilakilai ka biuta e dua na ivakamacala.", "उन सभी का धन्यवाद जिन्होंने दान दिया है। सेवा द्वारा पुष्टि के बाद ही दान यहाँ दिखाई देते हैं। दानदाता गुमनाम रहना और संदेश छोड़ना चुन सकते हैं।", "感谢每一位奉献者。奉献经事工确认后会显示在这里。奉献者可以选择匿名,并留下留言。"],
+["All", "Kece", "सभी", "全部"],
+["Anonymous", "Sega ni kilai", "गुमनाम", "匿名"],
+["No gifts have been recorded yet.", "Se sega ni volai e dua na solisoli.", "अभी तक कोई दान दर्ज नहीं हुआ है।", "目前尚无奉献记录。"],
+["Show more", "Laurai vakalevu", "और दिखाएँ", "显示更多"],
+/* footer */
+["Reaching the Lost. Restoring Lives. Sharing Christ.","Vaqara na Yali. Vakalesuitaka na Bula. Tukuna na Karisito.","खोए हुओं तक पहुँचना। जीवनों को पुनर्स्थापित करना। मसीह को बाँटना।","寻找失丧的人。重建生命。分享基督。"],
+["Explore","Rai Tale","देखें","浏览"],
+["Trust","Vakabauta","भरोसा","信任"]
+];
+var LN={en:'English',fj:'Na vosa vaka-Viti',hi:'हिन्दी',zh:'中文'}, IDX={fj:1,hi:2,zh:3};
+var MAP={}; D.forEach(function(r){MAP[r[0].replace(/\s+/g,' ').trim()]=r});
+var M={
+ amt:["Enter an amount greater than zero.","Vola mai e dua na levu ni lavo e laurai mai na zero.","शून्य से अधिक राशि दर्ज करें।","请输入大于零的金额。"],
+ email:["Enter a valid email address so we can send your receipt.","Vola mai e dua na imeli donu me rawa ni keimami vakau yani na iwase ni sauma.","एक मान्य ईमेल पता दर्ज करें ताकि हम आपको रसीद भेज सकें।","请输入有效的电子邮箱,以便我们发送收据。"],
+ eEmail:["Enter a valid email address so we can reply.","Vola mai e dua na imeli donu me rawa ni keimami saumi.","एक मान्य ईमेल पता दर्ज करें ताकि हम उत्तर दे सकें।","请输入有效的电子邮箱,以便我们回复。"],
+ eNot:["This form is not connected yet, so your message has not been sent. Please try again once the ministry email is confirmed.","Na pepa oqo e se sega ni yacova, ka sa sega ni vakau na nomu ivakamacala. Tovolea tale ni oti na vakadeitaki na imeli ni veiqaravi.","यह फ़ॉर्म अभी जुड़ा नहीं है, इसलिए आपका संदेश भेजा नहीं गया है। सेवा का ईमेल पक्का होने के बाद फिर कोशिश करें।","此表单尚未连接,您的留言没有发出。请在事工邮箱确认后再试。"],
+ done:["Online giving is not open yet. No payment has been taken and nothing was sent. Once the ministry confirms its payment provider, this button will take you to secure checkout for your {fund} gift of {cur} {amt} ({freq}).",
+  "Na solisoli ena internet e se bera ni tiko. Sega ni taura e dua na lavo ka sega ni vakau e dua na ka. Ni oti na vakadeitaki na ivakarau ni lavo, ena kauti iko na patani oqo ki na sauma e yalayala me baleta na nomu solisoli ni {fund} ni {cur} {amt} ({freq}).",
+  "ऑनलाइन दान अभी शुरू नहीं हुआ है। कोई भुगतान नहीं लिया गया और कुछ भी भेजा नहीं गया। सेवा द्वारा भुगतान प्रदाता पक्का होने पर यह बटन आपको आपके {fund} दान ({cur} {amt}, {freq}) के लिए सुरक्षित भुगतान पर ले जाएगा।",
+  "网上捐款尚未开通。没有扣款,也没有发送任何内容。事工确认支付服务商后,此按钮将带您进入安全付款页面,完成您的{fund}奉献({cur} {amt},{freq})。"]
+};
+var L='en';
+function tr(en){var r=MAP[(en||'').replace(/\s+/g,' ').trim()];return r&&IDX[L]?r[IDX[L]]:en}
+function msg(k,v){var a=M[k],t=a[IDX[L]||0];if(v)for(var x in v)t=t.replace('{'+x+'}',v[x]);return t}
+var NODES=null;
+function collect(){NODES=[];var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{acceptNode:function(n){var p=n.parentNode;if(!n.nodeValue.trim()||p.closest('script,style,#langGate,[data-notr]'))return NodeFilter.FILTER_REJECT;return NodeFilter.FILTER_ACCEPT}});var n;while(n=w.nextNode())NODES.push({n:n,o:n.nodeValue})}
+function applyNode(x,l){
+  if(l==='en'){x.n.nodeValue=x.o;return}
+  var r=MAP[x.o.replace(/\s+/g,' ').trim()];
+  if(r){x.n.nodeValue=x.o.match(/^\s*/)[0]+r[IDX[l]]+x.o.match(/\s*$/)[0]}else x.n.nodeValue=x.o;
+}
+function addNodes(root){
+  if(!NODES)collect();
+  var w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),n,add=[];
+  while(n=w.nextNode()){if(n.nodeValue.trim()&&!n.parentNode.closest('[data-notr]'))add.push({n:n,o:n.nodeValue})}
+  add.forEach(function(x){NODES.push(x);applyNode(x,L)});
+}
+function setLang(l){
+  L=l;if(!NODES)collect();
+  NODES=NODES.filter(function(x){return x.n.isConnected});
+  NODES.forEach(function(x){applyNode(x,l)});
+  document.documentElement.lang={en:'en',fj:'fj',hi:'hi',zh:'zh'}[l];
+  document.getElementById('langBtn').textContent='\ud83c\udf10 '+LN[l];
+  var st=document.getElementById('dstatus');if(st)st.hidden=true;
+  if(window.renderMoney)window.renderMoney();
+}
+(function(){
+  var gate=document.getElementById('langGate'),btn=document.getElementById('langBtn'),saved=null;
+  try{saved=localStorage.getItem('sts-lang')}catch(e){}
+  function pick(l){try{localStorage.setItem('sts-lang',l)}catch(e){}setLang(l);gate.hidden=true;window.scrollTo(0,0)}
+  gate.addEventListener('click',function(e){var b=e.target.closest('button[data-lang]');if(b)pick(b.dataset.lang)});
+  btn.addEventListener('click',function(){gate.hidden=false;gate.querySelector('button').focus()});
+  if(saved&&LN[saved]){setLang(saved)}else{gate.hidden=false;var f=gate.querySelector('button');if(f)f.focus()}
+})();
+</script>
+
+<script>
+/* Goals and givers. Data lives in data/state.json; ministry editors record confirmed gifts and goals below. */
+(function(){
+  var ST={settings:{monthlyGoal:null,buildingGoal:null},monthGoals:{},gifts:[]};
+  var ART=null,USR=null,EDIT=false,FILTER='all',SHOWN=20,DIRTY=false,PENDING_DEL=null;
+  function $(id){return document.getElementById(id)}
+  function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+  function today(){return new Date().toLocaleDateString('en-CA',{timeZone:'Pacific/Fiji'})}
+  function nextKey(k){var y=+k.slice(0,4),m=+k.slice(5)+1;if(m>12){m=1;y++}return y+'-'+(m<10?'0':'')+m}
+  function fmt(n){return 'FJD '+Math.round(n).toLocaleString('en-US')}
+  function loc(){return {hi:'hi-IN',zh:'zh-CN'}[L]||'en-GB'}
+  function monthName(k){return new Date(k+'-01T12:00:00Z').toLocaleDateString(loc(),{month:'long',year:'numeric',timeZone:'UTC'})}
+  function dayName(d){return new Date(d+'T12:00:00Z').toLocaleDateString(loc(),{day:'numeric',month:'short',year:'numeric',timeZone:'UTC'})}
+  function goalFor(k){var g=ST.monthGoals[k];return g!=null?g:ST.settings.monthlyGoal}
+  function months(){
+    var cur=today().slice(0,7),first=cur;
+    ST.gifts.forEach(function(g){var k=g.date.slice(0,7);if(k<first)first=k});
+    var out=[],k=first,carry=0;
+    while(k<=cur){
+      var raised=0;ST.gifts.forEach(function(g){if(g.fund==='daily'&&g.date.slice(0,7)===k)raised+=g.amount});
+      var goal=goalFor(k),avail=raised+carry,co=goal!=null?Math.max(0,avail-goal):0;
+      out.push({k:k,raised:raised,carryIn:carry,avail:avail,goal:goal,carryOut:co});
+      carry=co;k=nextKey(k);
+    }
+    return out;
+  }
+  function buildTotal(){var t=0;ST.gifts.forEach(function(g){if(g.fund==='building')t+=g.amount});return t}
+  function meter(val,goal){
+    var m=el('div','meter');m.setAttribute('role','progressbar');m.setAttribute('aria-valuemin','0');m.setAttribute('aria-valuemax','100');
+    var p=goal>0?Math.min(100,val/goal*100):0;m.setAttribute('aria-valuenow',Math.round(p));
+    var i=document.createElement('i');i.style.width=p+'%';m.appendChild(i);return m;
+  }
+  function stats(val,goal){
+    var s=el('div','stats');
+    var a=el('div');a.appendChild(el('span','lbl','Raised'));a.appendChild(el('strong','num',fmt(val)));
+    var b=el('div');b.appendChild(el('span','lbl','Goal'));b.appendChild(goal!=null?el('strong','num',fmt(goal)):el('strong','num','—'));
+    s.appendChild(a);s.appendChild(b);return s;
+  }
+  function renderCards(){
+    ['buildCard','buildCard2'].forEach(function(id){
+      var b=$(id);if(!b)return;b.textContent='';
+      var t=buildTotal(),g=ST.settings.buildingGoal;
+      var h2=el('div','gh');h2.appendChild(el('h3',null,'Build a Home Goal'));b.appendChild(h2);
+      b.appendChild(meter(t,g));b.appendChild(stats(t,g));
+      if(g==null)b.appendChild(el('p','small','The goal will be announced once the ministry sets it.'));
+      else if(t>=g)b.appendChild(el('p','small win','Goal reached'));
+    });
+  }
+  function renderHistory(){
+    var box=$('historyBody');box.textContent='';
+    var ms=months().slice(0,-1).reverse();
+    if(!ms.length){box.appendChild(el('p','small','Previous months will appear here once a month has ended.'));return}
+    var wrap=el('div','tbl'),t=document.createElement('table'),thd=document.createElement('thead'),tr=document.createElement('tr');
+    ['Month','Goal','Raised','Carried over from last month','Result'].forEach(function(x){tr.appendChild(el('th',null,x))});
+    thd.appendChild(tr);t.appendChild(thd);var tb=document.createElement('tbody');
+    ms.forEach(function(m){
+      var r=document.createElement('tr');
+      r.appendChild(el('td',null,monthName(m.k)));
+      r.appendChild(el('td','num',m.goal!=null?fmt(m.goal):'—'));
+      r.appendChild(el('td','num',fmt(m.raised)));
+      r.appendChild(el('td','num',fmt(m.carryIn)));
+      r.appendChild(el('td',null,m.goal==null?'No goal set':(m.avail>=m.goal?'Goal met':'Goal not reached')));
+      tb.appendChild(r);
+    });
+    t.appendChild(tb);wrap.appendChild(t);box.appendChild(wrap);
+  }
+  function renderGivers(){
+    var list=$('giverList');list.textContent='';
+    var gs=ST.gifts.filter(function(g){return FILTER==='all'||g.fund===FILTER}).sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:(b.id||'').localeCompare(a.id||'')});
+    [].forEach.call(document.querySelectorAll('#giverFilter button'),function(b){b.setAttribute('aria-pressed',b.dataset.f===FILTER)});
+    if(!gs.length){list.appendChild(el('p','small','No gifts have been recorded yet.'));return}
+    gs.slice(0,SHOWN).forEach(function(g){
+      var c=el('article','card giver');
+      var top=el('div','gtop');
+      top.appendChild(g.anonymous?el('strong',null,'Anonymous'):el('strong',null,g.name||'Anonymous'));
+      top.appendChild(el('span','num',fmt(g.amount)));c.appendChild(top);
+      var m=el('div','gmeta');m.appendChild(el('span','pill',g.fund==='building'?'Build a Home Fund':'Daily Care Fund'));m.appendChild(el('span','small',dayName(g.date)));c.appendChild(m);
+      if(g.message)c.appendChild(el('blockquote',null,g.message));
+      list.appendChild(c);
+    });
+    if(gs.length>SHOWN){var b=el('button','btn ghost','Show more');b.type='button';b.style.color='var(--fg)';b.style.borderColor='var(--green-2)';b.addEventListener('click',function(){SHOWN+=20;renderGivers();addNodes(list)});list.appendChild(b)}
+  }
+  window.renderMoney=function(){
+    renderCards();renderGivers();
+    ['buildCard','buildCard2','giverList'].forEach(function(id){var e=$(id);if(e)addNodes(e)});
+  };
+  $('giverFilter').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;FILTER=b.dataset.f;renderGivers();addNodes($('giverList'))});
+
+  /* ---- ministry tools ---- */
+  function status(t){var s=$('adminStatus');s.hidden=false;s.textContent=t}
+  function markDirty(){DIRTY=true;$('adminSave').disabled=false;status('Unsaved changes. Press Save changes to publish them.')}
+  function renderAdmin(){
+    $('aBuilding').value=ST.settings.buildingGoal==null?'':ST.settings.buildingGoal;
+    var gl=$('aGifts');gl.textContent='';
+    ST.gifts.slice().sort(function(a,b){return a.date<b.date?1:-1}).forEach(function(g){
+      var li=el('li');li.appendChild(el('span',null,g.date+' · '+(g.fund==='building'?'Building':'Daily')+' · '+fmt(g.amount)+' · '+(g.anonymous?'Anonymous (record: '+(g.name||'no name')+')':(g.name||'no name'))+' '));
+      var b=el('button','link',PENDING_DEL===g.id?'click again to delete':'delete');b.type='button';
+      b.addEventListener('click',function(){
+        if(PENDING_DEL===g.id){ST.gifts=ST.gifts.filter(function(x){return x.id!==g.id});PENDING_DEL=null;markDirty();renderAdmin();window.renderMoney()}
+        else{PENDING_DEL=g.id;renderAdmin()}});
+      li.appendChild(b);gl.appendChild(li)});
+    if(!ST.gifts.length)gl.appendChild(el('li',null,'No gifts recorded yet.'));
+  }
+  function num(v){v=String(v).replace(/,/g,'').trim();if(v==='')return null;var n=+v;return isFinite(n)&&n>=0?n:NaN}
+  function setupAdmin(){
+    $('adminPanel').hidden=false;$('aDate').value=today();$('adminSave').disabled=true;renderAdmin();
+    $('aGoalForm').addEventListener('submit',function(e){
+      e.preventDefault();var b=num($('aBuilding').value);
+      if(b!==b){status('The goal must be a number of zero or more.');return}
+      ST.settings.buildingGoal=b;markDirty();renderAdmin();window.renderMoney();
+    });
+    $('aGiftForm').addEventListener('submit',function(e){
+      e.preventDefault();var a=num($('aAmount').value),d=$('aDate').value;
+      if(!(a>0)){status('Enter the amount received in FJD.');return}
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(d)){status('Choose the date the gift was received.');return}
+      if(!$('aConsent').checked){status('Confirm the giver agreed to appear on the public list.');return}
+      var msg=$('aMessage').value.trim();
+      ST.gifts.push({id:'g'+Date.now().toString(36)+Math.random().toString(36).slice(2,5),date:d,fund:$('aFund').value,amount:a,name:$('aName').value.trim(),anonymous:$('aAnon').checked,message:msg});
+      $('aAmount').value='';$('aName').value='';$('aMessage').value='';$('aAnon').checked=false;
+      markDirty();renderAdmin();window.renderMoney();
+    });
+    $('adminSave').addEventListener('click',function(){
+      if(!ART){status('Saving is not available in this view.');return}
+      $('adminSave').disabled=true;status('Saving…');
+      ART.publish({'data/state.json':{content:JSON.stringify(ST,null,1),contentType:'application/json'}}).then(function(){
+        DIRTY=false;status('Saved. Everyone now sees the updated goals and givers.');
+      },function(err){
+        $('adminSave').disabled=false;
+        var c=err&&err.code;
+        status(c==='capability_disabled'?'Saving is not available from this link (for example a public link). Open the private link to save, or send the changes to Claude.':c==='conflict'?'Someone else saved first. Reload the page and repeat your change.':'Could not save'+(err&&err.message?': '+err.message:'')+'. Your changes are still on this page.');
+      });
+    });
+  }
+  function normalize(j){
+    var s={settings:{monthlyGoal:null,buildingGoal:null},monthGoals:{},gifts:[]};
+    if(j&&j.settings){s.settings.monthlyGoal=j.settings.monthlyGoal==null?null:+j.settings.monthlyGoal;s.settings.buildingGoal=j.settings.buildingGoal==null?null:+j.settings.buildingGoal}
+    if(j&&j.monthGoals)Object.keys(j.monthGoals).forEach(function(k){if(/^\d{4}-\d{2}$/.test(k))s.monthGoals[k]=+j.monthGoals[k]});
+    if(j&&Array.isArray(j.gifts))j.gifts.forEach(function(g){if(g&&+g.amount>0&&/^\d{4}-\d{2}-\d{2}$/.test(g.date))s.gifts.push({id:String(g.id||''),date:g.date,fund:g.fund==='building'?'building':'daily',amount:+g.amount,name:String(g.name||''),anonymous:!!g.anonymous,message:String(g.message||'')})});
+    return s;
+  }
+  window.renderMoney();
+  try{fetch('data/state.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&!DIRTY){ST=normalize(j);window.renderMoney();if(EDIT)renderAdmin()}}).catch(function(){})}catch(e){}
+  try{
+    if(window.claude&&claude.use){
+      claude.use('user').then(function(u){USR=u;if(u&&u.canEdit&&u.canEdit()&&!EDIT){EDIT=true;setupAdmin()}}).catch(function(){});
+      claude.use('artifact').then(function(a){ART=a}).catch(function(){});
+    }
+  }catch(e){}
+})();
+</script>
+
+<script>
+(function(){
+  var views=[].slice.call(document.querySelectorAll('.view'));
+  var links=[].slice.call(document.querySelectorAll('nav a'));
+  var nav=document.getElementById('nav'), btn=document.getElementById('menuBtn');
+  function route(){
+    var id=(location.hash||'#home').slice(1);
+    if(!document.getElementById('v-'+id)) id='home';
+    views.forEach(function(v){v.hidden=v.id!=='v-'+id});
+    links.forEach(function(a){a.getAttribute('href')==='#'+id?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current')});
+    nav.classList.remove('open'); btn.setAttribute('aria-expanded','false');
+    document.title=(id==='home'?'Seek to Save Fiji':'Seek to Save Fiji');
+    window.scrollTo(0,0);
+  }
+  window.addEventListener('hashchange',route); route();
+  btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
+
+  // donate
+  var amt=document.getElementById('amt'), amts=document.getElementById('amounts');
+  amts.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+    [].forEach.call(amts.children,function(x){x.setAttribute('aria-pressed',x===b)});amt.value=b.dataset.v});
+  amt.addEventListener('input',function(){[].forEach.call(amts.children,function(x){x.setAttribute('aria-pressed',x.dataset.v===amt.value)})});
+  document.getElementById('donateForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var f=e.target, s=document.getElementById('dstatus');
+    var email=document.getElementById('demail').value.trim();
+    s.hidden=false;
+    if(!(+amt.value>0)){s.textContent=msg('amt');return}
+    if(!/^\S+@\S+\.\S+$/.test(email)){s.textContent=msg('email');return}
+    s.textContent=msg('done',{fund:tr(f.fund.value),cur:document.getElementById('cur').value,amt:amt.value,freq:tr(f.freq.value)});
+  });
+  // enquiry forms
+  [].forEach.call(document.querySelectorAll('form.enquiry'),function(f){
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var s=f.querySelector('.status'); s.hidden=false;
+      var em=f.querySelector('input[type=email]').value.trim();
+      if(!/^\S+@\S+\.\S+$/.test(em)){s.textContent=msg('eEmail');return}
+      s.textContent=msg('eNot');
+    });
+  });
+})();
+</script>
+</body></html>
