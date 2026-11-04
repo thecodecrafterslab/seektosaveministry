@@ -405,31 +405,6 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
     <div class="filters" id="giverFilter"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="daily" aria-pressed="false">Daily Care Fund</button><button type="button" data-f="building" aria-pressed="false">Build a Home Fund</button></div>
     <div class="gl" id="giverList"></div>
   </div></section>
-  <section class="block bleed" data-notr><div class="wrap">
-    <div class="admin" id="adminPanel" hidden data-notr>
-      <div><h3>Ministry tools</h3><p class="small">Only people who can edit this page see this. Record a gift only after the money has arrived and the giver has agreed to appear on the public list. Amounts are in FJD.</p></div>
-      <form id="aGoalForm"><strong>Building goal</strong>
-        <div class="grid" style="gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))">
-          <label for="aBuilding">Building goal (FJD)<input id="aBuilding" inputmode="decimal"></label>
-        </div>
-        <button class="btn primary" type="submit" style="justify-self:start">Apply goal</button>
-      </form>
-      <form id="aGiftForm"><strong>Record a gift</strong>
-        <div class="grid" style="gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr))">
-          <label for="aDate">Date received<input id="aDate" type="date"></label>
-          <label for="aFund">Fund<select id="aFund"><option value="daily">Daily Care Fund</option><option value="building">Build a Home Fund</option></select></label>
-          <label for="aAmount">Amount (FJD)<input id="aAmount" inputmode="decimal"></label>
-          <label for="aName">Giver's name<input id="aName"></label>
-        </div>
-        <label for="aMessage">Message (optional)<textarea id="aMessage"></textarea></label>
-        <label class="check" for="aAnon"><input id="aAnon" type="checkbox"> Show as anonymous (the name is kept in the record only)</label>
-        <label class="check" for="aConsent"><input id="aConsent" type="checkbox"> The giver agreed to appear on the public list and to the message being shown</label>
-        <button class="btn primary" type="submit" style="justify-self:start">Add gift</button>
-      </form>
-      <div><strong>Recorded gifts</strong><ul id="aGifts"></ul></div>
-      <div class="row" style="align-items:center"><button class="btn primary" id="adminSave" type="button">Save changes</button><div class="status" id="adminStatus" role="status" hidden></div></div>
-    </div>
-  </div></section>
 </div>
 
 <!-- FARMING -->
@@ -1186,7 +1161,7 @@ function setLang(l){
   try{fetch('data/state.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&!DIRTY){ST=normalize(j);window.renderMoney();if(EDIT)renderAdmin()}}).catch(function(){})}catch(e){}
   try{
     if(window.claude&&claude.use){
-      claude.use('user').then(function(u){USR=u;if(u&&u.canEdit&&u.canEdit()&&!EDIT){EDIT=true;setupAdmin()}}).catch(function(){});
+      claude.use('user').then(function(u){USR=u;}).catch(function(){});
       claude.use('artifact').then(function(a){ART=a}).catch(function(){});
     }
   }catch(e){}
