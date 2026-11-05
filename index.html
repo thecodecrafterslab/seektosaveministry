@@ -75,6 +75,17 @@ nav a.give{background:var(--gold);color:var(--on-gold);font-weight:700}
 .verse{border-left:3px solid var(--gold);padding:4px 0 4px 20px;font-family:var(--display);font-size:1.25rem;line-height:1.4}
 .verse cite{display:block;font:600 .8rem var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-top:10px;font-style:normal}
 @media (max-width:760px){.hero .wrap{grid-template-columns:1fr}}
+.banner{color:#FAF7EE;background:linear-gradient(rgba(14,44,30,.58),rgba(14,44,30,.5)),#1F3D2E url(images/banner-valley.jpg) center 62%/cover no-repeat;min-height:clamp(380px,50vw,540px);display:flex;align-items:center;text-align:center;padding-block:clamp(40px,7vw,80px)}
+.banner .wrap{width:100%;max-width:860px}
+.banner p{max-width:none;margin-inline:auto}
+.banner .eyebrow{font-size:clamp(.8rem,2vw,1.05rem);letter-spacing:.34em;padding-left:.34em;margin:0 auto 14px;color:#E3BE5A}
+.banner h1{font-size:clamp(2.4rem,7.5vw,4.6rem);line-height:1.08;text-shadow:0 2px 18px rgba(0,0,0,.35)}
+.banner .rule{width:84px;height:4px;background:#D4AB4A;margin:22px auto}
+.banner p.sub{font-size:clamp(1rem,2.4vw,1.25rem);color:#F1E9CC;margin:0 auto 28px}
+.banner .row{justify-content:center}
+.banner .btn.ghost{color:#FAF7EE;border-color:#FAF7EE}
+[dir=rtl] .banner .eyebrow,[lang=hi] .banner .eyebrow,[lang=zh] .banner .eyebrow{letter-spacing:.04em}
+.hero h2.h1look{font-size:clamp(2.1rem,6vw,3.6rem)}
 section.block{padding-block:clamp(40px,6vw,72px)}
 section.alt{background:var(--band)}
 .page-head{background:var(--green);color:var(--on-green);padding-block:clamp(36px,6vw,64px);border-bottom:4px solid var(--gold)}
@@ -211,10 +222,17 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
 <main>
 <!-- HOME -->
 <div class="view" id="v-home">
+  <section class="banner bleed"><div class="wrap">
+    <p class="eyebrow">Seek to Save</p>
+    <h1>A place called home</h1>
+    <div class="rule" aria-hidden="true"></div>
+    <p class="sub">Christian Outreach & Restoration Ministry · Colo-i-Suva, Fiji</p>
+    <div class="row"><a class="btn primary" href="#donate">Donate</a><a class="btn ghost" href="#our-story">Our Story</a></div>
+  </div></section>
+
   <section class="hero bleed"><div class="wrap">
     <div>
-      <p class="eyebrow">Christian Outreach & Restoration Ministry · Colo-i-Suva, Fiji</p>
-      <h1>Restoring Hope. Rebuilding Lives. Transforming Futures.</h1>
+      <h2 class="h1look">Restoring Hope. Rebuilding Lives. Transforming Futures.</h2>
       <p style="margin-top:20px;font-size:1.15rem">Every life has value. Every person deserves hope. Everyone deserves a second chance.</p>
       <p>Across Fiji, vulnerable children, young people and adults face homelessness, poverty, family breakdown, addiction and social exclusion. At Seek to Save Ministry, we believe no one should be forgotten or left behind.</p>
       <p>Founded by Pastor Elia Berabi, Seek to Save is a Christian outreach ministry based in Colo-i-Suva, Fiji, dedicated to reaching people who are vulnerable, marginalised and in need of compassion, support and a renewed sense of purpose.</p>
@@ -1048,6 +1066,7 @@ var D=[
 ["View larger portrait of Pastor Elia Berabi", "Raica na ivakatakarakara levu i Qase Elia Berabi", "पादरी एलिया बेराबी का बड़ा चित्र देखें", "查看以利亚·贝拉比牧师的大图", "عرض صورة أكبر للقس إيليا بيرابي", "צפו בדיוקן הגדול של הכומר אליה ברבי"],
 ["Pastor Elia Berabi", "Qase Elia Berabi", "पादरी एलिया बेराबी", "以利亚·贝拉比牧师", "القس إيليا بيرابي", "הכומר אליה ברבי"],
 ["Close", "Tabaka", "बंद करें", "关闭", "إغلاق", "סגור"],
+["A place called home", "Dua na Vanua e Vakatokai ni Vale", "एक जगह जिसे घर कहते हैं", "一个叫作“家”的地方", "مكانٌ نسمّيه بيتًا", "מקום שנקרא בית"],
 /* more */
 ];
 var LN={en:'English',fj:'Na vosa vaka-Viti',hi:'हिन्दी',zh:'中文',ar:'العربية',he:'עברית'}, IDX={fj:1,hi:2,zh:3,ar:4,he:5};
