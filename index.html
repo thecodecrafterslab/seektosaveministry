@@ -37,11 +37,10 @@ p{margin:0 0 1em;max-width:65ch} a{color:inherit}
 .langbtn{flex:none;background:transparent;color:inherit;border:1px solid currentColor;border-radius:4px;padding:5px 12px;font:600 .82rem var(--body);cursor:pointer}
 #langGate{position:fixed;inset:0;z-index:50;background:var(--green);color:var(--on-green);display:grid;place-items:center;overflow:auto;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 #langGate[hidden]{display:none}
-#langGate .inner{width:100%;max-width:1200px;display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,340px) minmax(0,1fr);gap:40px;align-items:center}
+#langGate .inner{width:100%;max-width:420px;display:grid;grid-template-columns:1fr;gap:24px;text-align:center}
 #langGate h1{font-size:clamp(1.8rem,5vw,2.6rem);margin:6px 0 10px}
 #langGate p{color:var(--on-green)}
 .langs{display:grid;gap:12px;grid-template-columns:1fr;margin-top:0}
-@media(max-width:980px){#langGate .inner{grid-template-columns:1fr;gap:24px}.langs{max-width:420px;width:100%;margin-inline:auto}}
 .langs button{text-align:left;background:transparent;color:var(--on-green);border:2px solid var(--gold);border-radius:6px;padding:18px 20px;cursor:pointer;font:600 1.4rem var(--body)}
 .langs button small{display:block;font:500 .8rem var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--gold-soft);margin-top:4px}
 .langs button:hover,.langs button:focus-visible{background:var(--green-2)}
@@ -161,7 +160,7 @@ textarea{min-height:120px;resize:vertical}
 .vid{background:var(--surface);border:1px solid var(--line,#dfe5dc);border-radius:10px;overflow:hidden}.vid .frame{aspect-ratio:16/9;background:#0e1d15;display:grid;place-items:center}.vid .frame iframe{width:100%;height:100%;border:0}.vid .frame button{font:inherit;font-weight:700;padding:12px 22px;border-radius:999px;border:0;background:var(--gold);color:var(--on-gold);cursor:pointer}.vid .cap{padding:14px 16px}.vid .cap h3{margin:0 0 4px}.vid .cap small{color:var(--muted)}
 [dir=rtl] .draft .wrap p,[dir=rtl] th,[dir=rtl] td{text-align:right}
 .langs button[dir=rtl]{text-align:right}
-#langGate .gt p[dir=rtl]{text-align:left}
+#langGate .gt p[dir=rtl]{text-align:center}
 [dir=rtl] ul.plain,[dir=rtl] .admin ul{padding-left:0;padding-right:1.1em}
 [dir=rtl] .profile blockquote,[dir=rtl] .giver blockquote{padding-left:0;padding-right:16px;border-left:0;border-right:3px solid var(--gold)}
 [dir=rtl] .card .ph small,[dir=rtl] .vid .cap{text-align:right}
