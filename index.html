@@ -89,12 +89,12 @@ nav a.give{background:var(--gold);color:var(--on-gold);font-weight:700}
 .banner .row{justify-content:center}
 .banner .btn.ghost{color:#FAF7EE;border-color:#FAF7EE}
 [dir=rtl] .banner .eyebrow,[lang=hi] .banner .eyebrow,[lang=zh] .banner .eyebrow{letter-spacing:.04em}
-.mbanner{position:relative;overflow:hidden;color:#FAF7EE;background:#1F3D2E;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);min-height:clamp(340px,36vw,470px);display:flex;align-items:center;border-bottom:4px solid #D4AB4A}
+.mbanner{position:relative;overflow:hidden;color:#FAF7EE;background:#1F3D2E;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);min-height:clamp(260px,26vw,340px);display:flex;align-items:center;border-bottom:4px solid #D4AB4A}
 .mbanner .ph,.mbanner .stripe{position:absolute;top:0;bottom:0;right:0;clip-path:polygon(16% 0,100% 0,100% 100%,0 100%)}
 .mbanner .ph{left:40%;background:#2C5740 url(images/mission-group.jpg) 35% 32%/cover no-repeat}
 .mbanner .stripe{left:calc(40% - 14px);background:#D4AB4A}
 .mbanner .txt{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;padding:clamp(32px,5vw,64px) 16px}
-.mbanner .txt>*{max-width:min(500px,46%)}
+.mbanner .txt>*{max-width:min(640px,100%)}
 .mbanner h1{font-size:clamp(2.1rem,5.2vw,4.2rem);line-height:1.06}
 .mbanner h1 span{display:block}
 .mbanner h1 span+span{font-style:italic;color:#F0D678;margin-top:.12em;font-size:.78em}
@@ -327,7 +327,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
 
 <!-- OUR MISSION -->
 <div class="view" id="v-our-mission" hidden>
-  <section class="mbanner"><div class="txt"><p class="eyebrow">Our Mission</p><h1><span>Proclaim the Gospel.</span><span>Show His love.</span></h1><div class="rule" aria-hidden="true"></div><p class="sub">Reaching the forgotten across Fiji</p><p class="scripture">“Go into all the world and preach the gospel to all creation.” Mark 16:15</p></div><div class="stripe" aria-hidden="true"></div><div class="ph" aria-hidden="true"></div></section>
+  <section class="mbanner"><div class="txt"><p class="eyebrow">Our Mission</p><h1><span>Proclaim the Gospel.</span><span>Show His love.</span></h1><div class="rule" aria-hidden="true"></div><p class="sub">Reaching the forgotten across Fiji</p><p class="scripture">“Go into all the world and preach the gospel to all creation.” Mark 16:15</p></div></section>
   <section class="block"><div class="wrap">
     <div class="two">
       <div><h2>Our Mission</h2><p style="font-size:1.1rem">To seek out vulnerable and marginalised people across Fiji, demonstrate the love of Jesus Christ through compassionate action, and provide practical support that helps restore dignity, hope and purpose.</p></div>
@@ -622,6 +622,8 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
   <section class="block"><div class="wrap">
     <div class="note" style="margin-bottom:32px"><p><strong>How we protect people.</strong> Nothing is published until the person and the ministry have approved it in writing. Names may be shortened or changed, faces are not shown by default, and testimonies from children are not published.</p></div>
     <div class="grid" id="testimonyGrid"></div>
+    <h2 style="margin:48px 0 18px">Moments of care</h2>
+    <div class="homegal"><button type="button" class="gtile"><img src="images/mission-group.jpg" alt="Young men from the community with the Seek to Save team" loading="lazy"></button></div>
     <h2 style="margin:48px 0 18px">How a testimony is added</h2>
     <ol class="steps">
       <li><strong>Invitation</strong><br>The person is invited to share, and is free to say no.</li>
@@ -1213,6 +1215,8 @@ var D=[
 ["Proposed roof plan of the new dormitory", "Na ituvatuva ni tapa cake ni vale ni moce vou e vakaturi", "नए छात्रावास की प्रस्तावित छत योजना", "新宿舍的拟议屋顶图", "مخطط السقف المقترح للمهجع الجديد", "תוכנית הגג המוצעת למעון החדש"],
 ["Proposed ceiling plan of the new dormitory", "Na ituvatuva ni ruku ni vale ni moce vou e vakaturi", "नए छात्रावास की प्रस्तावित छत-भीतरी योजना", "新宿舍的拟议天花板图", "مخطط السقف الداخلي المقترح للمهجع الجديد", "תוכנית התקרה המוצעת למעון החדש"],
 ["Sharing a meal with a man on the street", "Wasoma e dua na kana vei koya e tiko ena sala", "सड़क पर बैठे एक व्यक्ति के साथ भोजन बाँटना", "与街边一位男士分享一餐", "مشاركة وجبة مع رجل في الشارع", "חלוקת ארוחה עם אדם ברחוב"],
+["Moments of care", "Na gauna ni loloma", "देखभाल के पल", "关爱的时刻", "لحظات رعاية", "רגעים של אכפתיות"],
+["Young men from the community with the Seek to Save team", "Na cauravou mai na koronivuli kei na timi ni Seek to Save", "समुदाय के युवा पुरुष Seek to Save टीम के साथ", "社区的年轻人与 Seek to Save 团队在一起", "شبان من المجتمع مع فريق Seek to Save", "צעירים מהקהילה עם צוות Seek to Save"],
 /* more */
 ];
 var LN={en:'English',fj:'Na vosa vaka-Viti',hi:'हिन्दी',zh:'中文',ar:'العربية',he:'עברית'}, IDX={fj:1,hi:2,zh:3,ar:4,he:5};
