@@ -164,6 +164,7 @@ textarea{min-height:120px;resize:vertical}
 [dir=rtl] ul.plain,[dir=rtl] .admin ul{padding-left:0;padding-right:1.1em}
 [dir=rtl] .profile blockquote,[dir=rtl] .giver blockquote{padding-left:0;padding-right:16px;border-left:0;border-right:3px solid var(--gold)}
 [dir=rtl] .card .ph small,[dir=rtl] .vid .cap{text-align:right}
+#fundChoice{scroll-margin-top:96px}
 /* footer */
 footer{background:var(--green);color:var(--on-green);padding-block:40px;font-size:.92rem;margin-top:0}
 footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
@@ -352,7 +353,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
     </ol>
     <p style="margin-top:14px;color:var(--muted);font-size:.92rem">Only funded and approved milestones will be shown as confirmed.</p>
     <div class="card" id="buildCard2" style="margin:24px 0;max-width:560px"></div>
-    <a class="btn primary" href="#donate">Give to Building Fund</a>
+    <a class="btn primary" href="#donate" data-fund="Build a Home Fund">Give to Building Fund</a>
   </div></section>
   <section class="block alt bleed"><div class="wrap">
     <p class="eyebrow" style="color:var(--green-2)">Care today, one day at a time</p>
@@ -366,7 +367,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
       <div class="card"><h3>Utilities and household needs</h3><p>Water, electricity, cooking fuel and the everyday running of the family home.</p></div>
     </div>
     <p class="note" style="margin-top:24px">Daily Care gifts are recorded separately from the Build a Home Fund, so you can choose exactly where your gift goes. Updates on how funds are used will be shared as they are confirmed.</p>
-    <div class="row" style="margin-top:24px"><a class="btn primary" href="#donate">Give to Daily Care Fund</a></div>
+    <div class="row" style="margin-top:24px"><a class="btn primary" href="#donate" data-fund="Daily Care Fund">Give to Daily Care Fund</a></div>
   </div></section>
 </div>
 
@@ -1276,6 +1277,17 @@ function setLang(l){
     window.scrollTo(0,0);
   }
   window.addEventListener('hashchange',route); route();
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a[data-fund]');if(!a)return;
+    e.preventDefault();
+    var r=document.querySelector('input[name=fund][value="'+a.dataset.fund+'"]');
+    if(location.hash!=='#donate')location.hash='#donate';else route();
+    setTimeout(function(){
+      if(r){r.checked=true;r.dispatchEvent(new Event('change',{bubbles:true}))}
+      var f=document.getElementById('fundChoice');
+      if(f){f.scrollIntoView({behavior:'smooth',block:'start'});if(r)r.focus({preventScroll:true})}
+    },60);
+  });
   btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
 
   // donate
