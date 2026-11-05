@@ -85,6 +85,22 @@ nav a.give{background:var(--gold);color:var(--on-gold);font-weight:700}
 .banner .row{justify-content:center}
 .banner .btn.ghost{color:#FAF7EE;border-color:#FAF7EE}
 [dir=rtl] .banner .eyebrow,[lang=hi] .banner .eyebrow,[lang=zh] .banner .eyebrow{letter-spacing:.04em}
+.mbanner{position:relative;overflow:hidden;color:#FAF7EE;background:#1F3D2E;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);min-height:clamp(340px,36vw,470px);display:flex;align-items:center;border-bottom:4px solid #D4AB4A}
+.mbanner .ph,.mbanner .stripe{position:absolute;top:0;bottom:0;right:0;clip-path:polygon(16% 0,100% 0,100% 100%,0 100%)}
+.mbanner .ph{left:40%;background:#2C5740 url(images/mission-group.jpg) 35% 32%/cover no-repeat}
+.mbanner .stripe{left:calc(40% - 14px);background:#D4AB4A}
+.mbanner .txt{position:relative;z-index:1;width:100%;max-width:1080px;margin:0 auto;padding:clamp(32px,5vw,64px) 16px}
+.mbanner .txt>*{max-width:min(500px,46%)}
+.mbanner h1{font-size:clamp(2.1rem,5.2vw,4.2rem);line-height:1.06}
+.mbanner h1 span{display:block}
+.mbanner h1 span+span{font-style:italic;color:#F0D678;margin-top:.12em;font-size:.78em}
+.mbanner .eyebrow{color:#E3BE5A;margin:0 0 14px}
+.mbanner .rule{width:84px;height:4px;background:#D4AB4A;margin:22px 0 16px}
+.mbanner p.sub{font-size:clamp(1rem,2vw,1.2rem);color:#F1E9CC;margin:0}
+[dir=rtl] .mbanner .ph,[dir=rtl] .mbanner .stripe{right:auto;left:0;clip-path:polygon(0 0,84% 0,100% 100%,0 100%)}
+[dir=rtl] .mbanner .ph{right:40%;left:0}
+[dir=rtl] .mbanner .stripe{right:calc(40% - 14px);left:0}
+@media (max-width:760px){.mbanner{display:block}.mbanner .ph{position:relative;display:block;height:230px;left:auto;clip-path:none;order:2}.mbanner .stripe{display:none}.mbanner .txt>*{max-width:none}[dir=rtl] .mbanner .ph{right:auto}}
 .hero h2.h1look{font-size:clamp(2.1rem,6vw,3.6rem)}
 section.block{padding-block:clamp(40px,6vw,72px)}
 section.alt{background:var(--band)}
@@ -301,7 +317,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
 
 <!-- OUR MISSION -->
 <div class="view" id="v-our-mission" hidden>
-  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Our Mission</p><h1>Proclaim the Gospel. Show His love.</h1></div></div>
+  <section class="mbanner"><div class="txt"><p class="eyebrow">Our Mission</p><h1><span>Proclaim the Gospel.</span><span>Show His love.</span></h1><div class="rule" aria-hidden="true"></div><p class="sub">Reaching the forgotten across Fiji</p></div><div class="stripe" aria-hidden="true"></div><div class="ph" aria-hidden="true"></div></section>
   <section class="block"><div class="wrap">
     <div class="two">
       <div><h2>Our Mission</h2><p style="font-size:1.1rem">To seek out vulnerable and marginalised people across Fiji, demonstrate the love of Jesus Christ through compassionate action, and provide practical support that helps restore dignity, hope and purpose.</p></div>
@@ -1067,6 +1083,9 @@ var D=[
 ["Pastor Elia Berabi", "Qase Elia Berabi", "पादरी एलिया बेराबी", "以利亚·贝拉比牧师", "القس إيليا بيرابي", "הכומר אליה ברבי"],
 ["Close", "Tabaka", "बंद करें", "关闭", "إغلاق", "סגור"],
 ["A place called home", "Dua na Vanua e Vakatokai ni Vale", "एक जगह जिसे घर कहते हैं", "一个叫作“家”的地方", "مكانٌ نسمّيه بيتًا", "מקום שנקרא בית"],
+["Proclaim the Gospel.", "Vunautaka na Kosipeli.", "सुसमाचार सुनाएँ।", "宣扬福音。", "نعلن الإنجيل.", "מכריזים את הבשורה."],
+["Show His love.", "Vakaraitaka na Nona loloma.", "उसका प्रेम दिखाएँ।", "彰显祂的爱。", "نُظهر محبته.", "מראים את אהבתו."],
+["Reaching the forgotten across Fiji", "Keimami vaqaqara ira era sa guce ena Viti taucoko", "पूरे फ़िजी में भुला दिए गए लोगों तक पहुँचना", "走近斐济各地被遗忘的人", "نصل إلى المنسيّين في جميع أنحاء فيجي", "מגיעים אל הנשכחים ברחבי פיג'י"],
 /* more */
 ];
 var LN={en:'English',fj:'Na vosa vaka-Viti',hi:'हिन्दी',zh:'中文',ar:'العربية',he:'עברית'}, IDX={fj:1,hi:2,zh:3,ar:4,he:5};
