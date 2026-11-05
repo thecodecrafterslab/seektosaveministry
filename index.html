@@ -104,7 +104,8 @@ nav a.give{background:var(--gold);color:var(--on-gold);font-weight:700}
 [dir=rtl] .mbanner .ph,[dir=rtl] .mbanner .stripe{right:auto;left:0;clip-path:polygon(0 0,84% 0,100% 100%,0 100%)}
 [dir=rtl] .mbanner .ph{right:40%;left:0}
 [dir=rtl] .mbanner .stripe{right:calc(40% - 14px);left:0}
-@media (max-width:760px){.mbanner{display:block}.mbanner .ph{position:relative;display:block;height:230px;left:auto;clip-path:none;order:2}.mbanner .stripe{display:none}.mbanner .txt>*{max-width:none}[dir=rtl] .mbanner .ph{right:auto}}
+.mbanner.photo{min-height:clamp(340px,36vw,470px)}.mbanner.photo .txt>*{max-width:min(440px,38%)}.mbanner.photo h1{font-size:clamp(1.9rem,4.2vw,3.3rem)}
+@media (max-width:760px){.mbanner{display:block}.mbanner .ph{position:relative;display:block;height:230px;left:auto;clip-path:none;order:2}.mbanner .stripe{display:none}.mbanner .txt>*,.mbanner.photo .txt>*{max-width:none}[dir=rtl] .mbanner .ph{right:auto}}
 .stat b{display:block;font:400 clamp(1.9rem,4vw,2.5rem) var(--display);color:var(--green-2);line-height:1.1;margin-bottom:8px}
 .stat p{margin:0}
 .srcs{font-size:.92rem;color:var(--muted)} .srcs a{margin-right:4px}
@@ -368,7 +369,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
 
 <!-- OUR IMPACT -->
 <div class="view" id="v-our-impact" hidden>
-  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Our Impact</p><h1>Every life has a name, a story and a future</h1><p class="scripture">“I have come that they may have life, and have it to the full.” John 10:10</p></div></div>
+  <section class="mbanner photo"><div class="txt"><p class="eyebrow">Our Impact</p><h1>Every life has a name, a story and a future</h1><p class="scripture">“I have come that they may have life, and have it to the full.” John 10:10</p></div><div class="stripe" aria-hidden="true"></div><div class="ph" aria-hidden="true"></div></section>
   <section class="block"><div class="wrap">
     <h2 style="margin:8px 0 18px">At the ministry today</h2>
     <div class="grid" style="grid-template-columns:minmax(0,420px)">
@@ -622,8 +623,6 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
   <section class="block"><div class="wrap">
     <div class="note" style="margin-bottom:32px"><p><strong>How we protect people.</strong> Nothing is published until the person and the ministry have approved it in writing. Names may be shortened or changed, faces are not shown by default, and testimonies from children are not published.</p></div>
     <div class="grid" id="testimonyGrid"></div>
-    <h2 style="margin:48px 0 18px">Moments of care</h2>
-    <div class="homegal"><button type="button" class="gtile"><img src="images/mission-group.jpg" alt="Young men from the community with the Seek to Save team" loading="lazy"></button></div>
     <h2 style="margin:48px 0 18px">How a testimony is added</h2>
     <ol class="steps">
       <li><strong>Invitation</strong><br>The person is invited to share, and is free to say no.</li>
