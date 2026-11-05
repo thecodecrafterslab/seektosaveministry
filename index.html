@@ -157,6 +157,7 @@ textarea{min-height:120px;resize:vertical}
 
 .card .ph{margin:-4px -4px 14px;border-radius:10px;overflow:hidden}.card .ph img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--card-2,#e8ece6)}.card .ph small{display:block;padding:6px 2px 0;color:var(--muted);font-size:.78rem}
 .card .ph.logo{background:#fff;border:1px solid var(--line,#dfe5dc)}.card .ph.logo img{aspect-ratio:16/9;object-fit:contain;padding:14px;background:#fff}
+.vid{background:var(--surface);border:1px solid var(--line,#dfe5dc);border-radius:10px;overflow:hidden}.vid .frame{aspect-ratio:16/9;background:#0e1d15;display:grid;place-items:center}.vid .frame iframe{width:100%;height:100%;border:0}.vid .frame button{font:inherit;font-weight:700;padding:12px 22px;border-radius:999px;border:0;background:var(--gold);color:var(--on-gold);cursor:pointer}.vid .cap{padding:14px 16px}.vid .cap h3{margin:0 0 4px}.vid .cap small{color:var(--muted)}
 /* footer */
 footer{background:var(--green);color:var(--on-green);padding-block:40px;font-size:.92rem;margin-top:0}
 footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
@@ -179,6 +180,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
         <li><a href="#our-programmes">Our Programmes</a></li>
         <li><a href="#our-impact">Our Impact</a></li>
         <li><a href="#testimonies">Testimonies</a></li>
+        <li><a href="#videos">Videos</a></li>
         <li><a href="#build-a-home">Build a Home</a></li>
         <li><a href="#news">News</a></li>
         <li><a href="#partner">Partner</a></li>
@@ -490,6 +492,17 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
     <h2>Pray With Us</h2>
     <p>Please pray for vulnerable children, young people and families across Fiji; for healing and restoration; for wisdom and strength for those serving; and for resources to continue the mission.</p>
     <blockquote class="verse" style="margin:20px 0 0">“Bear ye one another's burdens, and so fulfil the law of Christ.”<cite>Galatians 6:2 (KJV)</cite></blockquote>
+  </div></section>
+</div>
+
+<!-- VIDEOS -->
+<div class="view" id="v-videos" hidden>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Videos</p><h1>Watch the ministry at work</h1><p>Videos shared publicly by Pastor Elia. We show only videos that have been approved for this website.</p></div></div>
+  <section class="block"><div class="wrap">
+    <div class="grid" id="videoGrid"></div>
+    <div class="note" id="videoEmpty" hidden><p><strong>Videos coming soon.</strong> Approved videos will appear here.</p></div>
+    <p style="margin-top:20px"><a class="btn ghost" href="https://www.facebook.com/bix.els.1/videos/" target="_blank" rel="noopener">More videos on Facebook</a></p>
+    <p class="note" style="margin-top:16px">Videos play through Facebook. Facebook may set cookies and track viewing once a video is loaded. Nothing is loaded from Facebook until you press Play.</p>
   </div></section>
 </div>
 
@@ -967,6 +980,13 @@ var D=[
 ["Pray With Us", "Masu Vata Kei Keimami", "हमारे साथ प्रार्थना करें", "与我们一同祷告"],
 ["Please pray for vulnerable children, young people and families across Fiji; for healing and restoration; for wisdom and strength for those serving; and for resources to continue the mission.", "Ni masulaka na gone, cauravou kei na matavuvale malumalumu ena Viti taucoko; na veivakabulai kei na veivakalesui; na vuku kei na kaukauwa vei ira era qaravi; kei na iyaya me tomana na cakacaka.", "कृपया पूरे फ़िजी में असुरक्षित बच्चों, युवाओं और परिवारों के लिए; उपचार और पुनर्स्थापना के लिए; सेवा करने वालों की बुद्धि और शक्ति के लिए; और मिशन जारी रखने के संसाधनों के लिए प्रार्थना करें।", "请为斐济各地弱势的儿童、青少年和家庭祷告；为医治与重建祷告；为服事者的智慧和力量祷告；也为事工继续所需的资源祷告。"],
 ["“Bear ye one another's burdens, and so fulfil the law of Christ.”", "“Mo dou veivuke ena veitaqomaki, ka dou vakayacora kina na ivakaro i Karisito.”", "“तुम एक दूसरे के भार उठाओ, और इस प्रकार मसीह की व्यवस्था को पूरी करो।”", "“你们各人的重担要互相担当，如此就完全了基督的律法。”"],
+["Videos", "Ivakaraitaki", "वीडियो", "视频"],
+["Watch the ministry at work", "Raica na veiqaravi ena cakacaka", "सेवकाई को कार्य करते देखें", "观看事工的工作"],
+["Videos shared publicly by Pastor Elia. We show only videos that have been approved for this website.", "Na ivakaraitaki e wasea vakaraivotu o Qase Elia. Keimami vakaraitaka ga na ivakaraitaki e vakadonui me ra tiko ena wepi oqo.", "पादरी एलिया द्वारा सार्वजनिक रूप से साझा किए गए वीडियो। हम केवल वही वीडियो दिखाते हैं जिन्हें इस वेबसाइट के लिए स्वीकृत किया गया है।", "以利亚牧师公开分享的视频。我们只展示已获准在本网站发布的视频。"],
+["Videos coming soon.", "Era via yaco mai na ivakaraitaki.", "वीडियो जल्द आ रहे हैं।", "视频即将上线。"],
+["Approved videos will appear here.", "Na ivakaraitaki vakadonui ena basika eke.", "स्वीकृत वीडियो यहाँ दिखाई देंगे।", "获准的视频将显示在这里。"],
+["More videos on Facebook", "Ivakaraitaki tale ena Facebook", "फ़ेसबुक पर और वीडियो", "在Facebook上观看更多视频"],
+["Videos play through Facebook. Facebook may set cookies and track viewing once a video is loaded. Nothing is loaded from Facebook until you press Play.", "Na ivakaraitaki e vakaraitaki ena Facebook. E rawa ni Facebook me wasea na kuki ka muria na raica ni sa wili na ivakaraitaki. E sega ni wili e dua na ka mai Facebook ni se sega ni tia na Play.", "वीडियो फ़ेसबुक के माध्यम से चलते हैं। वीडियो लोड होने पर फ़ेसबुक कुकीज़ सेट कर सकता है और देखने को ट्रैक कर सकता है। प्ले दबाने तक फ़ेसबुक से कुछ भी लोड नहीं होता।", "视频通过Facebook播放。视频加载后，Facebook可能设置Cookie并追踪观看。在您点击播放之前，不会从Facebook加载任何内容。"],
 /* footer */
 ["Reaching the Lost. Restoring Lives. Sharing Christ.","Vaqara na Yali. Vakalesuitaka na Bula. Tukuna na Karisito.","खोए हुओं तक पहुँचना। जीवनों को पुनर्स्थापित करना। मसीह को बाँटना।","寻找失丧的人。重建生命。分享基督。"],
 ["Explore","Rai Tale","देखें","浏览"],
@@ -1167,6 +1187,30 @@ function setLang(l){
       claude.use('artifact').then(function(a){ART=a}).catch(function(){});
     }
   }catch(e){}
+})();
+</script>
+
+
+<script>
+(function(){
+  /* Approved videos. Add one line per video: {url:"https://www.facebook.com/.../videos/123", title:"...", date:"2026-11-05"} */
+  var VIDEOS=[];
+  var g=document.getElementById('videoGrid'),em=document.getElementById('videoEmpty');
+  if(!g)return;
+  if(!VIDEOS.length){em.hidden=false;return}
+  VIDEOS.forEach(function(v){
+    var d=document.createElement('div');d.className='vid';
+    var f=document.createElement('div');f.className='frame';
+    var b=document.createElement('button');b.type='button';b.textContent='Play';
+    b.addEventListener('click',function(){
+      var i=document.createElement('iframe');
+      i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent(v.url);
+      i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
+      f.textContent='';f.appendChild(i)});
+    f.appendChild(b);
+    var c=document.createElement('div');c.className='cap';
+    var h=document.createElement('h3');h.textContent=v.title;var sm=document.createElement('small');sm.textContent=v.date||'';
+    c.appendChild(h);c.appendChild(sm);d.appendChild(f);d.appendChild(c);g.appendChild(d)});
 })();
 </script>
 
