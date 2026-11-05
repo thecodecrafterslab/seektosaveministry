@@ -1426,7 +1426,7 @@ function setLang(l){
 (function(){
   var box=document.getElementById('gbox'),im=document.getElementById('gImg'),cur=0,opener=null,set=[];
   if(!box)return;
-  function show(i){cur=(i+set.length)%set.length;im.src=set[cur].src;im.alt=set[cur].alt;im.style.maxWidth=set[cur].naturalWidth<600?'min(92vw,420px)':''}
+  function show(i){cur=(i+set.length)%set.length;im.src=set[cur].src;im.alt=set[cur].alt;var sm=set[cur].naturalWidth<600;im.style.maxWidth=sm?'min(92vw,520px)':'';im.style.width=sm?'min(92vw,520px)':''}
   function open(i,btn,list){opener=btn;set=list;show(i);box.hidden=false;document.getElementById('gClose').focus()}
   function close(){box.hidden=true;if(opener)opener.focus()}
   [].forEach.call(document.querySelectorAll('.homegal'),function(g){
