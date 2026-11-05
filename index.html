@@ -995,6 +995,12 @@ var D=[
 ["crop types, land rights, farming photographs and current yields.", "na kakana e tei, na ligavuka ni qele, na yaya ni teitei kei na ivua ni gauna oqo.", "फ़सलों के प्रकार, भूमि अधिकार, खेती की तस्वीरें और वर्तमान उपज।", "作物种类、土地权利、农业照片和当前产量。", "أنواع المحاصيل وحقوق الأرض وصور الزراعة والمحصول الحالي.", "סוגי יבולים, זכויות קרקע, תמונות חקלאות והיבול הנוכחי."],
 ["ministry email to be confirmed", "imeli ni veiqaravi me vakadeitaki", "सेवकाई का ईमेल पुष्टि के लिए बाकी", "事工邮箱待确认", "بريد الخدمة قيد التأكيد", "אימייל השירות יאושר"],
 ["to be confirmed", "me vakadeitaki", "पुष्टि के लिए बाकी", "待确认", "قيد التأكيد", "יאושר"],
+["A ministry representative speaking at a national discussion", "Dua na mata ni veiqaravi e vosa ena veivosaki ni vanua", "एक राष्ट्रीय चर्चा में बोलते हुए सेवकाई के प्रतिनिधि", "一位事工代表在全国性讨论中发言", "ممثل عن الخدمة يتحدث في نقاش وطني", "נציג השירות מדבר בדיון לאומי"],
+["A speaker addressing an audience", "Dua e vosa vei ira na tamata e rogoca", "दर्शकों को संबोधित करते हुए एक वक्ता", "一位演讲者向听众讲话", "متحدث يخاطب الحضور", "דובר פונה לקהל"],
+["Fiji Bati players with a group at the Colo-i-Suva farm", "Na dau qito ni Fiji Bati vata kei na dua na ilawalawa ena teitei e Colo-i-Suva", "कोलो-इ-सुवा के खेत पर एक समूह के साथ फ़िजी बाटी के खिलाड़ी", "斐济蝙蝠队球员与一群人在科洛伊苏瓦农场", "لاعبو فيجي باتي مع مجموعة في مزرعة كولو-إي-سوفا", "שחקני פיג'י באטי עם קבוצה בחווה בקולו-אי-סובה"],
+["Parliament of the Republic of Fiji seal", "Ivakatakilakila ni Palimedi ni Matanitu Tugalala o Viti", "फ़िजी गणराज्य की संसद की मुहर", "斐济共和国议会徽章", "ختم برلمان جمهورية فيجي", "חותם הפרלמנט של הרפובליקה של פיג'י"],
+["Main", "Levu", "मुख्य", "主导航", "الرئيسية", "ראשי"],
+["Play", "Qito", "चलाएँ", "播放", "تشغيل", "נגן"],
 /* more */
 ];
 var LN={en:'English',fj:'Na vosa vaka-Viti',hi:'हिन्दी',zh:'中文',ar:'العربية',he:'עברית'}, IDX={fj:1,hi:2,zh:3,ar:4,he:5};
@@ -1032,6 +1038,7 @@ function setLang(l){
   NODES=NODES.filter(function(x){return x.n.isConnected});
   NODES.forEach(function(x){applyNode(x,l)});
   document.documentElement.lang={en:'en',fj:'fj',hi:'hi',zh:'zh',ar:'ar',he:'he'}[l];document.documentElement.dir=(l==='ar'||l==='he')?'rtl':'ltr';
+  [].forEach.call(document.querySelectorAll('[alt],[aria-label]'),function(e){['alt','aria-label'].forEach(function(a){if(!e.hasAttribute(a))return;var k='o'+a.replace('-','');if(e.dataset[k]===undefined)e.dataset[k]=e.getAttribute(a);var r=MAP[e.dataset[k].replace(/\s+/g,' ').trim()];e.setAttribute(a,l!=='en'&&r&&r[IDX[l]]?r[IDX[l]]:e.dataset[k])})});
   document.getElementById('langBtn').textContent='\ud83c\udf10 '+LN[l];
   var st=document.getElementById('dstatus');if(st)st.hidden=true;
   if(window.renderMoney)window.renderMoney();
@@ -1208,7 +1215,7 @@ function setLang(l){
   VIDEOS.forEach(function(v){
     var d=document.createElement('div');d.className='vid';
     var f=document.createElement('div');f.className='frame';
-    var b=document.createElement('button');b.type='button';b.textContent='Play';
+    var b=document.createElement('button');b.type='button';b.textContent=(window.tr?window.tr('Play'):'Play');
     b.addEventListener('click',function(){
       var i=document.createElement('iframe');
       i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent(v.url);
