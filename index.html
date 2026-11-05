@@ -373,6 +373,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
       <div class="card stat"><b>24</b><p>people currently share one bedroom, one living room and a kitchen area</p></div>
     </div>
     <p style="margin-top:20px">Every week, new requests arrive for a place in the home. With no room left, they have to be turned down. Each refusal is painful, and it is the reason this building project matters.</p>
+    <div class="homegal" style="margin-top:20px"><button type="button" class="gtile"><img src="images/home-1.jpg" alt="Residents together in the family home in the evening" loading="lazy"></button><button type="button" class="gtile"><img src="images/home-2.jpg" alt="People praying together in the family home" loading="lazy"></button><button type="button" class="gtile"><img src="images/home-3.jpg" alt="Residents sharing a meal on the floor of the home" loading="lazy"></button><button type="button" class="gtile"><img src="images/home-4.jpg" alt="Residents resting together on mats and blankets" loading="lazy"></button><button type="button" class="gtile"><img src="images/home-5.jpg" alt="Residents sharing a meal on the floor of the home" loading="lazy"></button></div>
     <h2 style="margin:32px 0 18px">The need around us</h2>
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,185px),1fr))">
       <div class="card stat"><b>1 in 60</b><p>adults in Fiji are estimated to be living with HIV (government estimate)</p></div>
@@ -1417,12 +1418,15 @@ function setLang(l){
 
 <script>
 (function(){
-  var tiles=[].slice.call(document.querySelectorAll('.gtile img')),box=document.getElementById('gbox'),im=document.getElementById('gImg'),cur=0,opener=null;
-  if(!box||!tiles.length)return;
-  function show(i){cur=(i+tiles.length)%tiles.length;im.src=tiles[cur].src;im.alt=tiles[cur].alt}
-  function open(i,btn){opener=btn;show(i);box.hidden=false;document.getElementById('gClose').focus()}
+  var box=document.getElementById('gbox'),im=document.getElementById('gImg'),cur=0,opener=null,set=[];
+  if(!box)return;
+  function show(i){cur=(i+set.length)%set.length;im.src=set[cur].src;im.alt=set[cur].alt}
+  function open(i,btn,list){opener=btn;set=list;show(i);box.hidden=false;document.getElementById('gClose').focus()}
   function close(){box.hidden=true;if(opener)opener.focus()}
-  tiles.forEach(function(t,i){t.parentNode.addEventListener('click',function(){open(i,this)})});
+  [].forEach.call(document.querySelectorAll('.homegal'),function(g){
+    var list=[].slice.call(g.querySelectorAll('.gtile img'));
+    list.forEach(function(t,i){t.parentNode.addEventListener('click',function(){open(i,this,list)})});
+  });
   document.getElementById('gClose').addEventListener('click',close);
   document.getElementById('gPrev').addEventListener('click',function(){show(cur-1)});
   document.getElementById('gNext').addEventListener('click',function(){show(cur+1)});
