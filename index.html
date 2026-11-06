@@ -195,7 +195,7 @@ textarea{min-height:120px;resize:vertical}
 
 .card .ph{margin:-4px -4px 14px;border-radius:10px;overflow:hidden}.card .ph img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--card-2,#e8ece6)}.card .ph small{display:block;padding:6px 2px 0;color:var(--muted);font-size:.78rem}
 .card .ph.logo{background:#fff;border:1px solid var(--line,#dfe5dc)}.card .ph.logo img{aspect-ratio:16/9;object-fit:contain;padding:14px;background:#fff}
-.vid{background:var(--surface);border:1px solid var(--line,#dfe5dc);border-radius:10px;overflow:hidden}.vid .frame{aspect-ratio:9/15;background:#0e1d15;display:grid;place-items:center}.vid .frame iframe{width:100%;height:100%;border:0}.vid .frame button{font:inherit;font-weight:700;padding:12px 22px;border-radius:999px;border:0;background:var(--gold);color:var(--on-gold);cursor:pointer}#videoGrid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}.vid .frame{aspect-ratio:9/16}.vid .frame button{padding:8px 16px;font-size:.9rem}.vid .cap{padding:8px 10px}.vid .cap h3{margin:0 0 2px;font-size:.88rem;line-height:1.25}.vid .cap small{font-size:.75rem}.vid .cap{padding:8px 10px}.vid .cap h3{margin:0 0 4px}.vid .cap small{color:var(--muted)}
+.vid{background:var(--surface);border:1px solid var(--line,#dfe5dc);border-radius:10px;overflow:hidden}.vid .frame{aspect-ratio:9/15;background:#0e1d15;display:grid;place-items:center}.vid .frame iframe{width:100%;height:100%;border:0}.vid .frame button{font:inherit;font-weight:700;padding:12px 22px;border-radius:999px;border:0;background:var(--gold);color:var(--on-gold);cursor:pointer}.vid .cap .pill{display:inline-block;margin-bottom:6px;font-size:.62rem;padding:3px 8px}#videoGrid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:14px}.vid .frame{aspect-ratio:9/16}.vid .frame button{padding:8px 16px;font-size:.9rem}.vid .cap{padding:8px 10px}.vid .cap h3{margin:0 0 2px;font-size:.88rem;line-height:1.25}.vid .cap small{font-size:.75rem}.vid .cap{padding:8px 10px}.vid .cap h3{margin:0 0 4px}.vid .cap small{color:var(--muted)}
 [dir=rtl] .draft .wrap p,[dir=rtl] th,[dir=rtl] td{text-align:right}
 .langs button[dir=rtl]{text-align:center}
 #langGate .gt p[dir=rtl]{text-align:center}
@@ -616,6 +616,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
 <div class="view" id="v-videos" hidden>
   <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Videos</p><h1>Watch the ministry at work</h1><p>Videos shared publicly by Elia.</p><p class="scripture">“In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.” Matthew 5:16</p></div></div>
   <section class="block"><div class="wrap">
+    <div class="filters" id="videoFilters" role="group" aria-label="Filter videos by category"></div>
     <div class="grid" id="videoGrid"></div>
     <div class="note" id="videoEmpty" hidden><p><strong>Videos coming soon.</strong></p></div>
     <p style="margin-top:20px"><a class="btn ghost" href="https://www.facebook.com/bix.els.1/videos/" target="_blank" rel="noopener">More videos on Facebook</a></p>
@@ -1237,6 +1238,12 @@ var D=[
 ["Dreaming again", "Sa Vakasaqara Tale na Inaki", "फिर से सपने देखना", "重新怀抱梦想", "يحلمون من جديد", "חולמים שוב"],
 ["Some are taking part in sport and have ambitions to pursue. A future that once seemed closed has begun to open.", "Eso era sa vakaitavi ena qito ka tiko vei ira na inaki era via rawata. Na gauna e mai ka vaka sa lutu sa tekivu me dola.", "कुछ लोग खेलों में भाग ले रहे हैं और उनके अपने सपने हैं जिन्हें वे पूरा करना चाहते हैं। जो भविष्य कभी बंद लगता था, वह अब खुलने लगा है।", "有些人参加体育运动，怀有想要追求的志向。曾经看似关闭的未来，已经开始敞开。", "بعضهم يمارس الرياضة ولديهم طموحات يسعون إليها. ومستقبل بدا مغلقًا يومًا ما بدأ ينفتح.", "חלקם עוסקים בספורט ויש להם שאיפות להגשים. עתיד שנראה פעם סגור החל להיפתח."],
 ["The work does not stop at a first harvest or a first success. The ministry continues to build each person up, in faith, in skills, in character and in hope, until every life can stand on its own and lift others.", "Na cakacaka e sega ni mutu ena kena imatai ni sevu se ni ka e rawati. Sa dau tomana tiko na veiqaravi na vakatubura e dua yadua, ena vakabauta, ena kila, ena itovo kei na inuinui, me yacova ni ra tu sa ra rawa ni tu ga vakai ira ka ra vukei ira tale eso.", "काम पहली फसल या पहली सफलता पर नहीं रुकता। सेवकाई हर व्यक्ति को विश्वास, हुनर, चरित्र और आशा में गढ़ती रहती है, जब तक हर जीवन अपने पैरों पर खड़ा न हो जाए और दूसरों को उठा न सके।", "工作不会止步于第一次收获或第一次成功。事工会继续在信心、技能、品格和盼望上建造每一个人，直到每一个生命都能自立，并扶持他人。", "لا يتوقف العمل عند أول حصاد أو أول نجاح. تواصل الخدمة بناء كل شخص في الإيمان والمهارات والشخصية والرجاء، حتى تقف كل حياة على قدميها وترفع غيرها.", "העבודה אינה נעצרת בקציר הראשון או בהצלחה הראשונה. השירות ממשיך לבנות כל אדם באמונה, במיומנויות, באופי ובתקווה, עד שכל חיים יוכלו לעמוד על רגליהם ולהרים אחרים."],
+["All", "Kece", "सभी", "全部", "الكل", "הכל"],
+["Preaching", "Vunau", "प्रचार", "讲道", "وعظ", "הטפה"],
+["Worship", "Lotu", "आराधना", "敬拜", "عبادة", "פולחן"],
+["Farming", "Teitei", "खेती", "农耕", "زراعة", "חקלאות"],
+["Testimony", "Ivakadinadina", "गवाही", "见证", "شهادة", "עדות"],
+["Visits", "Veisiko", "भेंट", "到访", "زيارات", "ביקורים"],
 /* more */
 ];
 var LN={en:'English',fj:'Na vosa vaka-Viti',hi:'हिन्दी',zh:'中文',ar:'العربية',he:'עברית'}, IDX={fj:1,hi:2,zh:3,ar:4,he:5};
@@ -1446,20 +1453,32 @@ function setLang(l){
 <script>
 (function(){
   /* Approved videos. Add one line per video: {url:"https://www.facebook.com/.../videos/123", title:"...", date:"2026-11-05"} */
-  var VIDEOS=[{url:"https://www.facebook.com/reel/2310815649685013/",title:"Preaching at a church service",date:"13 October 2026"},{url:"https://www.facebook.com/reel/2238154400061686/",title:"Worship and the Word",date:"12 October 2026"},{url:"https://www.facebook.com/reel/1815832556370316/",title:"Gathering for worship"},{url:"https://www.facebook.com/reel/1108394881646634/",title:"A visit from the Fiji Bati National Rugby League team",date:"7 October 2026"},{url:"https://www.facebook.com/reel/1127832643626471/",title:"Preaching from the stage",date:"4 October 2026"},{url:"https://www.facebook.com/reel/1835811611113088/",title:"Praise and worship",date:"28 September 2026"},{url:"https://www.facebook.com/reel/1360060109541194/",title:"Sharing the Word",date:"28 September 2026"},{url:"https://www.facebook.com/reel/1810539753421010/",title:"Worship together",date:"28 September 2026"},{url:"https://www.facebook.com/reel/1889818491994815/",title:"Planting at the farm",date:"8 September 2026"},{url:"https://www.facebook.com/reel/1581412476759266/",title:"Preparing the soil",date:"4 September 2026"},{url:"https://www.facebook.com/reel/1365451659079679/",title:"Working the land",date:"2 September 2026"},{url:"https://www.facebook.com/reel/1597896308578082/",title:"Preaching with power",date:"3 August 2026"},{url:"https://www.facebook.com/reel/1014497734794251/",title:"Cagi ni YaloTabu: a Spirit-filled service",date:"3 August 2026"},{url:"https://www.facebook.com/reel/2504943753280191/",title:"Life Changing Testimony",date:"16 May 2026"},{url:"https://www.facebook.com/reel/3892625467700262/",title:"Farm work in the hills",date:"14 May 2026"},{url:"https://www.facebook.com/reel/2379980102808093/",title:"Sunday service",date:"12 October 2026"}];
-  var g=document.getElementById('videoGrid'),em=document.getElementById('videoEmpty');
+  var VIDEOS=[{url:"https://www.facebook.com/reel/2310815649685013/",title:"Preaching at a church service",date:"13 October 2026",iso:"2026-10-13",cat:"Preaching"},{url:"https://www.facebook.com/reel/2238154400061686/",title:"Worship and the Word",date:"12 October 2026",iso:"2026-10-12",cat:"Worship"},{url:"https://www.facebook.com/reel/1815832556370316/",title:"Gathering for worship",iso:"",cat:"Worship"},{url:"https://www.facebook.com/reel/1108394881646634/",title:"A visit from the Fiji Bati National Rugby League team",date:"7 October 2026",iso:"2026-10-07",cat:"Visits"},{url:"https://www.facebook.com/reel/1127832643626471/",title:"Preaching from the stage",date:"4 October 2026",iso:"2026-10-04",cat:"Preaching"},{url:"https://www.facebook.com/reel/1835811611113088/",title:"Praise and worship",date:"28 September 2026",iso:"2026-09-28",cat:"Worship"},{url:"https://www.facebook.com/reel/1360060109541194/",title:"Sharing the Word",date:"28 September 2026",iso:"2026-09-28",cat:"Preaching"},{url:"https://www.facebook.com/reel/1810539753421010/",title:"Worship together",date:"28 September 2026",iso:"2026-09-28",cat:"Worship"},{url:"https://www.facebook.com/reel/1889818491994815/",title:"Planting at the farm",date:"8 September 2026",iso:"2026-09-08",cat:"Farming"},{url:"https://www.facebook.com/reel/1581412476759266/",title:"Preparing the soil",date:"4 September 2026",iso:"2026-09-04",cat:"Farming"},{url:"https://www.facebook.com/reel/1365451659079679/",title:"Working the land",date:"2 September 2026",iso:"2026-09-02",cat:"Farming"},{url:"https://www.facebook.com/reel/1597896308578082/",title:"Preaching with power",date:"3 August 2026",iso:"2026-08-03",cat:"Preaching"},{url:"https://www.facebook.com/reel/1014497734794251/",title:"Cagi ni YaloTabu: a Spirit-filled service",date:"3 August 2026",iso:"2026-08-03",cat:"Worship"},{url:"https://www.facebook.com/reel/2504943753280191/",title:"Life Changing Testimony",date:"16 May 2026",iso:"2026-05-16",cat:"Testimony"},{url:"https://www.facebook.com/reel/3892625467700262/",title:"Farm work in the hills",date:"14 May 2026",iso:"2026-05-14",cat:"Farming"},{url:"https://www.facebook.com/reel/2379980102808093/",title:"Sunday service",date:"12 October 2026",iso:"2026-10-12",cat:"Worship"}];
+  var g=document.getElementById('videoGrid'),em=document.getElementById('videoEmpty'),fb=document.getElementById('videoFilters');
   if(!g)return;
   if(!VIDEOS.length){em.hidden=false;return}
+  function T(x){return window.tr?window.tr(x):x}
+  VIDEOS.sort(function(a,b){return (b.iso||'')<(a.iso||'')?-1:(b.iso||'')>(a.iso||'')?1:0});
   VIDEOS.forEach(function(v){
-    var d=document.createElement('div');d.className='vid';
+    var d=document.createElement('div');d.className='vid';d.setAttribute('data-cat',v.cat||'');
     var f=document.createElement('div');f.className='frame';
     var i=document.createElement('iframe');
     i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent(v.url);
     i.loading='lazy';i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
     f.appendChild(i);
     var c=document.createElement('div');c.className='cap';
+    if(v.cat){var p=document.createElement('span');p.className='pill';p.textContent=T(v.cat);c.appendChild(p)}
     var h=document.createElement('h3');h.textContent=v.title;var sm=document.createElement('small');sm.textContent=v.date||'';
     c.appendChild(h);c.appendChild(sm);d.appendChild(f);d.appendChild(c);g.appendChild(d)});
+  if(fb){
+    var cats=[];VIDEOS.forEach(function(v){if(v.cat&&cats.indexOf(v.cat)<0)cats.push(v.cat)});
+    ['All'].concat(cats).forEach(function(k){
+      var b=document.createElement('button');b.type='button';b.textContent=T(k);b.setAttribute('aria-pressed',k==='All'?'true':'false');
+      b.addEventListener('click',function(){
+        [].forEach.call(fb.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed','false')});
+        b.setAttribute('aria-pressed','true');
+        [].forEach.call(g.children,function(t){t.hidden=!(k==='All'||t.getAttribute('data-cat')===k)})});
+      fb.appendChild(b)})}
 })();
 </script>
 
