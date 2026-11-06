@@ -619,7 +619,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
     <div class="grid" id="videoGrid"></div>
     <div class="note" id="videoEmpty" hidden><p><strong>Videos coming soon.</strong></p></div>
     <p style="margin-top:20px"><a class="btn ghost" href="https://www.facebook.com/bix.els.1/videos/" target="_blank" rel="noopener">More videos on Facebook</a></p>
-    <p class="note" style="margin-top:16px">Videos play through Facebook. Facebook may set cookies and track viewing once a video is loaded. Nothing is loaded from Facebook until you press Play.</p>
+    <p class="note" style="margin-top:16px">Videos play through Facebook. Facebook may set cookies and track viewing while this page is open. Nothing is loaded from Facebook until you visit this page.</p>
   </div></section>
 </div>
 
@@ -1079,7 +1079,7 @@ var D=[
 ["Videos coming soon.", "Era via yaco mai na ivakaraitaki.", "वीडियो जल्द आ रहे हैं।", "视频即将上线。", "الفيديوهات قريبًا.", "סרטונים בקרוב."],
 ["Approved videos will appear here.", "Na ivakaraitaki vakadonui ena basika eke.", "स्वीकृत वीडियो यहाँ दिखाई देंगे।", "获准的视频将显示在这里。", "ستظهر الفيديوهات المعتمدة هنا.", "סרטונים מאושרים יופיעו כאן."],
 ["More videos on Facebook", "Ivakaraitaki tale ena Facebook", "फ़ेसबुक पर और वीडियो", "在Facebook上观看更多视频", "المزيد من الفيديوهات على فيسبوك", "עוד סרטונים בפייסבוק"],
-["Videos play through Facebook. Facebook may set cookies and track viewing once a video is loaded. Nothing is loaded from Facebook until you press Play.", "Na ivakaraitaki e vakaraitaki ena Facebook. E rawa ni Facebook me wasea na kuki ka muria na raica ni sa wili na ivakaraitaki. E sega ni wili e dua na ka mai Facebook ni se sega ni tia na Play.", "वीडियो फ़ेसबुक के माध्यम से चलते हैं। वीडियो लोड होने पर फ़ेसबुक कुकीज़ सेट कर सकता है और देखने को ट्रैक कर सकता है। प्ले दबाने तक फ़ेसबुक से कुछ भी लोड नहीं होता।", "视频通过Facebook播放。视频加载后，Facebook可能设置Cookie并追踪观看。在您点击播放之前，不会从Facebook加载任何内容。", "تُشغَّل الفيديوهات عبر فيسبوك. قد يضع فيسبوك ملفات تعريف ارتباط ويتتبع المشاهدة بعد تحميل الفيديو. لا يُحمَّل أي شيء من فيسبوك حتى تضغط تشغيل.", "הסרטונים מתנגנים דרך פייסבוק. פייסבוק עשוי להגדיר עוגיות ולעקוב אחר הצפייה לאחר טעינת הסרטון. דבר אינו נטען מפייסבוק עד שתלחצו על ניגון."],
+["Videos play through Facebook. Facebook may set cookies and track viewing while this page is open. Nothing is loaded from Facebook until you visit this page.", "Na ivakaraitaki e vakaraitaki ena Facebook. E rawa ni Facebook me wasea na kuki ka muria na raica ni sa ca na tabana oqo. E sega ni wili e dua na ka mai Facebook ke sega ni laki raica na tabana oqo.", "वीडियो फ़ेसबुक के माध्यम से चलते हैं। इस पेज के खुले रहने पर फ़ेसबुक कुकीज़ सेट कर सकता है और देखने को ट्रैक कर सकता है। इस पेज पर जाने तक फ़ेसबुक से कुछ भी लोड नहीं होता।", "视频通过Facebook播放。页面打开期间，Facebook可能设置Cookie并追踪观看。在您访问此页面之前，不会从Facebook加载任何内容。", "تُشغَّل الفيديوهات عبر فيسبوك. قد يضع فيسبوك ملفات تعريف الارتباط ويتتبع المشاهدة أثناء فتح هذه الصفحة. لا يُحمَّل أي شيء من فيسبوك حتى تزور هذه الصفحة.", "הסרטונים מופעלים דרך פייסבוק. פייסבוק עשוי להציב קובצי Cookie ולעקוב אחר צפייה בזמן שהדף פתוח. דבר אינו נטען מפייסבוק עד שתבקרו בדף זה."],
 ["Reaching the Lost. Restoring Lives. Sharing Christ.", "Vaqara na Yali. Vakalesuitaka na Bula. Tukuna na Karisito.", "खोए हुओं तक पहुँचना। जीवनों को पुनर्स्थापित करना। मसीह को बाँटना।", "寻找失丧的人。重建生命。分享基督。", "الوصول إلى الضائعين. ترميم الحياة. مشاركة المسيح.", "להושיט יד אל האבודים. לשקם חיים. לשתף את המשיח."],
 ["Explore", "Rai Tale", "देखें", "浏览", "استكشف", "גלו"],
 ["Trust", "Vakabauta", "भरोसा", "信任", "الثقة", "אמון"],
@@ -1453,13 +1453,10 @@ function setLang(l){
   VIDEOS.forEach(function(v){
     var d=document.createElement('div');d.className='vid';
     var f=document.createElement('div');f.className='frame';
-    var b=document.createElement('button');b.type='button';b.textContent=(window.tr?window.tr('Play'):'Play');
-    b.addEventListener('click',function(){
-      var i=document.createElement('iframe');
-      i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent(v.url);
-      i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
-      f.textContent='';f.appendChild(i)});
-    f.appendChild(b);
+    var i=document.createElement('iframe');
+    i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent(v.url);
+    i.loading='lazy';i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
+    f.appendChild(i);
     var c=document.createElement('div');c.className='cap';
     var h=document.createElement('h3');h.textContent=v.title;var sm=document.createElement('small');sm.textContent=v.date||'';
     c.appendChild(h);c.appendChild(sm);d.appendChild(f);d.appendChild(c);g.appendChild(d)});
