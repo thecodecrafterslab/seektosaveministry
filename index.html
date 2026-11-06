@@ -641,6 +641,8 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
   <section class="block"><div class="wrap">
     <div class="note" style="margin-bottom:32px"><p><strong>How we protect people.</strong> Nothing is published until the person and the ministry have approved it in writing. Names may be shortened or changed, faces are not shown by default, and testimonies from children are not published.</p></div>
     <div class="grid" id="testimonyGrid"></div>
+    <h2 style="margin:40px 0 18px">Watch their testimonies</h2>
+    <div class="grid" id="testimonyVideoGrid"></div>
     <h2 style="margin:48px 0 18px">How a testimony is added</h2>
     <ol class="steps">
       <li><strong>Invitation</strong><br>The person is invited to share, and is free to say no.</li>
@@ -1473,7 +1475,11 @@ function setLang(l){
   if(!VIDEOS.length){em.hidden=false;return}
   function T(x){return window.tr?window.tr(x):x}
   VIDEOS.sort(function(a,b){return (b.iso||'')<(a.iso||'')?-1:(b.iso||'')>(a.iso||'')?1:0});
+  var tg=document.getElementById('testimonyVideoGrid');
   VIDEOS.forEach(function(v){
+    if(tg&&v.cat==='Testimony')tg.appendChild(mk(v,false));
+    g.appendChild(mk(v,true))});
+  function mk(v,pill){
     var d=document.createElement('div');d.className='vid';d.setAttribute('data-cat',v.cat||'');
     var f=document.createElement('div');f.className='frame';
     var i=document.createElement('iframe');
@@ -1481,9 +1487,9 @@ function setLang(l){
     i.loading='lazy';i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
     f.appendChild(i);
     var c=document.createElement('div');c.className='cap';
-    if(v.cat){var p=document.createElement('span');p.className='pill';p.textContent=T(v.cat);c.appendChild(p)}
+    if(v.cat&&pill){var p=document.createElement('span');p.className='pill';p.textContent=T(v.cat);c.appendChild(p)}
     var h=document.createElement('h3');h.textContent=v.title;var sm=document.createElement('small');sm.textContent=v.date||'';
-    c.appendChild(h);c.appendChild(sm);d.appendChild(f);d.appendChild(c);g.appendChild(d)});
+    c.appendChild(h);c.appendChild(sm);d.appendChild(f);d.appendChild(c);return d}
   if(fb){
     var cats=[];VIDEOS.forEach(function(v){if(v.cat&&cats.indexOf(v.cat)<0)cats.push(v.cat)});
     ['All'].concat(cats).forEach(function(k){
