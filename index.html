@@ -105,6 +105,8 @@ nav a.give{background:var(--gold);color:var(--on-gold);font-weight:700}
 [dir=rtl] .mbanner .ph{right:40%;left:0}
 [dir=rtl] .mbanner .stripe{right:calc(40% - 14px);left:0}
 .mbanner .ph.story{background:#2C5740 url(images/story-banner.jpg) 50% 66%/cover no-repeat}
+.mbanner .ph.giving{background:#2C5740 url(images/giving-banner.jpg) 50% 35%/cover no-repeat}
+.mbanner.photo .txt h1+p{margin-top:16px}
 .mbanner.photo{min-height:clamp(340px,36vw,470px)}.mbanner.photo .ph{left:calc(50% + 30px)}.mbanner.photo .stripe{left:calc(50% + 16px)}[dir=rtl] .mbanner.photo .ph{right:calc(50% + 30px);left:0}[dir=rtl] .mbanner.photo .stripe{right:calc(50% + 16px);left:0}.mbanner.photo .txt>*{max-width:min(440px,38%)}.mbanner.photo h1{font-size:clamp(1.9rem,4.2vw,3.3rem)}
 @media (max-width:760px){.mbanner{display:block}.mbanner .ph{position:relative;display:block;height:230px;left:auto;clip-path:none;order:2}.mbanner .stripe{display:none}.mbanner .txt>*,.mbanner.photo .txt>*{max-width:none}.mbanner.photo .ph{left:auto}[dir=rtl] .mbanner.photo .ph{right:auto}[dir=rtl] .mbanner .ph{right:auto}}
 .stat b{display:block;font:400 clamp(1.9rem,4vw,2.5rem) var(--display);color:var(--green-2);line-height:1.1;margin-bottom:8px}
@@ -414,7 +416,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
 
 <!-- BUILD A HOME -->
 <div class="view" id="v-build-a-home" hidden>
-  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Build a Home of Hope</p><h1>Help Us Create a Place Where Lives Can Be Rebuilt</h1><p>A safe bed, a dignified place to live and room to grow should not be out of reach.</p><p class="scripture">“God sets the lonely in families.” Psalm 68:6</p></div></div>
+  <section class="mbanner photo"><div class="txt"><p class="eyebrow">Build a Home of Hope</p><h1>Help Us Create a Place Where Lives Can Be Rebuilt</h1><p>A safe bed, a dignified place to live and room to grow should not be out of reach.</p><p class="scripture">“God sets the lonely in families.” Psalm 68:6</p></div><div class="stripe" aria-hidden="true"></div><div class="ph giving" aria-hidden="true"></div></section>
   <section class="block"><div class="wrap">
     <div class="row" style="margin-bottom:24px"><a class="btn primary" href="#donate" data-fund="Build a Home Fund">Donate Now</a></div>
     <p>What began in a family home has grown into a vision for something greater. Seek to Save Ministry dreams of a dedicated facility where vulnerable people can receive compassionate care, appropriate accommodation, guidance and opportunities for a brighter future.</p>
