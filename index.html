@@ -195,7 +195,7 @@ textarea{min-height:120px;resize:vertical}
 
 .card .ph{margin:-4px -4px 14px;border-radius:10px;overflow:hidden}.card .ph img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--card-2,#e8ece6)}.card .ph small{display:block;padding:6px 2px 0;color:var(--muted);font-size:.78rem}
 .card .ph.logo{background:#fff;border:1px solid var(--line,#dfe5dc)}.card .ph.logo img{aspect-ratio:16/9;object-fit:contain;padding:14px;background:#fff}
-.vid{background:var(--surface);border:1px solid var(--line,#dfe5dc);border-radius:10px;overflow:hidden}.vid .frame{aspect-ratio:9/15;background:#0e1d15;display:grid;place-items:center}.vid .frame iframe{width:100%;height:100%;border:0}.vid .frame button{font:inherit;font-weight:700;padding:12px 22px;border-radius:999px;border:0;background:var(--gold);color:var(--on-gold);cursor:pointer}.vid .cap .pill{display:inline-block;margin-bottom:6px;font-size:.62rem;padding:3px 8px}#videoGrid,#testimonyVideoGrid{grid-template-columns:repeat(auto-fill,minmax(165px,200px));gap:14px;justify-content:start}@media(max-width:480px){#videoGrid,#testimonyVideoGrid{grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch}}.vid .frame{aspect-ratio:9/16}.vid .frame button{padding:8px 16px;font-size:.9rem}.vid .cap{padding:8px 10px}.vid .cap h3{margin:0 0 2px;font-size:.88rem;line-height:1.25}.vid .cap small{font-size:.75rem}.vid .cap{padding:8px 10px}.vid .cap h3{margin:0 0 4px}.vid .cap small{color:var(--muted)}
+.vid{background:var(--surface);border:1px solid var(--line,#dfe5dc);border-radius:10px;overflow:hidden}.vid .frame{aspect-ratio:9/15;background:#0e1d15;display:grid;place-items:center}.vid .frame iframe{width:100%;height:100%;border:0}.vid .frame button{font:inherit;font-weight:700;padding:12px 22px;border-radius:999px;border:0;background:var(--gold);color:var(--on-gold);cursor:pointer}.vid .cap .pill{display:inline-block;margin-bottom:6px;font-size:.62rem;padding:3px 8px}.vid .frame{position:relative}.vid .frame button.cover{width:100%;height:100%;border-radius:0;background:linear-gradient(165deg,#1d3d2a,#0e1d15);color:#f4efe2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:12px;font-weight:600}.vid .cover .cx{color:var(--gold);font-size:1.6rem}.vid .cover .pl{width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;color:var(--gold);font-size:1.2rem;padding-left:4px}.vid .cover .cl{font-size:.8rem;letter-spacing:.04em;text-transform:uppercase}.vid .cover:focus-visible{outline:3px solid var(--gold);outline-offset:-4px}.vid .cap{min-height:92px}.vid .cap h3{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}#videoGrid,#testimonyVideoGrid{grid-template-columns:repeat(auto-fill,minmax(165px,200px));gap:14px;justify-content:start}@media(max-width:480px){#videoGrid,#testimonyVideoGrid{grid-template-columns:repeat(2,minmax(0,1fr));justify-content:stretch}}.vid .frame{aspect-ratio:9/16}.vid .frame button{padding:8px 16px;font-size:.9rem}.vid .cap{padding:8px 10px}.vid .cap h3{margin:0 0 2px;font-size:.88rem;line-height:1.25}.vid .cap small{font-size:.75rem}.vid .cap{padding:8px 10px}.vid .cap h3{margin:0 0 4px}.vid .cap small{color:var(--muted)}
 [dir=rtl] .draft .wrap p,[dir=rtl] th,[dir=rtl] td{text-align:right}
 .langs button[dir=rtl]{text-align:center}
 #langGate .gt p[dir=rtl]{text-align:center}
@@ -326,7 +326,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
       <a class="btn primary" href="#donate">Support Elia's Vision</a>
     </div>
     <aside class="card"><button type="button" class="avatar-btn" id="founderBtn" aria-label="View larger portrait of Elia Berabi"><img src="images/pastor-elia.jpg" alt="" width="720" height="706" loading="lazy"></button><h3>Our Founder: Elia Berabi</h3><p>Elia Berabi founded Seek to Save Ministry in Colo-i-Suva, Fiji. His work is rooted in Christian faith, compassion and a commitment to vulnerable people. His vision is a sustainable ministry that continues transforming lives for generations to come.</p>
-      <div class="vid" id="founderVid" style="margin-top:16px;width:200px;max-width:100%"><div class="frame" id="founderVidFrame"><button type="button" id="founderVidBtn">&#9654; Watch</button></div><div class="cap"><h3>How Seek to Save Ministry started</h3><small>Elia tells the story in his own words. The video plays through Facebook, which may set cookies once you press play.</small></div></div></aside>
+      <div class="vid" id="founderVid" style="margin-top:16px;width:200px;max-width:100%"><div class="frame" id="founderVidFrame"><button type="button" class="cover" id="founderVidBtn" aria-label="Play: How Seek to Save Ministry started"><span class="cx">&#10013;</span><span class="pl">&#9654;</span><span class="cl">Watch video</span></button></div><div class="cap"><h3>How Seek to Save Ministry started</h3></div></div><p style="margin-top:8px;font-size:.78rem;color:var(--muted)">Elia tells the story in his own words. The video plays through Facebook, which may set cookies once you press play.</p></aside>
   </div></section>
 </div>
 
@@ -1482,10 +1482,14 @@ function setLang(l){
   function mk(v,pill){
     var d=document.createElement('div');d.className='vid';d.setAttribute('data-cat',v.cat||'');
     var f=document.createElement('div');f.className='frame';
-    var i=document.createElement('iframe');
-    i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent(v.url);
-    i.loading='lazy';i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
-    f.appendChild(i);
+    var cv=document.createElement('button');cv.type='button';cv.className='cover';cv.setAttribute('aria-label','Play: '+v.title);
+    cv.innerHTML='<span class="cx">&#10013;</span><span class="pl">&#9654;</span><span class="cl">Watch video</span>';
+    cv.addEventListener('click',function(){
+      var i=document.createElement('iframe');
+      i.src='https://www.facebook.com/plugins/video.php?show_text=false&autoplay=true&width=560&href='+encodeURIComponent(v.url);
+      i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
+      f.innerHTML='';f.appendChild(i)});
+    f.appendChild(cv);
     var c=document.createElement('div');c.className='cap';
     if(v.cat&&pill){var p=document.createElement('span');p.className='pill';p.textContent=T(v.cat);c.appendChild(p)}
     var h=document.createElement('h3');h.textContent=v.title;var sm=document.createElement('small');sm.textContent=v.date||'';
@@ -1591,7 +1595,7 @@ function setLang(l){
   if(!b||!f)return;
   b.addEventListener('click',function(){
     var i=document.createElement('iframe');
-    i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent('https://www.facebook.com/reel/1782822309050676/');
+    i.src='https://www.facebook.com/plugins/video.php?show_text=false&autoplay=true&width=560&href='+encodeURIComponent('https://www.facebook.com/reel/1782822309050676/');
     i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title='How Seek to Save Ministry started';
     f.innerHTML='';f.appendChild(i);
   });
