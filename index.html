@@ -516,7 +516,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
   </div></section>
     <section class="block"><div class="wrap">
     <h2>Our givers</h2>
-    <p style="margin-top:12px">Thank you to everyone who has given. Gifts appear here after the ministry has confirmed them. Givers can choose to remain anonymous and leave a message.</p>
+    <p style="margin-top:12px">Thank you to everyone who has given. Gifts appear here once they are received. Givers can choose to show their name or remain anonymous, and can leave a message.</p>
     <div class="filters" id="giverFilter"><button type="button" data-f="all" aria-pressed="true">All</button><button type="button" data-f="daily" aria-pressed="false">Daily Care Fund</button><button type="button" data-f="building" aria-pressed="false">Build a Home Fund</button></div>
     <div class="gl" id="giverList"></div>
   </div></section>
@@ -899,7 +899,7 @@ var D=[
 ["Goal not reached", "Sega ni rawati", "लक्ष्य पूरा नहीं हुआ", "未达成", "لم يتحقق الهدف", "היעד לא הושג"],
 ["No goal set", "Sega ni tuvanaki e dua na inaki", "कोई लक्ष्य तय नहीं", "未设定目标", "لم يُحدد هدف", "לא נקבע יעד"],
 ["Our givers", "Ratou na dau solisoli", "हमारे दानदाता", "我们的奉献者", "المتبرعون لدينا", "התורמים שלנו"],
-["Thank you to everyone who has given. Gifts appear here after the ministry has confirmed them. Givers can choose to remain anonymous and leave a message.", "Vinaka vakalevu vei ira kece era sa solia. Na solisoli ena basika eke ni oti na vakadeitaki ena veiqaravi. Era rawa ni digitaka me ra sega ni vakatakilakilai ka biuta e dua na ivakamacala.", "उन सभी का धन्यवाद जिन्होंने दान दिया है। सेवा द्वारा पुष्टि के बाद ही दान यहाँ दिखाई देते हैं। दानदाता गुमनाम रहना और संदेश छोड़ना चुन सकते हैं।", "感谢每一位奉献者。奉献经事工确认后会显示在这里。奉献者可以选择匿名,并留下留言。", "شكرًا لكل من تبرّع. تظهر التبرعات هنا بعد أن تؤكدها الخدمة. يمكن للمتبرعين البقاء مجهولين وترك رسالة.", "תודה לכל מי שתרם. תרומות מופיעות כאן לאחר שהשירות אישר אותן. תורמים יכולים להישאר אנונימיים ולהשאיר הודעה."],
+["Thank you to everyone who has given. Gifts appear here once they are received. Givers can choose to show their name or remain anonymous, and can leave a message.", "Vinaka vakalevu vei ira kece era sa solia. Na solisoli ena basika eke ni oti na vakadeitaki ena veiqaravi. Era rawa ni digitaka me ra sega ni vakatakilakilai ka biuta e dua na ivakamacala.", "उन सभी का धन्यवाद जिन्होंने दान दिया है। सेवा द्वारा पुष्टि के बाद ही दान यहाँ दिखाई देते हैं। दानदाता गुमनाम रहना और संदेश छोड़ना चुन सकते हैं।", "感谢每一位奉献者。奉献经事工确认后会显示在这里。奉献者可以选择匿名,并留下留言。", "شكرًا لكل من تبرّع. تظهر التبرعات هنا بعد أن تؤكدها الخدمة. يمكن للمتبرعين البقاء مجهولين وترك رسالة.", "תודה לכל מי שתרם. תרומות מופיעות כאן לאחר שהשירות אישר אותן. תורמים יכולים להישאר אנונימיים ולהשאיר הודעה."],
 ["All", "Kece", "सभी", "全部", "الكل", "הכול"],
 ["Anonymous", "Sega ni kilai", "गुमनाम", "匿名", "مجهول", "אנונימי"],
 ["No gifts have been recorded yet.", "Se sega ni volai e dua na solisoli.", "अभी तक कोई दान दर्ज नहीं हुआ है।", "目前尚无奉献记录。", "لم تُسجَّل أي تبرعات بعد.", "טרם נרשמו תרומות."],
@@ -1316,6 +1316,7 @@ function setLang(l){
 /* Goals and givers. Data lives in data/state.json; ministry editors record confirmed gifts and goals below. */
 (function(){
   var ST={settings:{monthlyGoal:null,buildingGoal:null},monthGoals:{},gifts:[]};
+  var AUTO=[];function G(){return ST.gifts.concat(AUTO)}
   var ART=null,USR=null,EDIT=false,FILTER='all',SHOWN=20,DIRTY=false,PENDING_DEL=null;
   function $(id){return document.getElementById(id)}
   function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
@@ -1328,17 +1329,17 @@ function setLang(l){
   function goalFor(k){var g=ST.monthGoals[k];return g!=null?g:ST.settings.monthlyGoal}
   function months(){
     var cur=today().slice(0,7),first=cur;
-    ST.gifts.forEach(function(g){var k=g.date.slice(0,7);if(k<first)first=k});
+    G().forEach(function(g){var k=g.date.slice(0,7);if(k<first)first=k});
     var out=[],k=first,carry=0;
     while(k<=cur){
-      var raised=0;ST.gifts.forEach(function(g){if(g.fund==='daily'&&g.date.slice(0,7)===k)raised+=g.amount});
+      var raised=0;G().forEach(function(g){if(g.fund==='daily'&&g.date.slice(0,7)===k)raised+=g.amount});
       var goal=goalFor(k),avail=raised+carry,co=goal!=null?Math.max(0,avail-goal):0;
       out.push({k:k,raised:raised,carryIn:carry,avail:avail,goal:goal,carryOut:co});
       carry=co;k=nextKey(k);
     }
     return out;
   }
-  function buildTotal(){var t=0;ST.gifts.forEach(function(g){if(g.fund==='building')t+=g.amount});return t}
+  function buildTotal(){var t=0;G().forEach(function(g){if(g.fund==='building')t+=g.amount});return t}
   function meter(val,goal){
     var m=el('div','meter');m.setAttribute('role','progressbar');m.setAttribute('aria-valuemin','0');m.setAttribute('aria-valuemax','100');
     var p=goal>0?Math.min(100,val/goal*100):0;m.setAttribute('aria-valuenow',Math.round(p));
@@ -1380,7 +1381,7 @@ function setLang(l){
   }
   function renderGivers(){
     var list=$('giverList');list.textContent='';
-    var gs=ST.gifts.filter(function(g){return FILTER==='all'||g.fund===FILTER}).sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:(b.id||'').localeCompare(a.id||'')});
+    var gs=G().filter(function(g){return !g.private&&(FILTER==='all'||g.fund===FILTER)}).sort(function(a,b){return a.date<b.date?1:a.date>b.date?-1:(b.id||'').localeCompare(a.id||'')});
     [].forEach.call(document.querySelectorAll('#giverFilter button'),function(b){b.setAttribute('aria-pressed',b.dataset.f===FILTER)});
     if(!gs.length){list.appendChild(el('p','small','No gifts have been recorded yet.'));return}
     gs.slice(0,SHOWN).forEach(function(g){
@@ -1453,6 +1454,7 @@ function setLang(l){
     return s;
   }
   window.renderMoney();
+  try{fetch('https://wplfpyeilxsnprbhkuzq.supabase.co/functions/v1/givers').then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&Array.isArray(j.gifts)){AUTO=j.gifts.filter(function(g){return g&&+g.amount>0&&/^\d{4}-\d{2}-\d{2}$/.test(g.date)}).map(function(g){return {id:String(g.id||''),date:g.date,fund:g.fund==='building'?'building':'daily',amount:+g.amount,name:String(g.name||''),anonymous:!!g.anonymous,private:!!g.private,message:String(g.message||'')}});window.renderMoney()}}).catch(function(){});
   try{fetch('data/state.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():null}).then(function(j){if(j&&!DIRTY){ST=normalize(j);window.renderMoney();if(EDIT)renderAdmin()}}).catch(function(){})}catch(e){}
   try{
     if(window.claude&&claude.use){
