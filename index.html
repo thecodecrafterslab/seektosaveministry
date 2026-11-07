@@ -1475,27 +1475,22 @@ function setLang(l){
   if(!VIDEOS.length){em.hidden=false;return}
   function T(x){return window.tr?window.tr(x):x}
   VIDEOS.sort(function(a,b){return (b.iso||'')<(a.iso||'')?-1:(b.iso||'')>(a.iso||'')?1:0});
+  var BLANK=['30281762614745531','2366166473918274','884721806977955','886599320454360'];
   var tg=document.getElementById('testimonyVideoGrid');
-  function tip(){
-    var ua=navigator.userAgent||'',k=/iPhone|iPad|iPod/.test(ua)?'ios':/Android/.test(ua)?'android':/Macintosh/.test(ua)&&navigator.maxTouchPoints>1?'ios':'desk';
-    var d=document.createElement('details');d.className='note capstip';d.style.margin='0 0 20px';
-    var rows=[['ios','iPhone or iPad','Settings &rarr; Accessibility &rarr; Live Captions, then turn it on.'],['android','Android','Press a volume button, then tap the Live Caption icon under the volume slider. Or open Settings &rarr; Sound &rarr; Live Caption.'],['desk','Computer (Chrome)','Settings &rarr; Accessibility &rarr; Live Caption, then turn it on. Chrome can translate the captions on supported devices.']];
-    var h='<summary><strong>Watch with captions in your language</strong></summary><p>Your phone or computer can caption any video as it plays. We cannot switch this on for you, because browsers keep it as a private device setting. You only need to turn it on once.</p><ul>';
-    rows.forEach(function(r){h+='<li'+(r[0]===k?' style="font-weight:700"':'')+'><strong>'+r[1]+(r[0]===k?' (your device)':'')+':</strong> '+r[2]+'</li>'});
-    d.innerHTML=h+'</ul><p><small>Availability and languages depend on your device. After pressing play, captions appear on screen.</small></p>';
-    return d}
-  if(g)g.parentNode.insertBefore(tip(),g);
-  var tg0=document.getElementById('testimonyVideoGrid');if(tg0)tg0.parentNode.insertBefore(tip(),tg0);
   VIDEOS.forEach(function(v){
     if(tg&&v.cat==='Testimony')tg.appendChild(mk(v,false));
     g.appendChild(mk(v,true))});
   function mk(v,pill){
     var d=document.createElement('div');d.className='vid';d.setAttribute('data-cat',v.cat||'');
     var f=document.createElement('div');f.className='frame';
-    var i=document.createElement('iframe');
-    i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent(v.url);
-    i.loading='lazy';i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
-    f.appendChild(i);
+    function mkF(auto){var i=document.createElement('iframe');
+      i.src='https://www.facebook.com/plugins/video.php?show_text=false'+(auto?'&autoplay=true':'')+'&width=560&href='+encodeURIComponent(v.url);
+      i.loading='lazy';i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;return i}
+    if(BLANK.some(function(x){return v.url.indexOf(x)>-1})){
+      var cv=document.createElement('button');cv.type='button';cv.className='cover';cv.setAttribute('aria-label','Play: '+v.title);
+      cv.innerHTML='<span class="cx">&#10013;&#xFE0E;</span><span class="pl">&#9654;&#xFE0E;</span><span class="cl">Watch video</span>';
+      cv.addEventListener('click',function(){f.innerHTML='';f.appendChild(mkF(true))});
+      f.appendChild(cv)}else f.appendChild(mkF(false));
     var c=document.createElement('div');c.className='cap';
     if(v.cat&&pill){var p=document.createElement('span');p.className='pill';p.textContent=T(v.cat);c.appendChild(p)}
     var h=document.createElement('h3');h.textContent=v.title;var sm=document.createElement('small');sm.textContent=v.date||'';
