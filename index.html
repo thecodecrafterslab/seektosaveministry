@@ -1554,7 +1554,7 @@ function setLang(l){
   btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
 
   // donate
-  var GIVE_OPEN=false;
+  var GIVE_OPEN=true;
   if(GIVE_OPEN){[].forEach.call(document.querySelectorAll('.giveRow'),function(x){x.hidden=false});document.getElementById('giveSoon').hidden=true}
   // enquiry forms
   [].forEach.call(document.querySelectorAll('form.enquiry'),function(f){
