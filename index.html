@@ -326,7 +326,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
       <a class="btn primary" href="#donate">Support Elia's Vision</a>
     </div>
     <aside class="card"><button type="button" class="avatar-btn" id="founderBtn" aria-label="View larger portrait of Elia Berabi"><img src="images/pastor-elia.jpg" alt="" width="720" height="706" loading="lazy"></button><h3>Our Founder: Elia Berabi</h3><p>Elia Berabi founded Seek to Save Ministry in Colo-i-Suva, Fiji. His work is rooted in Christian faith, compassion and a commitment to vulnerable people. His vision is a sustainable ministry that continues transforming lives for generations to come.</p>
-      <div class="vid" id="founderVid" style="margin-top:16px;width:200px;max-width:100%"><div class="frame" id="founderVidFrame"><button type="button" class="cover" id="founderVidBtn" aria-label="Play: How Seek to Save Ministry started"><span class="cx">&#10013;</span><span class="pl">&#9654;</span><span class="cl">Watch video</span></button></div><div class="cap"><h3>How Seek to Save Ministry started</h3></div></div><p style="margin-top:8px;font-size:.78rem;color:var(--muted)">Elia tells the story in his own words. The video plays through Facebook, which may set cookies once you press play.</p></aside>
+      <div class="vid" id="founderVid" style="margin-top:16px;width:200px;max-width:100%"><div class="frame" id="founderVidFrame"><iframe loading="lazy" title="How Seek to Save Ministry started" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen src="https://www.facebook.com/plugins/video.php?show_text=false&width=560&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1782822309050676%2F"></iframe></div><div class="cap"><h3>How Seek to Save Ministry started</h3></div></div><p style="margin-top:8px;font-size:.78rem;color:var(--muted)">Elia tells the story in his own words. The video plays through Facebook, which may set cookies once you press play.</p></aside>
   </div></section>
 </div>
 
@@ -1492,14 +1492,10 @@ function setLang(l){
   function mk(v,pill){
     var d=document.createElement('div');d.className='vid';d.setAttribute('data-cat',v.cat||'');
     var f=document.createElement('div');f.className='frame';
-    var cv=document.createElement('button');cv.type='button';cv.className='cover';cv.setAttribute('aria-label','Play: '+v.title);
-    cv.innerHTML='<span class="cx">&#10013;</span><span class="pl">&#9654;</span><span class="cl">Watch video</span>';
-    cv.addEventListener('click',function(){
-      var i=document.createElement('iframe');
-      i.src='https://www.facebook.com/plugins/video.php?show_text=false&autoplay=true&width=560&href='+encodeURIComponent(v.url);
-      i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
-      f.innerHTML='';f.appendChild(i)});
-    f.appendChild(cv);
+    var i=document.createElement('iframe');
+    i.src='https://www.facebook.com/plugins/video.php?show_text=false&width=560&href='+encodeURIComponent(v.url);
+    i.loading='lazy';i.allow='autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share';i.allowFullscreen=true;i.title=v.title;
+    f.appendChild(i);
     var c=document.createElement('div');c.className='cap';
     if(v.cat&&pill){var p=document.createElement('span');p.className='pill';p.textContent=T(v.cat);c.appendChild(p)}
     var h=document.createElement('h3');h.textContent=v.title;var sm=document.createElement('small');sm.textContent=v.date||'';
