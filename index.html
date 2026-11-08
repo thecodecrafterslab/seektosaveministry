@@ -1578,7 +1578,7 @@ function setLang(l){
     btn.addEventListener('click',function(){
       if(!(amount>=1&&amount<=10000)){say('Please choose a whole amount between 1 and 10,000.');return}
       btn.disabled=true;st.hidden=true;
-      fetch(URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({fund:document.querySelector('input[name=gfund]:checked').value,mode:document.querySelector('input[name=gmode]:checked').value,amount:amount,currency:document.getElementById('gcur').value})})
+      fetch(URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({fund:document.querySelector('input[name=gfund]:checked').value,mode:document.querySelector('input[name=gmode]:checked').value,amount:amount,currency:document.getElementById('gcur').value,lang:document.documentElement.lang||'en'})})
         .then(function(r){return r.json()}).then(function(j){if(j&&j.url){location.href=j.url}else{say((j&&j.error)||'Could not start checkout. Please try again.');btn.disabled=false}})
         .catch(function(){say('Could not reach the payment service. Please try again.');btn.disabled=false});
     });
