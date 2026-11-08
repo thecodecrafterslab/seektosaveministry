@@ -1,5 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" type="image/svg+xml" href="images/favicon.svg"><style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style><title>Seek to Save Fiji</title>
-<meta name="description" content="Seek to Save Christian Outreach &amp; Restoration Ministry, Colo-i-Suva, Fiji.">
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><link rel="icon" type="image/svg+xml" href="images/favicon.svg"><meta name="description" content="Seek to Save Christian Outreach &amp; Restoration Ministry, Colo-i-Suva, Fiji.">
 <meta property="og:type" content="website"><meta property="og:site_name" content="Seek to Save"><meta property="og:title" content="Seek to Save Fiji"><meta property="og:description" content="Christian outreach and restoration ministry in Colo-i-Suva, Fiji."><meta property="og:url" content="https://seektosaveministry.com/"><meta property="og:image" content="https://seektosaveministry.com/images/share-logo.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Seek to Save logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://seektosaveministry.com/images/share-logo.jpg">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+Hebrew:wght@400;600;700&display=swap">
@@ -30,6 +29,7 @@ p{margin:0 0 1em;max-width:65ch} a{color:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
 .homegal{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}.gtile{padding:0;border:0;background:none;cursor:zoom-in;border-radius:10px;overflow:hidden;aspect-ratio:1;display:block;transition:transform .15s,box-shadow .15s}.gtile:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.2)}.gtile img{width:100%;height:100%;object-fit:cover;display:block}
+.homegal.workgal{grid-template-columns:repeat(auto-fill,minmax(220px,1fr))}.homegal.workgal .gtile{aspect-ratio:4/3}
 #gbox{position:fixed;inset:0;z-index:60;background:rgba(10,20,14,.9);display:grid;place-items:center;padding:24px}#gbox[hidden]{display:none}#gbox img{display:block;max-width:min(92vw,1100px);max-height:84vh;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.5)}#gbox button{position:absolute;width:44px;height:44px;border-radius:50%;border:2px solid var(--gold);background:var(--green);color:#fff;font-size:22px;line-height:1;cursor:pointer}#gbox .gx{top:16px;right:16px}#gbox .gp{left:12px;top:50%;transform:translateY(-50%)}#gbox .gn{right:12px;top:50%;transform:translateY(-50%)}[dir=rtl] #gbox .gx{right:auto;left:16px}
 .scripture{font-style:italic}.page-head p.scripture{font-size:1rem;opacity:.92;margin-top:16px}.banner p.scripture{font-size:clamp(.95rem,2vw,1.1rem);color:#F1E9CC;margin:-14px auto 26px;max-width:46ch}.mbanner p.scripture{font-size:clamp(.9rem,1.6vw,1rem);color:#F1E9CC;margin:14px 0 0;max-width:34ch}
 .homegal.plans{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}.homegal.plans .gtile{aspect-ratio:4/3;background:#fff;border:1px solid var(--line,#ddd)}.homegal.plans .gtile img{object-fit:contain}
@@ -625,13 +625,20 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
 
 <!-- VIDEOS -->
 <div class="view" id="v-videos" hidden>
-  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Our work</p><h1>Watch the ministry at work</h1><p>Videos shared publicly by Elia.</p><p class="scripture">“In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.” Matthew 5:16</p></div></div>
+  <div class="page-head bleed"><div class="wrap"><p class="eyebrow">Our work</p><h1>Watch the ministry at work</h1><p>Videos and photos shared publicly by Elia.</p><p class="scripture">“In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.” Matthew 5:16</p></div></div>
   <section class="block"><div class="wrap">
+    <div class="filters" id="workToggle" role="group" aria-label="Show videos or photos"><button type="button" data-w="videos" aria-pressed="true">Videos</button><button type="button" data-w="photos" aria-pressed="false">Photos</button></div>
+    <div id="workVideos">
     <div class="filters" id="videoFilters" role="group" aria-label="Filter videos by category"></div>
     <div class="grid" id="videoGrid"></div>
     <div class="note" id="videoEmpty" hidden><p><strong>Videos coming soon.</strong></p></div>
     <p style="margin-top:20px"><a class="btn ghost" href="https://www.facebook.com/bix.els.1/videos/" target="_blank" rel="noopener">More videos on Facebook</a></p>
     <p class="note" style="margin-top:16px">Videos play through Facebook. Facebook may set cookies and track viewing while this page is open. Nothing is loaded from Facebook until you visit this page.</p>
+    </div>
+    <div id="workPhotos" hidden>
+    <div class="homegal workgal"><button type="button" class="gtile"><img src="images/work-1.jpg" alt="Sharing food with people in need" loading="lazy"></button><button type="button" class="gtile"><img src="images/work-3.jpg" alt="Sharing food with people in need" loading="lazy"></button><button type="button" class="gtile"><img src="images/work-4.jpg" alt="Preparing bread for an outreach" loading="lazy"></button><button type="button" class="gtile"><img src="images/work-2.jpg" alt="Sharing food with people in need" loading="lazy"></button><button type="button" class="gtile"><img src="images/work-5.jpg" alt="Supplies ready on the farm" loading="lazy"></button><button type="button" class="gtile"><img src="images/work-6.jpg" alt="A worship gathering" loading="lazy"></button></div>
+    <p style="margin-top:20px"><a class="btn ghost" href="https://www.facebook.com/bix.els.1/photos/" target="_blank" rel="noopener">More photos on Facebook</a></p>
+    </div>
   </div></section>
 </div>
 
@@ -1089,7 +1096,15 @@ var D=[
 ["“Bear ye one another's burdens, and so fulfil the law of Christ.”", "“Mo dou veivuke ena veitaqomaki, ka dou vakayacora kina na ivakaro i Karisito.”", "“तुम एक दूसरे के भार उठाओ, और इस प्रकार मसीह की व्यवस्था को पूरी करो।”", "“你们各人的重担要互相担当，如此就完全了基督的律法。”", "«احملوا بعضكم أثقال بعض، وهكذا تمّموا ناموس المسيح.»", "«שאו איש את משא רעהו, וכך תקיימו את תורת המשיח.»"],
 ["Videos", "Ivakaraitaki", "वीडियो", "视频", "فيديوهات", "סרטונים"],
 ["Watch the ministry at work", "Raica na veiqaravi ena cakacaka", "सेवकाई को कार्य करते देखें", "观看事工的工作", "شاهد الخدمة وهي تعمل", "צפו בשירות בפעולה"],
-["Videos shared publicly by Elia.", "Na ivakaraitaki e wasea vakaraivotu o Elia.", "एलिया द्वारा सार्वजनिक रूप से साझा किए गए वीडियो।", "以利亚公开分享的视频。", "فيديوهات يشاركها إيليا علنًا.", "סרטונים שאליה משתף בפומבי."],
+["Videos and photos shared publicly by Elia.", "Na ivakaraitaki kei na iwalewale e wasea vakaraivotu o Elia.", "एलिया द्वारा सार्वजनिक रूप से साझा किए गए वीडियो और तस्वीरें।", "以利亚公开分享的视频和照片。", "فيديوهات وصور يشاركها إيليا علنًا.", "סרטונים ותמונות שאליה משתף בפומבי."],
+["Videos", "Ivakaraitaki", "वीडियो", "视频", "فيديوهات", "סרטונים"],
+["Photos", "Iwalewale", "तस्वीरें", "照片", "صور", "תמונות"],
+["Show videos or photos", "Vakaraitaka na ivakaraitaki se na iwalewale", "वीडियो या तस्वीरें दिखाएँ", "显示视频或照片", "عرض الفيديوهات أو الصور", "הצג סרטונים או תמונות"],
+["Sharing food with people in need", "Na wasea kana vei ira era vakailavo", "ज़रूरतमंद लोगों के साथ भोजन बाँटना", "与有需要的人分享食物", "تقاسم الطعام مع المحتاجين", "חלוקת אוכל לנזקקים"],
+["Preparing bread for an outreach", "Na vakarautaki ni madrai ni veiqaravi", "आउटरीच के लिए रोटी तैयार करना", "为外展准备面包", "تجهيز الخبز لحملة إغاثة", "הכנת לחם למבצע סיוע"],
+["Supplies ready on the farm", "Na ka e rau tu ena teitei", "खेत में तैयार सामग्री", "农场里备好的物资", "مؤن جاهزة في المزرعة", "אספקה מוכנה בחווה"],
+["A worship gathering", "Na soqosoqo ni veikidavaki", "एक आराधना सभा", "一次敬拜聚会", "اجتماع عبادة", "מפגש פולחן"],
+["More photos on Facebook", "Iwalewale tale ena Facebook", "फ़ेसबुक पर और तस्वीरें", "在Facebook上查看更多照片", "المزيد من الصور على فيسبوك", "עוד תמונות בפייסבוק"],
 ["Videos coming soon.", "Era via yaco mai na ivakaraitaki.", "वीडियो जल्द आ रहे हैं।", "视频即将上线。", "الفيديوهات قريبًا.", "סרטונים בקרוב."],
 ["Approved videos will appear here.", "Na ivakaraitaki vakadonui ena basika eke.", "स्वीकृत वीडियो यहाँ दिखाई देंगे।", "获准的视频将显示在这里。", "ستظهر الفيديوهات المعتمدة هنا.", "סרטונים מאושרים יופיעו כאן."],
 ["More videos on Facebook", "Ivakaraitaki tale ena Facebook", "फ़ेसबुक पर और वीडियो", "在Facebook上观看更多视频", "المزيد من الفيديوهات على فيسبوك", "עוד סרטונים בפייסבוק"],
@@ -1523,6 +1538,16 @@ function setLang(l){
 
 <script>
 (function(){
+  var t=document.getElementById('workToggle');if(!t)return;
+  var v=document.getElementById('workVideos'),p=document.getElementById('workPhotos');
+  [].forEach.call(t.querySelectorAll('button'),function(b){b.addEventListener('click',function(){
+    var ph=b.dataset.w==='photos';v.hidden=ph;p.hidden=!ph;
+    [].forEach.call(t.querySelectorAll('button'),function(x){x.setAttribute('aria-pressed',String(x===b))});
+  })});
+})();
+</script>
+<script>
+(function(){
   var box=document.getElementById('gbox'),im=document.getElementById('gImg'),cur=0,opener=null,set=[];
   if(!box)return;
   function show(i){cur=(i+set.length)%set.length;im.src=set[cur].src;im.alt=set[cur].alt;var sm=set[cur].naturalWidth<600;im.style.maxWidth=sm?'min(92vw,520px)':'';im.style.width=sm?'min(92vw,520px)':''}
@@ -1608,5 +1633,4 @@ function setLang(l){
 })();
 </script>
 <script data-goatcounter="https://seektosave.goatcounter.com/count" data-goatcounter-settings='{"no_onload":true}' async src="//gc.zgo.at/count.js"></script>
-<script>(function(){function c(){var g=window.goatcounter;if(g&&g.count){g.count({path:'/'+(location.hash||'#home'),title:document.title})}}window.addEventListener('load',c);window.addEventListener('hashchange',c)})();</script>
-</body></html>
+<script>(function(){function c(){var g=window.goatcounter;if(g&&g.count){g.count({path:'/'+(location.hash||'#home'),title:document.title})}}window.addEventListener('load',c);window.addEventListener('hashchange',c)})();</script></body></html>
