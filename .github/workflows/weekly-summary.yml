@@ -1,0 +1,10 @@
+name: Weekly giving summary
+on:
+  schedule:
+    - cron: "0 19 * * 0"   # Sunday 19:00 UTC = Monday 07:00 Fiji
+  workflow_dispatch:
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl -fsS "https://wplfpyeilxsnprbhkuzq.supabase.co/functions/v1/weekly-summary"
