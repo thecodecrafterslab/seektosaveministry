@@ -50,6 +50,10 @@
 <meta property="og:type" content="website"><meta property="og:site_name" content="Seek to Save"><meta property="og:title" content="Seek to Save Fiji"><meta property="og:description" content="Christian outreach and restoration ministry in Colo-i-Suva, Fiji."><meta property="og:url" content="https://seektosaveministry.com/"><meta property="og:image" content="https://seektosaveministry.com/images/share-logo.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Seek to Save logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://seektosaveministry.com/images/share-logo.jpg">
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+Hebrew:wght@400;600;700&display=swap">
+<meta name="description" content="Seek to Save Christian Outreach &amp; Restoration Ministry, Colo-i-Suva, Fiji.">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Seek to Save"><meta property="og:title" content="Seek to Save Fiji"><meta property="og:description" content="Christian outreach and restoration ministry in Colo-i-Suva, Fiji."><meta property="og:url" content="https://seektosaveministry.com/"><meta property="og:image" content="https://seektosaveministry.com/images/share-logo.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Seek to Save logo"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://seektosaveministry.com/images/share-logo.jpg">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+Arabic:wght@400;600;700&family=Noto+Sans+Hebrew:wght@400;600;700&display=swap">
 <style>
 /* Layout: sticky top nav, one view at a time chosen by #hash; deep forest green hero bands, off-white reading pages, gold used only for rules, buttons and scripture. */
 :root{
@@ -88,6 +92,7 @@ p{margin:0 0 1em;max-width:65ch} a{color:inherit}
 /* language */
 .draft .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between}
 .draft .wrap p{text-align:left}
+.topact{display:flex;align-items:center;gap:10px}.btn.topdonate{padding:5px 14px;font-size:.82rem;border-width:1px;white-space:nowrap}#giveCard{scroll-margin-top:96px}
 .langbtn{flex:none;background:transparent;color:inherit;border:1px solid currentColor;border-radius:4px;padding:5px 12px;font:600 .82rem var(--body);cursor:pointer}
 #langGate{position:fixed;inset:0;z-index:50;background:var(--green);color:var(--on-green);display:grid;place-items:center;overflow:auto;padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
 #langGate[hidden]{display:none}
@@ -272,7 +277,7 @@ footer .grid{gap:28px} footer a{color:var(--gold-soft)} footer p{max-width:none}
 @media (prefers-reduced-motion:no-preference){.view{animation:in .35s ease-out}@keyframes in{from{opacity:.4}to{opacity:1}}}
 </style></head><body>
 
-<div class="draft bleed"><div class="wrap"><span></span><button class="langbtn" id="langBtn" type="button" aria-haspopup="dialog">Language: English</button></div></div>
+<div class="draft bleed"><div class="wrap"><span></span><span class="topact"><a class="btn primary topdonate" id="donateTop" href="#donate">Make a donation</a><button class="langbtn" id="langBtn" type="button" aria-haspopup="dialog">Language: English</button></span></div></div>
 <div id="langGate" role="dialog" aria-modal="true" aria-labelledby="lgT" hidden><div class="inner"><div class="gt"><p class="eyebrow">Seek to Save</p><h1 id="lgT" lang="en">Welcome. Choose your language.</h1><p lang="fj">Bula vinaka! Digitaka na vosa o via vakayagataka.</p><p lang="hi">स्वागत है। अपनी भाषा चुनें।</p><p lang="zh">欢迎。请选择您的语言。</p><p lang="ar" dir="rtl">مرحبًا. اختر لغتك.</p><p lang="he" dir="rtl">ברוכים הבאים. בחרו את השפה שלכם.</p></div><div class="langs"><button type="button" data-lang="fj" lang="fj">Na vosa vaka-Viti<small>Fijian</small></button><button type="button" data-lang="he" lang="he" dir="rtl">עברית<small>Hebrew</small></button><button type="button" data-lang="ar" lang="ar" dir="rtl">العربية<small>Arabic</small></button><button type="button" data-lang="en" lang="en">English<small>English</small></button><button type="button" data-lang="hi" lang="hi">हिन्दी<small>Hindi</small></button><button type="button" data-lang="zh" lang="zh">中文<small>Chinese</small></button></div></div></div>
 
 <header class="top bleed">
@@ -1663,6 +1668,11 @@ function setLang(l){
       var f=document.getElementById('fundChoice');
       if(f){f.scrollIntoView({behavior:'smooth',block:'start'});if(r)r.focus({preventScroll:true})}
     },60);
+  });
+  document.getElementById('donateTop').addEventListener('click',function(e){
+    e.preventDefault();
+    if(location.hash!=='#donate')location.hash='#donate';else route();
+    setTimeout(function(){var c=document.getElementById('giveCard');if(c)c.scrollIntoView({behavior:'smooth',block:'start'})},80);
   });
   btn.addEventListener('click',function(){var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o)});
 
