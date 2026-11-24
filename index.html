@@ -111,6 +111,7 @@ p{margin:0 0 1em;max-width:65ch} a{color:inherit}
 .fplan .za,.fleg .za{fill:var(--za);background:var(--za)}.fplan .zb,.fleg .zb{fill:var(--zb);background:var(--zb)}.fplan .zc,.fleg .zc{fill:var(--zc);background:var(--zc)}.fplan .zd,.fleg .zd{fill:var(--zd);background:var(--zd)}.fplan .ze,.fleg .ze{fill:var(--ze);background:var(--ze)}.fplan .zf,.fleg .zf{fill:var(--zf);background:var(--zf)}.fplan .zg,.fleg .zg{fill:var(--zg);background:var(--zg)}
 .fplan rect[class^=z]{stroke:var(--fg);stroke-width:1.5}.fplan .fsite{fill:var(--band);stroke:var(--line);stroke-width:2}.fplan .fdrive{fill:var(--zs);stroke:var(--line)}.fplan .fdet{fill:none;stroke:var(--fg);stroke-width:1;opacity:.45}.fplan .ftree circle{fill:var(--zg);stroke:var(--fg);stroke-width:1;opacity:.8}.fplan .fwalk{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round;stroke-dasharray:2 9}
 .fplan .fnum circle{fill:var(--surface);stroke:var(--fg);stroke-width:1.5}.fplan .fnum text{font:700 14px var(--body);fill:var(--fg);text-anchor:middle}
+.cardlink{font-weight:700;text-underline-offset:3px}
 .fcap{color:var(--muted);font-size:.92rem;margin:0 0 4px}
 .fleg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:22px 30px;margin-top:22px}.fleg h3{font-size:1.08rem;display:flex;align-items:center;gap:9px;margin:0 0 8px}.fleg h3 i{flex:none;width:15px;height:15px;border-radius:4px;border:1.5px solid var(--fg)}.fleg ul{list-style:none;margin:0;padding:0}.fleg li{display:flex;gap:10px;align-items:baseline;padding:3px 0}.fleg li b{flex:none;min-width:1.75em;text-align:center;font-size:.85rem;line-height:1.6;border:1.5px solid var(--fg);border-radius:999px;font-variant-numeric:tabular-nums}
 /* draft notice */
@@ -1392,6 +1393,7 @@ var D=[
 ["Step-free access and accessible bathrooms throughout", "E sega na ikabakaba ena sala kece, ka tu na vale ni sili e rawarawa vei ira kece", "हर जगह बिना सीढ़ी की पहुँच और सुगम्य स्नानघर", "全区无障碍通行，并设有无障碍卫生间", "وصول بلا درجات وحمّامات مهيأة لذوي الإعاقة في كل المرافق", "גישה ללא מדרגות וחדרי רחצה נגישים בכל המתחם"],
 ["Cyclone-resilient construction with solar power and rainwater harvesting", "Na tara vale e kaukauwa ena gauna ni cagilaba, ka vakayagataki na livaliva ni siga kei na wai ni uca", "चक्रवात-रोधी निर्माण, सौर ऊर्जा और वर्षा जल संचयन के साथ", "抗飓风建筑，配备太阳能和雨水收集", "بناء مقاوم للأعاصير مع طاقة شمسية وتجميع مياه الأمطار", "בנייה עמידה לציקלונים עם אנרגיה סולארית ואיסוף מי גשם"],
 ["Can be built in stages as funds allow", "E rawa ni tara vakatikina me vaka na levu ni ilavo e rawa", "धन उपलब्ध होने के अनुसार चरणों में बनाया जा सकता है", "可根据资金情况分期建设", "يمكن بناؤه على مراحل بحسب توفر التمويل", "ניתן לבנות בשלבים בהתאם למימון"],
+["See the plan to build a home of hope →", "Raica na ituvatuva me tara e dua na vale ni vakanuinui →", "आशा का घर बनाने की योजना देखें →", "查看建造希望之家的计划 →", "اطّلع على خطة بناء بيت الأمل ←", "לצפייה בתוכנית לבניית בית של תקווה ←"],
 ["Proposed plans", "Na ituvatuva e vakaturi", "प्रस्तावित योजनाएँ", "拟议图纸", "المخططات المقترحة", "התוכניות המוצעות"],
 ["Proposed floor plan of the new dormitory", "Na ituvatuva ni vale ni moce vou e vakaturi", "नए छात्रावास की प्रस्तावित मंज़िल योजना", "新宿舍的拟议平面图", "المخطط المقترح لطابق المهجع الجديد", "תוכנית הקומה המוצעת למעון החדש"],
 ["Proposed floor plan with dimensions of the new dormitory", "Na ituvatuva ni vale ni moce vou e vakaturi, ena nona levu", "नए छात्रावास की माप सहित प्रस्तावित मंज़िल योजना", "新宿舍的拟议带尺寸平面图", "المخطط المقترح لطابق المهجع الجديد مع الأبعاد", "תוכנית הקומה המוצעת למעון החדש עם מידות"],
@@ -1526,6 +1528,7 @@ function setLang(l){
       b.appendChild(meter(t,g));b.appendChild(stats(t,g));
       if(g==null)b.appendChild(el('p','small','The goal will be announced once the ministry sets it.'));
       else if(t>=g)b.appendChild(el('p','small win','Goal reached'));
+      if(id==='buildCard'){var bl=el('a','cardlink','See the plan to build a home of hope →');bl.href='#build-a-home';var bp=el('p','small');bp.style.margin='4px 0 16px';bp.appendChild(bl);b.appendChild(bp)}
       var ga=el('a','btn primary','Make a donation');ga.href='#donate';ga.setAttribute('data-cardgive','build-a-home');ga.style.marginTop='16px';b.appendChild(ga);
     });
     ['dailyCard','dailyCard2'].forEach(function(id){
